@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬기로운 연구생활 | Wise Research Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #d69e2e;
+            --accent-light: #ecc94b;
+            --bg: #f7fafc;
+            --bg-card: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --success: #38a169;
+            --shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+            --shadow-hover: 0 8px 30px rgba(26, 54, 93, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(26, 54, 93, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .api-status {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Project Section */
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+            border-color: var(--accent-light);
+        }
+
+        .project-card.active {
+            border-color: var(--primary);
+        }
+
+        .project-status {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .status-progress { background: #ebf8ff; color: #2b6cb0; }
+        .status-complete { background: #f0fff4; color: #276749; }
+        .status-idea { background: #fffaf0; color: #c05621; }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .new-project-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 2px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 180px;
+        }
+
+        .new-project-card:hover {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #fffaf0 0%, #fefcbf 100%);
+        }
+
+        .new-project-card .icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Menu Grid */
+        .menu-section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .menu-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .current-project-name {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: var(--bg);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .menu-item {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .menu-item:hover .menu-icon {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .menu-item:hover .menu-number {
+            color: var(--accent-light);
+        }
+
+        .menu-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .menu-text {
+            flex: 1;
+        }
+
+        .menu-number {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .menu-item.completed .menu-icon::after {
+            content: '✓';
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            background: var(--success);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-icon {
+            position: relative;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 54, 93, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(26, 54, 93, 0.25);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: calc(85vh - 140px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-group textarea,
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: var(--bg);
+        }
+
+        .form-group textarea:focus,
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(26, 54, 93, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        /* Result Section */
+        .result-section {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .result-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .n2b-block {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .n2b-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .n2b-n { background: #e53e3e; }
+        .n2b-b1 { background: #3182ce; }
+        .n2b-b2 { background: #38a169; }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* API Key Modal */
+        .api-key-section {
+            background: #fffaf0;
+            border: 1px solid var(--accent-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .api-key-section h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(26, 54, 93, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 300;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Previous Context */
+        .context-preview {
+            background: #f0f5ff;
+            border: 1px solid #c3dafe;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .context-preview h5 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .context-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .context-label {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <div class="logo-text">
+                    <h1>슬기로운 연구생활</h1>
+                    <span>Wise Research Life with N2B</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="api-status">
+                    <span class="status-dot"></span>
+                    <span id="apiStatus">API 연결됨</span>
+                </div>
+                <button class="btn btn-secondary" onclick="openSettings()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">⚙️ 설정</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <div class="section-title">내 연구 프로젝트</div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be rendered here -->
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section class="menu-section" id="menuSection" style="display: none;">
+            <div class="menu-header">
+                <h2>연구 단계</h2>
+                <span class="current-project-name" id="currentProjectName">프로젝트 선택</span>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="openMenu(1)">
+                    <div class="menu-icon">🎯</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 01</div>
+                        <div class="menu-title">R&D 과제 찾기</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(2)">
+                    <div class="menu-icon">📝</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 02</div>
+                        <div class="menu-title">과제 만들기</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(3)">
+                    <div class="menu-icon">📚</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 03</div>
+                        <div class="menu-title">참고문헌 관리</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(4)">
+                    <div class="menu-icon">📋</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 04</div>
+                        <div class="menu-title">제안서 작성</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(5)">
+                    <div class="menu-icon">🔬</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 05</div>
+                        <div class="menu-title">실험/개발 계획</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(6)">
+                    <div class="menu-icon">📓</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 06</div>
+                        <div class="menu-title">연구노트</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(7)">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 07</div>
+                        <div class="menu-title">보고서 작성</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(8)">
+                    <div class="menu-icon">📄</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 08</div>
+                        <div class="menu-title">논문 작성</div>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="openMenu(9)">
+                    <div class="menu-icon">🔄</div>
+                    <div class="menu-text">
+                        <div class="menu-number">STEP 09</div>
+                        <div class="menu-title">추가연구 방향</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">📝 메뉴</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // State Management
+        let state = {
+            apiKey: localStorage.getItem('apiKey') || '',
+            projects: JSON.parse(localStorage.getItem('projects') || '[]'),
+            currentProject: null
+        };
+
+        // Menu Configurations
+        const menuConfig = {
+            1: {
+                title: '🎯 R&D 과제 찾기',
+                description: '연구 분야와 키워드를 입력하면 적합한 국가R&D 과제를 추천합니다.',
+                fields: [
+                    { name: 'field', label: '연구 분야', type: 'text', placeholder: '예: 인공지능, 바이오, 에너지' },
+                    { name: 'keywords', label: '핵심 키워드', type: 'text', placeholder: '예: 자연어처리, sLLM, 경량화' },
+                    { name: 'affiliation', label: '소속 기관', type: 'select', options: ['대학교', '정부출연연구원', '기업부설연구소', '민간연구소', '기타'] },
+                    { name: 'career', label: '연구 경력', type: 'select', options: ['5년 미만', '5-10년', '10-20년', '20년 이상'] }
+                ],
+                prompt: (data, context) => `연구자 프로필:
+- 연구 분야: ${data.field}
+- 키워드: ${data.keywords}
+- 소속: ${data.affiliation}
+- 경력: ${data.career}
+
+위 연구자에게 적합한 정부 R&D 과제를 3개 추천해주세요.
+각 추천에 대해 N2B 형식으로 설명해주세요:
+[N] 이 과제가 해결하려는 문제
+[B] 연구자가 기여할 수 있는 부분
+[B] 매칭 적합도와 근거`
+            },
+            2: {
+                title: '📝 과제 만들기',
+                description: '연구 아이디어를 입력하면 N2B 프레임워크로 과제를 정의합니다.',
+                fields: [
+                    { name: 'idea', label: '연구 아이디어', type: 'textarea', placeholder: '해결하고 싶은 문제나 연구하고 싶은 주제를 자유롭게 작성하세요.' }
+                ],
+                prompt: (data, context) => `연구 아이디어:
+${data.idea}
+
+위 아이디어를 N2B 프레임워크로 구조화하여 연구 과제로 정의해주세요:
+[N] 기존의 문제점/한계 (왜 이 연구가 필요한가?)
+[B] 연구 방향/접근법 (어떻게 해결할 것인가?)
+[B] 기대 효과/근거 (왜 이 방법이 효과적인가?)
+
+추가로 다음을 제안해주세요:
+- 추천 과제명
+- 연구 목표 (1-2문장)
+- 연구 범위`
+            },
+            3: {
+                title: '📚 참고문헌 관리',
+                description: '논문 정보를 입력하면 N2B로 요약하고 내 연구와의 연결점을 찾습니다.',
+                fields: [
+                    { name: 'paperInfo', label: '논문 정보', type: 'textarea', placeholder: '논문 제목, 저자, 초록 등을 붙여넣기 하세요.\n또는 DOI를 입력하세요.' },
+                    { name: 'citationStyle', label: '인용 형식', type: 'select', options: ['APA', 'IEEE', 'Chicago', 'Vancouver', 'Harvard'] }
+                ],
+                prompt: (data, context) => `논문 정보:
+${data.paperInfo}
+
+${context.task ? `현재 연구 과제: ${context.task}` : ''}
+
+위 논문을 분석해주세요:
+
+1. N2B 요약:
+[N] 이 논문이 다루는 문제
+[B] 제안하는 해결책
+[B] 주요 결과/근거
+
+2. ${data.citationStyle} 형식 인용
+
+3. 내 연구와의 연결점 (있다면)`
+            },
+            4: {
+                title: '📋 제안서 작성',
+                description: '연구 내용을 입력하면 N2B 기반 제안서 초안을 작성합니다.',
+                fields: [
+                    { name: 'content', label: '연구 내용 메모', type: 'textarea', placeholder: '연구하려는 내용을 자유롭게 작성하세요.\n목표, 방법, 기대효과 등' }
+                ],
+                prompt: (data, context) => `${context.task ? `[기존 과제 정의]\n${context.task}\n\n` : ''}연구 내용 메모:
+${data.content}
+
+위 내용을 바탕으로 연구 제안서 초안을 N2B 구조로 작성해주세요:
+
+## 1. 연구 필요성 [N]
+(기존 한계와 문제점)
+
+## 2. 연구 내용 [B]
+(연구 목표, 범위, 방법론)
+
+## 3. 기대 성과 [B]
+(예상 결과물과 파급효과)`
+            },
+            5: {
+                title: '🔬 실험/개발 계획',
+                description: '연구 유형에 맞는 실험 또는 개발 계획을 수립합니다.',
+                fields: [
+                    { name: 'type', label: '연구 유형', type: 'select', options: ['실험 연구', '개발 연구', '조사 연구', '이론 연구'] },
+                    { name: 'hypothesis', label: '가설/목표', type: 'textarea', placeholder: '검증할 가설이나 달성할 목표를 작성하세요.' },
+                    { name: 'variables', label: '변수/모듈/항목', type: 'textarea', placeholder: '실험 변수, 개발 모듈, 조사 항목 등을 나열하세요.' }
+                ],
+                prompt: (data, context) => `${context.proposal ? `[제안서 연구방법]\n${context.proposal}\n\n` : ''}연구 유형: ${data.type}
+가설/목표: ${data.hypothesis}
+변수/모듈/항목: ${data.variables}
+
+위 내용을 바탕으로 ${data.type} 계획서를 N2B 구조로 작성해주세요:
+
+[N] 검증할 가설 또는 달성 목표
+[B] 실험/개발 설계
+    - 독립변수/입력
+    - 종속변수/출력
+    - 통제변수/제약조건
+[B] 측정/평가 방법`
+            },
+            6: {
+                title: '📓 연구노트',
+                description: '오늘의 연구 활동을 기록하면 N2B로 정리합니다.',
+                fields: [
+                    { name: 'date', label: '날짜', type: 'date', default: new Date().toISOString().split('T')[0] },
+                    { name: 'content', label: '오늘의 연구 내용', type: 'textarea', placeholder: '오늘 한 일, 발견한 것, 문제점, 해결 시도 등을 자유롭게 작성하세요.' }
+                ],
+                prompt: (data, context) => `${context.experiment ? `[실험 계획]\n${context.experiment}\n\n` : ''}날짜: ${data.date}
+연구 내용:
+${data.content}
+
+위 내용을 연구노트 형식으로 N2B 구조화해주세요:
+
+📅 ${data.date} 연구노트
+
+[N] 오늘의 문제/과제
+[B] 시도한 방법/접근
+[B] 결과/배운 점
+
+📈 과정 분석:
+- 예상 vs 실제
+- 차이 원인
+- 다음 단계`
+            },
+            7: {
+                title: '📊 보고서 작성',
+                description: '수행 내용을 입력하면 N2B 기반 보고서 초안을 작성합니다.',
+                fields: [
+                    { name: 'reportType', label: '보고서 유형', type: 'select', options: ['중간보고서', '최종보고서', '연차보고서'] },
+                    { name: 'content', label: '수행 내용 요약', type: 'textarea', placeholder: '연구 수행 내용, 결과, 성과 등을 작성하세요.' }
+                ],
+                prompt: (data, context) => `${context.proposal ? `[제안서 목표]\n${context.proposal}\n\n` : ''}${context.notes ? `[연구노트 요약]\n${context.notes}\n\n` : ''}보고서 유형: ${data.reportType}
+수행 내용:
+${data.content}
+
+위 내용을 바탕으로 ${data.reportType} 초안을 N2B 구조로 작성해주세요:
+
+## 1. 연구 목표 [N]
+(당초 목표 및 해결하려던 문제)
+
+## 2. 수행 내용 [B]
+(연구 방법 및 수행 과정)
+
+## 3. 연구 결과 [B]
+(주요 성과 및 근거)
+
+## 4. 결론 및 향후 계획`
+            },
+            8: {
+                title: '📄 논문 작성',
+                description: '연구 결과를 입력하면 N2B 기반 논문 초안(IMRaD)을 작성합니다.',
+                fields: [
+                    { name: 'content', label: '연구 결과 요약', type: 'textarea', placeholder: '연구 배경, 방법, 결과, 의의 등을 작성하세요.' }
+                ],
+                prompt: (data, context) => `${context.task ? `[과제 정의]\n${context.task}\n\n` : ''}${context.references ? `[참고문헌]\n${context.references}\n\n` : ''}${context.report ? `[보고서]\n${context.report}\n\n` : ''}연구 결과 요약:
+${data.content}
+
+위 내용을 바탕으로 학술 논문 초안을 작성해주세요 (IMRaD + N2B):
+
+## Abstract
+(연구 전체 요약)
+
+## 1. Introduction [N]
+(연구 배경, 선행연구 한계, 연구 목적)
+
+## 2. Methods [B]
+(연구 방법, 실험 설계)
+
+## 3. Results [B]
+(연구 결과, 데이터 분석)
+
+## 4. Discussion
+(결과 해석, 의의, 한계점)
+
+## 5. Conclusion
+(결론 및 향후 연구)`
+            },
+            9: {
+                title: '🔄 추가연구 방향',
+                description: '현재 연구의 한계와 발견을 바탕으로 후속 연구 방향을 제안합니다.',
+                fields: [
+                    { name: 'limitations', label: '현재 연구의 한계', type: 'textarea', placeholder: '이번 연구에서 해결하지 못한 문제나 한계점' },
+                    { name: 'discoveries', label: '새로운 발견/의문', type: 'textarea', placeholder: '연구 과정에서 발견한 새로운 사실이나 의문점' }
+                ],
+                prompt: (data, context) => `${context.report ? `[연구 결과]\n${context.report}\n\n` : ''}현재 연구의 한계:
+${data.limitations}
+
+새로운 발견/의문:
+${data.discoveries}
+
+위 내용을 바탕으로 후속 연구 방향을 N2B 구조로 제안해주세요:
+
+## 후속 연구 1
+[N] 미해결 문제
+[B] 후속 연구 방향
+[B] 기대 효과
+
+## 후속 연구 2
+[N] 새로운 의문
+[B] 탐구 방향
+[B] 잠재적 가치
+
+## 다음 프로젝트 제안
+- 추천 과제명
+- 연구 목표
+- 현재 연구와의 연결`
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            checkApiKey();
+        });
+
+        function checkApiKey() {
+            const status = document.getElementById('apiStatus');
+            if (state.apiKey) {
+                status.textContent = 'API 연결됨';
+            } else {
+                status.textContent = 'API 키 필요';
+            }
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            
+            // Sample projects for demo
+            if (state.projects.length === 0) {
+                state.projects = [
+                    {
+                        id: 'demo1',
+                        name: 'N2B 프레임워크 검증 연구',
+                        status: 'progress',
+                        startDate: '2024.11',
+                        description: '논리적 사고 구조화 프레임워크 효과성 검증',
+                        data: {}
+                    }
+                ];
+                saveState();
+            }
+
+            grid.innerHTML = state.projects.map(p => `
+                <div class="project-card ${state.currentProject?.id === p.id ? 'active' : ''}" onclick="selectProject('${p.id}')">
+                    <span class="project-status status-${p.status}">${getStatusLabel(p.status)}</span>
+                    <h3>${p.name}</h3>
+                    <p>${p.description}</p>
+                    <div class="project-meta">
+                        <span>시작: ${p.startDate}</span>
+                        <span>${Object.keys(p.data || {}).length}/9 단계</span>
+                    </div>
+                </div>
+            `).join('') + `
+                <div class="project-card new-project-card" onclick="createNewProject()">
+                    <div class="icon">+</div>
+                    <span>새 프로젝트</span>
+                </div>
+            `;
+        }
+
+        function getStatusLabel(status) {
+            const labels = {
+                progress: '진행 중',
+                complete: '완료',
+                idea: '아이디어'
+            };
+            return labels[status] || status;
+        }
+
+        function selectProject(id) {
+            state.currentProject = state.projects.find(p => p.id === id);
+            document.getElementById('menuSection').style.display = 'block';
+            document.getElementById('currentProjectName').textContent = state.currentProject.name;
+            renderProjects();
+            
+            // Scroll to menu
+            document.getElementById('menuSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function createNewProject() {
+            const name = prompt('새 프로젝트 이름을 입력하세요:');
+            if (!name) return;
+
+            const project = {
+                id: 'proj_' + Date.now(),
+                name: name,
+                status: 'idea',
+                startDate: new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit' }).replace('. ', '.').replace('.', ''),
+                description: '새로운 연구 프로젝트',
+                data: {}
+            };
+
+            state.projects.unshift(project);
+            saveState();
+            renderProjects();
+            selectProject(project.id);
+            showToast('새 프로젝트가 생성되었습니다!');
+        }
+
+        function openMenu(menuId) {
+            if (!state.currentProject) {
+                showToast('먼저 프로젝트를 선택해주세요.');
+                return;
+            }
+
+            const config = menuConfig[menuId];
+            const context = getProjectContext();
+
+            let contextHtml = '';
+            if (Object.keys(context).some(k => context[k])) {
+                contextHtml = `
+                    <div class="context-preview">
+                        <h5>📎 이전 단계 연계 정보</h5>
+                        ${context.task ? `<div class="context-item"><span class="context-label">과제:</span> ${truncate(context.task, 100)}</div>` : ''}
+                        ${context.proposal ? `<div class="context-item"><span class="context-label">제안서:</span> ${truncate(context.proposal, 100)}</div>` : ''}
+                        ${context.experiment ? `<div class="context-item"><span class="context-label">실험계획:</span> ${truncate(context.experiment, 100)}</div>` : ''}
+                    </div>
+                `;
+            }
+
+            let fieldsHtml = config.fields.map(field => {
+                if (field.type === 'textarea') {
+                    return `
+                        <div class="form-group">
+                            <label>${field.label}</label>
+                            <textarea id="field_${field.name}" placeholder="${field.placeholder || ''}">${state.currentProject.data[`${menuId}_${field.name}`] || ''}</textarea>
+                        </div>
+                    `;
+                } else if (field.type === 'select') {
+                    return `
+                        <div class="form-group">
+                            <label>${field.label}</label>
+                            <select id="field_${field.name}">
+                                ${field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                            </select>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="form-group">
+                            <label>${field.label}</label>
+                            <input type="${field.type}" id="field_${field.name}" 
+                                   placeholder="${field.placeholder || ''}"
+                                   value="${field.default || state.currentProject.data[`${menuId}_${field.name}`] || ''}">
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            const previousResult = state.currentProject.data[`${menuId}_result`];
+            let resultHtml = '';
+            if (previousResult) {
+                resultHtml = `
+                    <div class="result-section">
+                        <h4>📌 이전 분석 결과</h4>
+                        <div style="white-space: pre-wrap; font-size: 0.9rem;">${previousResult}</div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('modalTitle').innerHTML = config.title;
+            document.getElementById('modalBody').innerHTML = `
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">${config.description}</p>
+                
+                ${!state.apiKey ? `
+                    <div class="api-key-section">
+                        <h4>🔑 API 키 설정</h4>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <input type="password" id="apiKeyInput" placeholder="Anthropic API 키를 입력하세요" value="${state.apiKey}">
+                        </div>
+                    </div>
+                ` : ''}
+                
+                ${contextHtml}
+                ${fieldsHtml}
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                    <button class="btn btn-primary" onclick="analyzeWithN2B(${menuId})">N2B 분석 ✨</button>
+                </div>
+                
+                <div id="resultArea">${resultHtml}</div>
+            `;
+
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function getProjectContext() {
+            if (!state.currentProject) return {};
+            const data = state.currentProject.data;
+            return {
+                task: data['2_result'],
+                references: data['3_result'],
+                proposal: data['4_result'],
+                experiment: data['5_result'],
+                notes: data['6_result'],
+                report: data['7_result']
+            };
+        }
+
+        function truncate(str, len) {
+            if (!str) return '';
+            return str.length > len ? str.substring(0, len) + '...' : str;
+        }
+
+        async function analyzeWithN2B(menuId) {
+            const config = menuConfig[menuId];
+            const context = getProjectContext();
+
+            // Collect field values
+            const data = {};
+            config.fields.forEach(field => {
+                const el = document.getElementById(`field_${field.name}`);
+                data[field.name] = el ? el.value : '';
+                
+                // Save to project
+                state.currentProject.data[`${menuId}_${field.name}`] = data[field.name];
+            });
+
+            // Check API key
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            if (apiKeyInput && apiKeyInput.value) {
+                state.apiKey = apiKeyInput.value;
+                localStorage.setItem('apiKey', state.apiKey);
+                checkApiKey();
+            }
+
+            if (!state.apiKey) {
+                showToast('API 키를 입력해주세요.');
+                return;
+            }
+
+            // Show loading
+            const resultArea = document.getElementById('resultArea');
+            resultArea.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <span>N2B 분석 중...</span>
+                </div>
+            `;
+
+            try {
+                const prompt = config.prompt(data, context);
+                
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': state.apiKey,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 2000,
+                        messages: [
+                            {
+                                role: 'user',
+                                content: prompt
+                            }
+                        ]
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+
+                const analysisResult = result.content[0].text;
+                
+                // Save result
+                state.currentProject.data[`${menuId}_result`] = analysisResult;
+                
+                // Update project status
+                if (state.currentProject.status === 'idea') {
+                    state.currentProject.status = 'progress';
+                }
+                
+                saveState();
+
+                // Display result
+                resultArea.innerHTML = `
+                    <div class="result-section">
+                        <h4>✨ N2B 분석 결과</h4>
+                        <div style="white-space: pre-wrap; font-size: 0.9rem; line-height: 1.8;">${formatResult(analysisResult)}</div>
+                        <div class="btn-group" style="margin-top: 1rem;">
+                            <button class="btn btn-secondary" onclick="copyResult()">📋 복사</button>
+                        </div>
+                    </div>
+                `;
+
+                showToast('분석이 완료되었습니다!');
+                renderProjects();
+
+            } catch (error) {
+                resultArea.innerHTML = `
+                    <div class="result-section" style="border-left-color: #e53e3e;">
+                        <h4 style="color: #e53e3e;">❌ 오류 발생</h4>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function formatResult(text) {
+            // Highlight N2B blocks
+            return text
+                .replace(/\[N\]/g, '<span class="n2b-label n2b-n">N</span>')
+                .replace(/\[B\]/g, '<span class="n2b-label n2b-b1">B</span>')
+                .replace(/##\s(.+)/g, '<h4 style="margin-top: 1.5rem; color: var(--primary);">$1</h4>');
+        }
+
+        function copyResult() {
+            const resultText = document.querySelector('.result-section div[style*="pre-wrap"]')?.innerText;
+            if (resultText) {
+                navigator.clipboard.writeText(resultText);
+                showToast('클립보드에 복사되었습니다!');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        function openSettings() {
+            document.getElementById('modalTitle').innerHTML = '⚙️ 설정';
+            document.getElementById('modalBody').innerHTML = `
+                <div class="form-group">
+                    <label>Anthropic API 키</label>
+                    <input type="password" id="settingsApiKey" value="${state.apiKey}" placeholder="sk-ant-...">
+                    <p class="form-hint">API 키는 브라우저에 안전하게 저장됩니다.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>데이터 관리</label>
+                    <div class="btn-group" style="justify-content: flex-start;">
+                        <button class="btn btn-secondary" onclick="exportData()">📤 내보내기</button>
+                        <button class="btn btn-secondary" onclick="importData()">📥 가져오기</button>
+                        <button class="btn btn-secondary" style="color: #e53e3e;" onclick="clearData()">🗑️ 초기화</button>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                    <button class="btn btn-primary" onclick="saveSettings()">저장</button>
+                </div>
+            `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function saveSettings() {
+            const apiKey = document.getElementById('settingsApiKey').value;
+            state.apiKey = apiKey;
+            localStorage.setItem('apiKey', apiKey);
+            checkApiKey();
+            closeModal();
+            showToast('설정이 저장되었습니다!');
+        }
+
+        function exportData() {
+            const data = JSON.stringify(state.projects, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `wise-research-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            showToast('데이터를 내보냈습니다!');
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        state.projects = JSON.parse(e.target.result);
+                        saveState();
+                        renderProjects();
+                        closeModal();
+                        showToast('데이터를 가져왔습니다!');
+                    } catch {
+                        showToast('파일 형식이 올바르지 않습니다.');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        function clearData() {
+            if (confirm('모든 프로젝트 데이터가 삭제됩니다. 계속하시겠습니까?')) {
+                state.projects = [];
+                state.currentProject = null;
+                saveState();
+                renderProjects();
+                document.getElementById('menuSection').style.display = 'none';
+                closeModal();
+                showToast('데이터가 초기화되었습니다.');
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem('projects', JSON.stringify(state.projects));
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
