@@ -203,6 +203,28 @@
             color: var(--text-light);
         }
 
+        .project-card.sample {
+            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
+            border: 2px solid var(--accent);
+        }
+
+        .project-card.sample::before {
+            content: '📖 예시';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .project-card {
+            position: relative;
+        }
+
         .new-project-card {
             background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
             border: 2px dashed var(--border);
@@ -617,6 +639,125 @@
             opacity: 1;
         }
 
+        /* Example Panel */
+        .modal-with-example {
+            display: flex;
+            max-width: 1100px;
+        }
+
+        .modal-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .example-panel {
+            width: 320px;
+            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
+            border-left: 1px solid var(--accent-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-header {
+            padding: 1rem 1.25rem;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-body {
+            padding: 1.25rem;
+            overflow-y: auto;
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        .example-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .example-section h5 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .example-content {
+            background: white;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+
+        .example-content.result {
+            max-height: 250px;
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .btn-apply-example {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-apply-example:hover {
+            background: var(--accent-light);
+            color: var(--primary);
+        }
+
+        .example-toggle {
+            display: none;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .modal-with-example {
+                flex-direction: column;
+            }
+            
+            .example-panel {
+                width: 100%;
+                max-height: 300px;
+                border-left: none;
+                border-top: 1px solid var(--accent-light);
+            }
+
+            .example-toggle {
+                display: block;
+            }
+
+            .example-panel.collapsed {
+                display: none;
+            }
+        }
+
         /* Previous Context */
         .context-preview {
             background: #f0f5ff;
@@ -681,69 +822,7 @@
                 <span class="current-project-name" id="currentProjectName">프로젝트 선택</span>
             </div>
             <div class="menu-grid">
-                <div class="menu-item" onclick="openMenu(1)">
-                    <div class="menu-icon">🎯</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 01</div>
-                        <div class="menu-title">R&D 과제 찾기</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(2)">
-                    <div class="menu-icon">📝</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 02</div>
-                        <div class="menu-title">과제 만들기</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(3)">
-                    <div class="menu-icon">📚</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 03</div>
-                        <div class="menu-title">참고문헌 관리</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(4)">
-                    <div class="menu-icon">📋</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 04</div>
-                        <div class="menu-title">제안서 작성</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(5)">
-                    <div class="menu-icon">🔬</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 05</div>
-                        <div class="menu-title">실험/개발 계획</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(6)">
-                    <div class="menu-icon">📓</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 06</div>
-                        <div class="menu-title">연구노트</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(7)">
-                    <div class="menu-icon">📊</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 07</div>
-                        <div class="menu-title">보고서 작성</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(8)">
-                    <div class="menu-icon">📄</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 08</div>
-                        <div class="menu-title">논문 작성</div>
-                    </div>
-                </div>
-                <div class="menu-item" onclick="openMenu(9)">
-                    <div class="menu-icon">🔄</div>
-                    <div class="menu-text">
-                        <div class="menu-number">STEP 09</div>
-                        <div class="menu-title">추가연구 방향</div>
-                    </div>
-                </div>
+                <!-- 동적으로 렌더링됨 -->
             </div>
         </section>
     </div>
@@ -767,10 +846,13 @@
     <script>
         // State Management
         let state = {
-            apiKey: localStorage.getItem('apiKey') || '',
             projects: JSON.parse(localStorage.getItem('projects') || '[]'),
-            currentProject: null
+            currentProject: null,
+            remainingUsage: 100
         };
+
+        // 백엔드 API URL
+        const API_BASE_URL = 'https://wise-research-api.onrender.com';
 
         // Menu Configurations
         const menuConfig = {
@@ -883,9 +965,38 @@ ${data.content}
                 description: '오늘의 연구 활동을 기록하면 N2B로 정리합니다.',
                 fields: [
                     { name: 'date', label: '날짜', type: 'date', default: new Date().toISOString().split('T')[0] },
+                    { name: 'todayPlan', label: '오늘의 연구 계획 (자동 생성)', type: 'textarea', placeholder: '이전 단계에서 자동으로 불러옵니다...', readonly: true },
                     { name: 'content', label: '오늘의 연구 내용', type: 'textarea', placeholder: '오늘 한 일, 발견한 것, 문제점, 해결 시도 등을 자유롭게 작성하세요.' }
                 ],
-                prompt: (data, context) => `${context.experiment ? `[실험 계획]\n${context.experiment}\n\n` : ''}날짜: ${data.date}
+                autoFill: (context) => {
+                    let plan = '📋 오늘의 연구 계획\n\n';
+                    
+                    if (context.experiment) {
+                        plan += '【실험/개발 계획에서】\n';
+                        // 실험 계획에서 핵심 내용 추출
+                        const expLines = context.experiment.split('\n').slice(0, 10);
+                        plan += expLines.join('\n') + '\n\n';
+                    }
+                    
+                    if (context.proposal) {
+                        plan += '【제안서 연구내용에서】\n';
+                        const propLines = context.proposal.split('\n').slice(0, 5);
+                        plan += propLines.join('\n') + '\n\n';
+                    }
+                    
+                    if (context.task) {
+                        plan += '【과제 목표】\n';
+                        const taskLines = context.task.split('\n').slice(0, 3);
+                        plan += taskLines.join('\n');
+                    }
+                    
+                    if (plan === '📋 오늘의 연구 계획\n\n') {
+                        plan = '(아직 이전 단계가 작성되지 않았습니다. 과제 만들기, 제안서, 실험계획 등을 먼저 작성하면 여기에 자동으로 표시됩니다.)';
+                    }
+                    
+                    return { todayPlan: plan };
+                },
+                prompt: (data, context) => `${context.experiment ? `[실험 계획]\n${context.experiment}\n\n` : ''}${context.proposal ? `[제안서 연구내용]\n${context.proposal}\n\n` : ''}날짜: ${data.date}
 연구 내용:
 ${data.content}
 
@@ -987,47 +1098,379 @@ ${data.discoveries}
             }
         };
 
+        // Sample Data for each menu
+        const sampleData = {
+            1: {
+                title: 'R&D 과제 찾기 예시',
+                input: {
+                    field: '인공지능',
+                    keywords: '자연어처리, sLLM, 경량화',
+                    affiliation: '정부출연연구원',
+                    career: '10-20년'
+                },
+                result: `[추천 1] AI 바우처 지원사업
+[N] 중소기업의 AI 도입 역량 및 전문인력 부족
+[B] AI 솔루션 기업과 수요기업 매칭, 기술 이전 지원
+[B] 귀하의 NLP/sLLM 전문성이 수요기업 맞춤 솔루션 개발에 적합 (매칭 85%)
+
+[추천 2] 중소기업 기술혁신 R&D
+[N] 중소기업 자체 R&D 역량 한계
+[B] 연구기관-기업 공동연구 통해 기술이전
+[B] 경량화 기술은 중소기업 서버 환경에 즉시 적용 가능 (매칭 78%)`
+            },
+            2: {
+                title: '과제 만들기 예시',
+                input: {
+                    idea: '대형 언어모델(LLM)의 메모리 사용량이 너무 커서 중소기업 환경에서 활용하기 어렵습니다. LoRA, QLoRA 등 경량화 기법을 적용하여 8GB GPU에서도 구동 가능한 sLLM을 개발하고 싶습니다.'
+                },
+                result: `[N] 기존의 문제점/한계
+대형 언어모델(LLM)은 수십~수백GB의 메모리를 요구하여 고가의 GPU 인프라가 필수. 이로 인해 중소기업, 스타트업, 연구기관의 AI 도입 장벽이 높음.
+
+[B] 연구 방향/접근법
+LoRA(Low-Rank Adaptation), QLoRA(Quantized LoRA) 등 파라미터 효율적 미세조정 기법을 적용하여 8GB VRAM 환경에서 구동 가능한 sLLM 개발.
+
+[B] 기대 효과/근거
+선행연구에서 LoRA 적용 시 메모리 사용량 40-60% 절감 확인. 양자화 병행 시 추가 30% 절감 가능.
+
+📌 추천 과제명: "중소기업 환경을 위한 경량 언어모델(sLLM) 개발"
+🎯 연구 목표: 8GB GPU에서 실시간 추론 가능한 한국어 sLLM 개발
+📐 연구 범위: 7B 파라미터 모델 대상, LoRA/QLoRA 적용, 한국어 벤치마크 평가`
+            },
+            3: {
+                title: '참고문헌 관리 예시',
+                input: {
+                    paperInfo: `Title: LoRA: Low-Rank Adaptation of Large Language Models
+Authors: Edward J. Hu, Yelong Shen, Phillip Wallis, et al.
+Abstract: We propose Low-Rank Adaptation (LoRA), which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.`,
+                    citationStyle: 'APA'
+                },
+                result: `## N2B 요약
+
+[N] 이 논문이 다루는 문제
+대형 언어모델의 전체 파라미터 미세조정은 계산 비용이 막대하고, 각 태스크마다 별도 모델 저장 필요
+
+[B] 제안하는 해결책
+사전학습 가중치는 동결하고, 각 레이어에 저랭크 분해 행렬만 학습하는 LoRA 기법 제안
+
+[B] 주요 결과/근거
+GPT-3 175B 기준 학습 파라미터 10,000배 감소, 추론 지연 없음, 전체 미세조정과 동등한 성능
+
+## APA 인용
+Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., ... & Chen, W. (2022). LoRA: Low-rank adaptation of large language models. In ICLR 2022.
+
+## 내 연구와의 연결점
+본 연구의 핵심 기법으로 직접 활용 예정. sLLM 경량화의 기반 기술.`
+            },
+            4: {
+                title: '제안서 작성 예시',
+                input: {
+                    content: '8GB GPU에서 구동 가능한 한국어 sLLM 개발. LoRA/QLoRA 적용, 한국어 벤치마크 평가, 중소기업 실증'
+                },
+                result: `## 1. 연구 필요성 [N]
+
+현재 GPT-4, Claude 등 대형 언어모델은 최소 40GB 이상의 GPU 메모리를 요구한다. 이로 인해 국내 중소기업의 97%는 자체 AI 모델 구축이 불가능한 상황이다. 클라우드 API 의존 시 데이터 보안 우려와 지속적 비용 부담이 발생한다.
+
+## 2. 연구 내용 [B]
+
+**연구 목표**: 8GB VRAM 환경에서 실시간 추론 가능한 한국어 특화 sLLM 개발
+
+**연구 방법**:
+- 1단계: 기반 모델 선정 (Llama-2-7B-Ko, Polyglot-Ko)
+- 2단계: LoRA/QLoRA 적용 및 최적 rank 탐색
+- 3단계: 한국어 벤치마크 평가 (KoBEST, KLUE)
+- 4단계: 중소기업 2개사 실증 테스트
+
+**연구 기간**: 12개월
+
+## 3. 기대 성과 [B]
+
+**정량적 성과**:
+- 메모리 사용량 60% 절감 (40GB → 8GB)
+- 추론 속도 유지 (100 tokens/sec 이상)
+- 한국어 벤치마크 기존 대비 95% 성능 유지
+
+**파급 효과**:
+- 중소기업 AI 도입 장벽 해소
+- 국산 sLLM 기술 확보
+- 후속 경량화 연구 기반 마련`
+            },
+            5: {
+                title: '실험/개발 계획 예시',
+                input: {
+                    type: '실험 연구',
+                    hypothesis: 'LoRA rank=8 적용 시 메모리 50% 절감하면서 성능 95% 유지 가능',
+                    variables: '독립변수: LoRA rank (4, 8, 16, 32)\n종속변수: 메모리 사용량, KoBEST 점수\n통제변수: 모델(Llama-2-7B), 배치사이즈(1)'
+                },
+                result: `## 실험 계획서
+
+[N] 검증할 가설
+LoRA rank=8 적용 시 GPU 메모리 50% 절감(40GB→20GB)하면서 KoBEST 벤치마크 성능 95% 유지 가능
+
+[B] 실험 설계
+- **독립변수**: LoRA rank (4, 8, 16, 32)
+- **종속변수**: 
+  - GPU 메모리 사용량 (GB)
+  - KoBEST 평균 점수 (%)
+  - 추론 속도 (tokens/sec)
+- **통제변수**: 
+  - 기반 모델: Llama-2-7B-Ko
+  - 배치 사이즈: 1
+  - 학습 에폭: 3
+  - 학습률: 2e-4
+
+[B] 측정/평가 방법
+- 메모리: nvidia-smi 로그 (peak memory)
+- 성능: KoBEST 5개 태스크 평균
+- 속도: 100회 추론 평균
+
+**실험 매트릭스**:
+| Rank | 예상 메모리 | 예상 성능 |
+|------|------------|----------|
+| 4    | 15GB       | 90%      |
+| 8    | 20GB       | 95%      |
+| 16   | 28GB       | 97%      |
+| 32   | 35GB       | 98%      |`
+            },
+            6: {
+                title: '연구노트 예시',
+                input: {
+                    date: '2024-12-19',
+                    todayPlan: `📋 오늘의 연구 계획
+
+【실험/개발 계획에서】
+[N] 검증할 가설: LoRA rank=8 적용 시 메모리 50% 절감
+[B] 실험 설계: rank 4/8/16/32 비교
+[B] 측정 방법: nvidia-smi 로그
+
+【제안서 연구내용에서】
+8GB VRAM 환경에서 실시간 추론 가능한 한국어 sLLM 개발`,
+                    content: 'LoRA rank=8로 Llama-2-7B 미세조정 시도. 처음에 배치사이즈 4로 했더니 OOM 발생. 배치사이즈 1로 줄이고 gradient accumulation 4로 설정하니 해결됨. 메모리 18GB 사용, 예상보다 좋음. 내일 KoBEST 평가 예정.'
+                },
+                result: `📅 2024-12-19 연구노트
+
+[N] 오늘의 문제/과제
+LoRA rank=8 적용 Llama-2-7B 미세조정 시 배치사이즈 4에서 GPU OOM(Out of Memory) 발생
+
+[B] 시도한 방법/접근
+- 배치사이즈 4 → 1로 축소
+- Gradient accumulation steps = 4로 설정 (실효 배치사이즈 4 유지)
+
+[B] 결과/배운 점
+- OOM 해결, 학습 정상 진행
+- GPU 메모리: 18GB (예상 20GB보다 양호)
+- Gradient accumulation으로 작은 배치에서도 안정적 학습 가능 확인
+
+📈 과정 분석:
+- **예상**: 20GB 메모리 사용
+- **실제**: 18GB 메모리 사용
+- **차이 원인**: Mixed precision(fp16) 효과가 예상보다 큼
+
+📋 다음 단계:
+- [ ] KoBEST 벤치마크 평가
+- [ ] rank=4, 16 비교 실험`
+            },
+            7: {
+                title: '보고서 작성 예시',
+                input: {
+                    reportType: '중간보고서',
+                    content: '6개월간 LoRA 적용 sLLM 개발 진행. rank=8에서 메모리 55% 절감, 성능 96% 유지 확인. 중소기업 1개사 실증 테스트 완료, 만족도 높음.'
+                },
+                result: `# 중간보고서: 중소기업용 경량 언어모델(sLLM) 개발
+
+## 1. 연구 목표 [N]
+
+**당초 목표**: 8GB GPU 환경에서 실시간 추론 가능한 한국어 sLLM 개발
+**해결 과제**: 대형 언어모델의 높은 메모리 요구량으로 인한 중소기업 AI 도입 장벽
+
+## 2. 수행 내용 [B]
+
+**1단계 (1-2개월)**: 기반 모델 선정
+- Llama-2-7B-Ko 선정 (한국어 성능 최우수)
+
+**2단계 (3-4개월)**: LoRA 적용 및 최적화
+- LoRA rank 4/8/16/32 비교 실험
+- rank=8 최적점 도출
+
+**3단계 (5-6개월)**: 실증 테스트
+- ㈜테스트기업 현장 적용 (고객상담 챗봇)
+
+## 3. 연구 결과 [B]
+
+**정량적 성과**:
+| 지표 | 목표 | 달성 | 달성률 |
+|------|------|------|--------|
+| 메모리 절감 | 50% | 55% | 110% |
+| 성능 유지 | 95% | 96% | 101% |
+| 추론 속도 | 100 tok/s | 112 tok/s | 112% |
+
+**정성적 성과**:
+- 실증기업 만족도: "기존 클라우드 API 대비 비용 80% 절감"
+
+## 4. 결론 및 향후 계획
+
+**성과**: 당초 목표 대비 초과 달성
+**향후 계획**: 
+- QLoRA 추가 적용으로 8GB 이하 달성
+- 실증기업 1개사 추가 확보`
+            },
+            8: {
+                title: '논문 작성 예시',
+                input: {
+                    content: 'LoRA 기반 한국어 sLLM 개발. 메모리 55% 절감, 성능 96% 유지. 중소기업 실증으로 실용성 검증.'
+                },
+                result: `# 중소기업 환경을 위한 LoRA 기반 경량 한국어 언어모델 개발
+
+## Abstract
+
+본 연구는 중소기업의 제한된 GPU 환경에서 활용 가능한 경량 한국어 언어모델(sLLM)을 개발하였다. LoRA(Low-Rank Adaptation) 기법을 Llama-2-7B-Ko에 적용하여 메모리 사용량 55% 절감과 동시에 KoBEST 벤치마크 96% 성능을 유지하였다. 실제 중소기업 현장 실증을 통해 실용성을 검증하였다.
+
+## 1. Introduction [N]
+
+대형 언어모델(LLM)의 발전에도 불구하고, 높은 계산 자원 요구량은 중소기업의 AI 도입을 저해하는 주요 요인이다. GPT-4급 모델은 40GB 이상의 GPU 메모리를 요구하며, 이는 대부분의 중소기업이 보유한 인프라를 초과한다.
+
+기존 경량화 연구는 영어 모델 중심으로 진행되어 한국어 특화 연구가 부족하다. 본 연구는 이러한 간극을 해소하고자 한다.
+
+## 2. Methods [B]
+
+**2.1 기반 모델**: Llama-2-7B-Ko (한국어 사전학습)
+**2.2 경량화 기법**: LoRA (rank=8, alpha=16)
+**2.3 학습 데이터**: KoAlpaca 52K
+**2.4 평가 지표**: KoBEST, GPU 메모리, 추론 속도
+
+## 3. Results [B]
+
+LoRA rank=8 적용 결과:
+- 메모리: 40GB → 18GB (55% 절감)
+- KoBEST: 78.2% → 75.1% (96% 유지)
+- 추론 속도: 98 → 112 tokens/sec (14% 향상)
+
+## 4. Discussion
+
+LoRA의 저랭크 근사가 한국어 태스크에서도 효과적임을 확인하였다. 특히 rank=8이 성능-효율 균형점으로 나타났다. 다만 복잡한 추론 태스크에서는 성능 저하가 관찰되어 후속 연구가 필요하다.
+
+## 5. Conclusion
+
+본 연구는 LoRA 기반 한국어 sLLM이 중소기업 환경에서 실용적으로 활용 가능함을 입증하였다. 향후 QLoRA 적용을 통한 추가 경량화를 계획한다.`
+            },
+            9: {
+                title: '추가연구 방향 예시',
+                input: {
+                    limitations: '현재 연구는 7B 모델에 한정. 더 작은 3B, 1B 모델에서의 효과 미검증. 또한 복잡한 추론 태스크(수학, 코딩)에서 성능 저하 관찰됨.',
+                    discoveries: 'LoRA rank와 태스크 복잡도 간 상관관계 발견. 단순 분류는 rank=4로 충분, 생성은 rank=16 이상 필요. 이 패턴을 활용한 동적 rank 조절 가능성.'
+                },
+                result: `## 후속 연구 1: 초경량 모델 탐구
+
+[N] 미해결 문제
+현재 7B 모델 기준 18GB까지 경량화했으나, 진정한 엣지 디바이스(8GB 이하) 적용에는 부족
+
+[B] 후속 연구 방향
+- 3B, 1B 소형 모델에 LoRA 적용
+- QLoRA(4bit 양자화) 병행 적용
+- 지식 증류(Knowledge Distillation) 결합
+
+[B] 기대 효과
+- 8GB GPU에서 실시간 구동
+- 모바일/엣지 디바이스 확장 가능성
+
+---
+
+## 후속 연구 2: 동적 LoRA Rank 조절
+
+[N] 새로운 의문
+왜 태스크마다 최적 rank가 다른가? 이를 자동으로 조절할 수 있는가?
+
+[B] 탐구 방향
+- 태스크 복잡도 자동 감지 메커니즘 개발
+- 추론 시 동적 rank 선택 알고리즘
+- Mixture of LoRA Experts 구조 탐색
+
+[B] 잠재적 가치
+- 단일 모델로 다양한 태스크 최적 대응
+- 추론 효율성 추가 향상
+
+---
+
+## 다음 프로젝트 제안
+
+**추천 과제명**: "동적 LoRA 기반 적응형 경량 언어모델 개발"
+
+**연구 목표**: 태스크 복잡도에 따라 자동으로 rank를 조절하는 적응형 sLLM 개발
+
+**현재 연구와의 연결**: 본 연구에서 발견한 rank-복잡도 상관관계를 이론적으로 규명하고 실용화
+
+💡 [이 내용으로 새 프로젝트 만들기]`
+            }
+        };
+
+        // Complete sample project
+        const sampleProject = {
+            id: 'sample_sllm',
+            name: '[샘플] sLLM 경량화 연구',
+            status: 'complete',
+            startDate: '2024.06',
+            description: '전체 연구 흐름 예시 - 클릭해서 각 단계 확인',
+            isSample: true,
+            data: {
+                '1_result': sampleData[1].result,
+                '2_idea': sampleData[2].input.idea,
+                '2_result': sampleData[2].result,
+                '3_paperInfo': sampleData[3].input.paperInfo,
+                '3_result': sampleData[3].result,
+                '4_content': sampleData[4].input.content,
+                '4_result': sampleData[4].result,
+                '5_type': sampleData[5].input.type,
+                '5_hypothesis': sampleData[5].input.hypothesis,
+                '5_variables': sampleData[5].input.variables,
+                '5_result': sampleData[5].result,
+                '6_date': sampleData[6].input.date,
+                '6_content': sampleData[6].input.content,
+                '6_result': sampleData[6].result,
+                '7_reportType': sampleData[7].input.reportType,
+                '7_content': sampleData[7].input.content,
+                '7_result': sampleData[7].result,
+                '8_content': sampleData[8].input.content,
+                '8_result': sampleData[8].result,
+                '9_limitations': sampleData[9].input.limitations,
+                '9_discoveries': sampleData[9].input.discoveries,
+                '9_result': sampleData[9].result
+            }
+        };
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
-            checkApiKey();
+            checkUsage();
         });
 
-        function checkApiKey() {
+        async function checkUsage() {
             const status = document.getElementById('apiStatus');
-            if (state.apiKey) {
-                status.textContent = 'API 연결됨';
-            } else {
-                status.textContent = 'API 키 필요';
+            try {
+                const response = await fetch(`${API_BASE_URL}/usage`);
+                const data = await response.json();
+                state.remainingUsage = data.remaining;
+                status.textContent = `남은 횟수: ${data.remaining}/${data.daily_limit}`;
+            } catch (e) {
+                status.textContent = '서버 연결 확인 중...';
             }
         }
 
         function renderProjects() {
             const grid = document.getElementById('projectsGrid');
             
-            // Sample projects for demo
-            if (state.projects.length === 0) {
-                state.projects = [
-                    {
-                        id: 'demo1',
-                        name: 'N2B 프레임워크 검증 연구',
-                        status: 'progress',
-                        startDate: '2024.11',
-                        description: '논리적 사고 구조화 프레임워크 효과성 검증',
-                        data: {}
-                    }
-                ];
+            // Add sample project if not exists
+            if (!state.projects.find(p => p.id === 'sample_sllm')) {
+                state.projects.unshift(sampleProject);
                 saveState();
             }
 
             grid.innerHTML = state.projects.map(p => `
-                <div class="project-card ${state.currentProject?.id === p.id ? 'active' : ''}" onclick="selectProject('${p.id}')">
+                <div class="project-card ${state.currentProject?.id === p.id ? 'active' : ''} ${p.isSample ? 'sample' : ''}" onclick="selectProject('${p.id}')">
                     <span class="project-status status-${p.status}">${getStatusLabel(p.status)}</span>
                     <h3>${p.name}</h3>
                     <p>${p.description}</p>
                     <div class="project-meta">
                         <span>시작: ${p.startDate}</span>
-                        <span>${Object.keys(p.data || {}).length}/9 단계</span>
+                        <span>${countCompletedSteps(p)}/9 단계</span>
                     </div>
                 </div>
             `).join('') + `
@@ -1036,6 +1479,15 @@ ${data.discoveries}
                     <span>새 프로젝트</span>
                 </div>
             `;
+        }
+
+        function countCompletedSteps(project) {
+            if (!project.data) return 0;
+            let count = 0;
+            for (let i = 1; i <= 9; i++) {
+                if (project.data[`${i}_result`]) count++;
+            }
+            return count;
         }
 
         function getStatusLabel(status) {
@@ -1052,9 +1504,39 @@ ${data.discoveries}
             document.getElementById('menuSection').style.display = 'block';
             document.getElementById('currentProjectName').textContent = state.currentProject.name;
             renderProjects();
+            renderMenu();
             
             // Scroll to menu
             document.getElementById('menuSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderMenu() {
+            const menuItems = [
+                { id: 1, icon: '🎯', title: 'R&D 과제 찾기' },
+                { id: 2, icon: '📝', title: '과제 만들기' },
+                { id: 3, icon: '📚', title: '참고문헌 관리' },
+                { id: 4, icon: '📋', title: '제안서 작성' },
+                { id: 5, icon: '🔬', title: '실험/개발 계획' },
+                { id: 6, icon: '📓', title: '연구노트' },
+                { id: 7, icon: '📊', title: '보고서 작성' },
+                { id: 8, icon: '📄', title: '논문 작성' },
+                { id: 9, icon: '🔄', title: '추가연구 방향' }
+            ];
+
+            const menuGrid = document.querySelector('.menu-grid');
+            menuGrid.innerHTML = menuItems.map(item => {
+                const isCompleted = state.currentProject?.data?.[`${item.id}_result`];
+                return `
+                    <div class="menu-item ${isCompleted ? 'completed' : ''}" onclick="openMenu(${item.id})">
+                        <div class="menu-icon">${item.icon}</div>
+                        <div class="menu-text">
+                            <div class="menu-number">STEP 0${item.id}</div>
+                            <div class="menu-title">${item.title}</div>
+                        </div>
+                        ${isCompleted ? '<span style="color: var(--success); font-size: 0.8rem;">✓</span>' : ''}
+                    </div>
+                `;
+            }).join('');
         }
 
         function createNewProject() {
@@ -1085,6 +1567,13 @@ ${data.discoveries}
 
             const config = menuConfig[menuId];
             const context = getProjectContext();
+            const example = sampleData[menuId];
+
+            // AutoFill 처리
+            let autoFillData = {};
+            if (config.autoFill) {
+                autoFillData = config.autoFill(context);
+            }
 
             let contextHtml = '';
             if (Object.keys(context).some(k => context[k])) {
@@ -1099,11 +1588,18 @@ ${data.discoveries}
             }
 
             let fieldsHtml = config.fields.map(field => {
+                // autoFill 데이터가 있으면 사용
+                const autoValue = autoFillData[field.name] || '';
+                const savedValue = state.currentProject.data[`${menuId}_${field.name}`] || '';
+                const defaultValue = field.default || '';
+                const value = savedValue || autoValue || defaultValue;
+                
                 if (field.type === 'textarea') {
+                    const isReadonly = field.readonly ? 'readonly style="background: #f0f5ff; cursor: default;"' : '';
                     return `
                         <div class="form-group">
                             <label>${field.label}</label>
-                            <textarea id="field_${field.name}" placeholder="${field.placeholder || ''}">${state.currentProject.data[`${menuId}_${field.name}`] || ''}</textarea>
+                            <textarea id="field_${field.name}" placeholder="${field.placeholder || ''}" ${isReadonly}>${value}</textarea>
                         </div>
                     `;
                 } else if (field.type === 'select') {
@@ -1111,7 +1607,7 @@ ${data.discoveries}
                         <div class="form-group">
                             <label>${field.label}</label>
                             <select id="field_${field.name}">
-                                ${field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                                ${field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('')}
                             </select>
                         </div>
                     `;
@@ -1121,7 +1617,7 @@ ${data.discoveries}
                             <label>${field.label}</label>
                             <input type="${field.type}" id="field_${field.name}" 
                                    placeholder="${field.placeholder || ''}"
-                                   value="${field.default || state.currentProject.data[`${menuId}_${field.name}`] || ''}">
+                                   value="${value}">
                         </div>
                     `;
                 }
@@ -1133,36 +1629,86 @@ ${data.discoveries}
                 resultHtml = `
                     <div class="result-section">
                         <h4>📌 이전 분석 결과</h4>
-                        <div style="white-space: pre-wrap; font-size: 0.9rem;">${previousResult}</div>
+                        <div style="white-space: pre-wrap; font-size: 0.9rem;">${formatResult(previousResult)}</div>
+                    </div>
+                `;
+            }
+
+            // Build example input display
+            let exampleInputHtml = '';
+            for (const [key, value] of Object.entries(example.input)) {
+                const fieldConfig = config.fields.find(f => f.name === key);
+                const label = fieldConfig ? fieldConfig.label : key;
+                exampleInputHtml += `
+                    <div class="example-section">
+                        <h5>📝 ${label}</h5>
+                        <div class="example-content">${value}</div>
                     </div>
                 `;
             }
 
             document.getElementById('modalTitle').innerHTML = config.title;
             document.getElementById('modalBody').innerHTML = `
-                <p style="color: var(--text-light); margin-bottom: 1.5rem;">${config.description}</p>
-                
-                ${!state.apiKey ? `
-                    <div class="api-key-section">
-                        <h4>🔑 API 키 설정</h4>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <input type="password" id="apiKeyInput" placeholder="Anthropic API 키를 입력하세요" value="${state.apiKey}">
+                <div class="modal-with-example">
+                    <div class="modal-main">
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">${config.description}</p>
+                        
+                        <div class="usage-info" style="background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🎯 오늘 남은 분석 횟수</span>
+                            <strong style="color: var(--success);">${state.remainingUsage}/100</strong>
+                        </div>
+                        
+                        <button class="example-toggle" onclick="toggleExample()">💡 예시 보기/숨기기</button>
+                        
+                        ${contextHtml}
+                        ${fieldsHtml}
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                            <button class="btn btn-primary" onclick="analyzeWithN2B(${menuId})">N2B 분석 ✨</button>
+                        </div>
+                        
+                        <div id="resultArea">${resultHtml}</div>
+                    </div>
+                    
+                    <div class="example-panel" id="examplePanel">
+                        <div class="example-header">💡 ${example.title}</div>
+                        <div class="example-body">
+                            ${exampleInputHtml}
+                            
+                            <button class="btn-apply-example" onclick="applyExample(${menuId})">
+                                ↓ 예시 입력값 적용하기
+                            </button>
+                            
+                            <div class="example-section" style="margin-top: 1.25rem;">
+                                <h5>✨ N2B 분석 결과 예시</h5>
+                                <div class="example-content result">${example.result}</div>
+                            </div>
                         </div>
                     </div>
-                ` : ''}
-                
-                ${contextHtml}
-                ${fieldsHtml}
-                
-                <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="closeModal()">취소</button>
-                    <button class="btn btn-primary" onclick="analyzeWithN2B(${menuId})">N2B 분석 ✨</button>
                 </div>
-                
-                <div id="resultArea">${resultHtml}</div>
             `;
 
             document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function toggleExample() {
+            const panel = document.getElementById('examplePanel');
+            panel.classList.toggle('collapsed');
+        }
+
+        function applyExample(menuId) {
+            const example = sampleData[menuId];
+            const config = menuConfig[menuId];
+            
+            for (const [key, value] of Object.entries(example.input)) {
+                const el = document.getElementById(`field_${key}`);
+                if (el) {
+                    el.value = value;
+                }
+            }
+            
+            showToast('예시가 적용되었습니다!');
         }
 
         function getProjectContext() {
@@ -1197,58 +1743,40 @@ ${data.discoveries}
                 state.currentProject.data[`${menuId}_${field.name}`] = data[field.name];
             });
 
-            // Check API key
-            const apiKeyInput = document.getElementById('apiKeyInput');
-            if (apiKeyInput && apiKeyInput.value) {
-                state.apiKey = apiKeyInput.value;
-                localStorage.setItem('apiKey', state.apiKey);
-                checkApiKey();
-            }
-
-            if (!state.apiKey) {
-                showToast('API 키를 입력해주세요.');
-                return;
-            }
-
             // Show loading
             const resultArea = document.getElementById('resultArea');
             resultArea.innerHTML = `
                 <div class="loading">
                     <div class="loading-spinner"></div>
-                    <span>N2B 분석 중...</span>
+                    <span>N2B 분석 중... (남은 횟수: ${state.remainingUsage})</span>
                 </div>
             `;
 
             try {
-                const prompt = config.prompt(data, context);
-                
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                // 백엔드 API 호출
+                const response = await fetch(`${API_BASE_URL}/analyze-research`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': state.apiKey,
-                        'anthropic-version': '2023-06-01',
-                        'anthropic-dangerous-direct-browser-access': 'true'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 2000,
-                        messages: [
-                            {
-                                role: 'user',
-                                content: prompt
-                            }
-                        ]
+                        menuId: menuId,
+                        data: data,
+                        context: context
                     })
                 });
 
                 const result = await response.json();
                 
-                if (result.error) {
-                    throw new Error(result.error.message);
+                if (!result.success) {
+                    throw new Error(result.error || '분석 실패');
                 }
 
-                const analysisResult = result.content[0].text;
+                const analysisResult = result.result;
+                state.remainingUsage = result.remaining;
+                
+                // Update usage display
+                checkUsage();
                 
                 // Save result
                 state.currentProject.data[`${menuId}_result`] = analysisResult;
@@ -1308,13 +1836,18 @@ ${data.discoveries}
             document.getElementById('modalTitle').innerHTML = '⚙️ 설정';
             document.getElementById('modalBody').innerHTML = `
                 <div class="form-group">
-                    <label>Anthropic API 키</label>
-                    <input type="password" id="settingsApiKey" value="${state.apiKey}" placeholder="sk-ant-...">
-                    <p class="form-hint">API 키는 브라우저에 안전하게 저장됩니다.</p>
+                    <label>📊 사용량 정보</label>
+                    <div style="background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>오늘 남은 횟수</span>
+                            <strong style="color: var(--success);">${state.remainingUsage}/100</strong>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-light); margin: 0;">매일 자정(UTC)에 초기화됩니다.</p>
+                    </div>
                 </div>
                 
                 <div class="form-group">
-                    <label>데이터 관리</label>
+                    <label>💾 데이터 관리</label>
                     <div class="btn-group" style="justify-content: flex-start;">
                         <button class="btn btn-secondary" onclick="exportData()">📤 내보내기</button>
                         <button class="btn btn-secondary" onclick="importData()">📥 가져오기</button>
@@ -1323,18 +1856,13 @@ ${data.discoveries}
                 </div>
                 
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="closeModal()">취소</button>
-                    <button class="btn btn-primary" onclick="saveSettings()">저장</button>
+                    <button class="btn btn-primary" onclick="closeModal()">닫기</button>
                 </div>
             `;
             document.getElementById('modalOverlay').classList.add('active');
         }
 
         function saveSettings() {
-            const apiKey = document.getElementById('settingsApiKey').value;
-            state.apiKey = apiKey;
-            localStorage.setItem('apiKey', apiKey);
-            checkApiKey();
             closeModal();
             showToast('설정이 저장되었습니다!');
         }
