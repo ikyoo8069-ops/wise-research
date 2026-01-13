@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>슬기로운 연구생활</title>
+    <title>슬기로운 진흥원생활</title>
     <style>
         * {
             margin: 0;
@@ -382,7 +382,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>🔬 슬기로운 연구생활</h1>
+        <h1>🏛️ 슬기로운 진흥원생활</h1>
         <span class="badge">N2B</span>
     </div>
 
@@ -395,19 +395,19 @@
     <div class="input-area">
         <div id="attachedFileArea"></div>
         <div class="sample-buttons" id="sampleButtons">
-            <button class="sample-btn" onclick="sendSample('논문이 안 써져요')">논문 작성</button>
-            <button class="sample-btn" onclick="sendSample('과제 수주가 안 돼요')">과제 수주</button>
-            <button class="sample-btn" onclick="sendSample('행정업무가 너무 많아요')">행정업무</button>
-            <button class="sample-btn" onclick="sendSample('주간보고서 작성을 도와주세요')">주간보고</button>
-            <button class="sample-btn" onclick="sendSample('연구 방향이 맞는지 모르겠습니다')">연구 방향</button>
-            <button class="sample-btn" onclick="sendSample('승진이나 급여 문제로 고민입니다')">승진급여</button>
+            <button class="sample-btn" onclick="sendSample('기업지원 사업이 어려워요')">기업지원</button>
+            <button class="sample-btn" onclick="sendSample('성과평가가 걱정돼요')">성과평가</button>
+            <button class="sample-btn" onclick="sendSample('사업기획을 도와주세요')">사업기획</button>
+            <button class="sample-btn" onclick="sendSample('보고서 작성이 어려워요')">보고서</button>
+            <button class="sample-btn" onclick="sendSample('협력기관과 갈등이 있어요')">협력기관</button>
+            <button class="sample-btn" onclick="sendSample('팀워크가 안 맞아요')">팀워크</button>
             <button class="sample-btn" onclick="sendSample('업무가 힘들어요')">업무고민</button>
-            <button class="sample-btn" onclick="sendSample('부서 전략이 어려워요')">부서전략</button>
+            <button class="sample-btn" onclick="sendSample('스트레스가 심해요')">스트레스</button>
         </div>
         <div class="input-wrapper">
             <button class="attach-btn" onclick="document.getElementById('fileInput').click()">+</button>
             <input type="file" id="fileInput" class="file-input" accept=".txt,.pdf,.doc,.docx,.hwp" onchange="handleFile(event)">
-            <input type="text" class="input-field" id="userInput" placeholder="연구 고민을 말씀해주세요..." onkeypress="handleKeyPress(event)">
+            <input type="text" class="input-field" id="userInput" placeholder="진흥원 업무 고민을 말씀해주세요..." onkeypress="handleKeyPress(event)">
             <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
         </div>
         <div class="footer-info">오늘 <span id="usageCount">0</span>/100회 사용 · + 파일 첨부 가능</div>
@@ -434,25 +434,23 @@
             usageCountEl.textContent = getUsageCount();
             addAssistantMessage(`안녕하세요! 😊
 
-연구고민, 업무고민 N2B로 정리해드려요. 무엇이든 말씀해 보세요!
+진흥원 업무고민 N2B로 정리해드려요. 무엇이든 말씀해 보세요!
 
 💡 N2B란? (가설검정의 논리구조)
 NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
 표면적 원인을 부정하고, 진짜 원인을 찾아, 근거를 제시합니다.
 
-[연구/업무]
-💬 논문이 안 써집니다 → 원인 분석 | 🔍 과제를 찾고 있습니다 → 공고문 검색
-📚 참고문헌이 필요합니다 → 논문 검색 | 📝 주간보고서 작성 → 보고서 작성
-📓 연구노트 정리 → 노트 정리 | 📄 논문 초록 작성 → 초록 작성
-📋 연구제안서 검토 → 제안서 피드백 | 🔬 연구심의 도움 → 심의 핵심제공
-📊 연구 방향 점검 → 방향 점검 | 🧪 실험이 안 돼요 → 문제 진단
-📈 데이터 분석 어려움 → 방법 제안 | 🎤 학회 발표 준비 → 발표 전략
-📜 특허 출원 → 작성 가이드 | 🔄 기술이전 → 전략 제안
+[기업지원/사업]
+📋 기업지원 사업이 어려워요 → 방향 제안 | 📊 성과평가가 걱정돼요 → 준비 방법
+🎯 사업기획을 도와주세요 → 기획 지원 | 📝 보고서 작성이 어려워요 → 작성 도움
+🤝 협력기관과 갈등이 있어요 → 관계 분석 | 💰 예산 집행이 어려워요 → 집행 방법
+📅 사업 일정이 촉박해요 → 일정 관리 | 🏢 기업 발굴이 안 돼요 → 발굴 전략
+📈 KPI 달성이 어려워요 → 달성 전략 | 🔄 후속 사업 연계 → 연계 방안
 
 [개인/생활]
 🎯 성과가 안 나와요 → 전략 제안 | 📈 승진이 안 됩니다 → 원인 분석
 😩 스트레스가 심해요 → 해소 방안 | 👥 대인관계 어려움 → 소통 개선
-🤝 공동연구자 갈등 → 관계 분석 | 😔 연구 의미 고민 → 동기 탐색
+👔 팀워크가 안 맞아요 → 팀빌딩 방안 | 😔 업무 의미 고민 → 동기 탐색
 📅 회의가 너무 많아요 → 시간 관리 | ⚖️ 워라밸이 안 맞아요 → 균형 전략
 🔥 번아웃이 왔어요 → 회복 방안 | 🚀 이직을 고민해요 → 방향 분석
 
@@ -463,7 +461,7 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
         // 사용량 관리
         function getUsageCount() {
             const today = new Date().toDateString();
-            const stored = localStorage.getItem('n2b_usage');
+            const stored = localStorage.getItem('n2b_jinheungwon_usage');
             if (stored) {
                 const data = JSON.parse(stored);
                 if (data.date === today) return data.count;
@@ -474,7 +472,7 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
         function incrementUsage() {
             const today = new Date().toDateString();
             const count = getUsageCount() + 1;
-            localStorage.setItem('n2b_usage', JSON.stringify({ date: today, count }));
+            localStorage.setItem('n2b_jinheungwon_usage', JSON.stringify({ date: today, count }));
             usageCountEl.textContent = count;
             return count;
         }
@@ -710,9 +708,9 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
         }
 
         async function callClaudeAPI(text) {
-            const systemPrompt = `당신은 '슬기로운 연구생활' 앱의 N2B 코치입니다.
+            const systemPrompt = `당신은 '슬기로운 진흥원생활' 앱의 N2B 코치입니다.
 
-연구자의 고민을 듣고 N2B(NOT-BUT-BECAUSE) 프레임워크로 분석해주세요.
+성남산업진흥원 직원의 고민을 듣고 N2B(NOT-BUT-BECAUSE) 프레임워크로 분석해주세요.
 
 ## N2B 프레임워크
 - NOT (N): 문제가 ~이 아니라 (표면적/잘못된 원인 부정)
@@ -720,15 +718,11 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
 - BECAUSE (C): 왜냐하면 ~때문이다 (근거/논리적 설명)
 
 ## 핵심 원리
-1. N2B는 비교판단입니다. 모든 판단은 비교판단이고, 논문의 결론도 비교판단입니다.
+1. N2B는 비교판단입니다. 모든 판단은 비교판단입니다.
 
 2. 가설이 먼저입니다. 
-   - 먼저 N2B(가설)를 세우고 → 실험으로 증명
-   - 실험해서 결론을 찾는 게 아니라, 가설을 세우고 실험으로 설명/증명하는 것
-   - 코페르니쿠스: "지구가 중심이 아니라(N), 태양이 중심이다(B)" → 관측으로 증명
-
-3. 논문 결론 = 비교판단 = N2B
-   - "기존 연구는 A라고 했지만(NOT), 본 연구에서는 B임을 밝혔다(BUT), 왜냐하면 C이기 때문이다(BECAUSE)"
+   - 먼저 N2B(가설)를 세우고 → 실행으로 증명
+   - 목표를 N2B로 먼저 정의하고, 실행으로 달성하는 것
 
 ## 능동지원 원칙
 분석만 하지 말고, 구체적인 행동을 제안하세요.
@@ -736,9 +730,9 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
 
 그리고 다음 행동을 능동적으로 제시하세요. "~드릴까요?"가 아니라 "~드리겠습니다"로.
 
-## 연구 라이프사이클 (순환)
-연구는 순환합니다:
-과제 수주 → 연구 수행 → 논문 작성 → 과제 수주 → ...
+## 진흥원 업무 사이클 (순환)
+기업지원 업무는 순환합니다:
+사업기획 → 기업모집 → 지원실행 → 성과평가 → 사업기획 → ...
 
 한 단계가 끝나면 다음 단계를 제안하세요.
 끝이 아니라 새로운 시작입니다.
@@ -806,7 +800,7 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
             const dateStr = now.toLocaleDateString('ko-KR');
             const timeStr = now.toLocaleTimeString('ko-KR');
 
-            let content = `[슬기로운 연구생활 - N2B 분석 결과]\n`;
+            let content = `[슬기로운 진흥원생활 - N2B 분석 결과]\n`;
             content += `생성일시: ${dateStr} ${timeStr}\n`;
             content += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
             content += `[N2B 분석]\n`;
