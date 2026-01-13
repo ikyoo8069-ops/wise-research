@@ -663,14 +663,25 @@ NOT(아니다) - BUT(진짜는) - BECAUSE(왜냐하면)
 이것이 왜 진짜 원인인지 더 깊이 분석해주세요.
 이 원인의 더 근본적인 원인은 무엇인가요?
 
-JSON 형식으로 답변해주세요.`;
+반드시 아래 JSON 형식으로만 답변해주세요:
+{
+  "n2b": {
+    "not": "표면적 원인이 아니라",
+    "but": "더 근본적인 원인이다", 
+    "because": "왜냐하면 ~때문이다"
+  },
+  "suggestion": "구체적 제안",
+  "nextAction": "다음 행동을 ~해드리겠습니다"
+}`;
 
                 messages.push({ role: 'user', content: deepDivePrompt });
+
+                const deepSystem = `당신은 N2B 분석 전문가입니다. 반드시 지정된 JSON 형식으로만 답변하세요. JSON 외의 텍스트는 포함하지 마세요.`;
 
                 const response = await fetch(API_URL + '/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ system: '', messages: messages })
+                    body: JSON.stringify({ system: deepSystem, messages: messages })
                 });
 
                 const data = await response.json();
