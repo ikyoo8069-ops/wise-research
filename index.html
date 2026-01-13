@@ -3,26 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>슬기로운 연구생활 | Wise Research Life</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <title>슬기로운 연구생활</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a365d;
-            --primary-light: #2c5282;
-            --accent: #d69e2e;
-            --accent-light: #ecc94b;
-            --bg: #f7fafc;
-            --bg-card: #ffffff;
-            --text: #2d3748;
-            --text-light: #718096;
-            --border: #e2e8f0;
-            --success: #38a169;
-            --shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-            --shadow-hover: 0 8px 30px rgba(26, 54, 93, 0.12);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -31,1908 +14,1236 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
             min-height: 100vh;
-            line-height: 1.7;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(26, 54, 93, 0.2);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .logo-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            font-size: 0.75rem;
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
             align-items: center;
+            padding: 20px;
         }
 
-        .api-status {
-            font-size: 0.8rem;
-            padding: 0.4rem 0.8rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Project Section */
-        .section-title {
-            font-family: 'Source Serif 4', serif;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        /* Project Cards */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .project-card:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-4px);
-            border-color: var(--accent-light);
-        }
-
-        .project-card.active {
-            border-color: var(--primary);
-        }
-
-        .project-status {
-            display: inline-block;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 12px;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-
-        .status-progress { background: #ebf8ff; color: #2b6cb0; }
-        .status-complete { background: #f0fff4; color: #276749; }
-        .status-idea { background: #fffaf0; color: #c05621; }
-
-        .project-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .project-card p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        .project-card.sample {
-            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
-            border: 2px solid var(--accent);
-        }
-
-        .project-card.sample::before {
-            content: '📖 예시';
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            background: var(--accent);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .project-card {
-            position: relative;
-        }
-
-        .new-project-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border: 2px dashed var(--border);
+        .app-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 900px;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            min-height: 180px;
-        }
-
-        .new-project-card:hover {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, #fffaf0 0%, #fefcbf 100%);
-        }
-
-        .new-project-card .icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        /* Menu Grid */
-        .menu-section {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-
-        .menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .menu-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-
-        .current-project-name {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            background: var(--bg);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .menu-item {
-            background: var(--bg);
-            border-radius: 12px;
-            padding: 1.25rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border: 1px solid var(--border);
-        }
-
-        .menu-item:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            transform: scale(1.02);
-        }
-
-        .menu-item:hover .menu-icon {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .menu-item:hover .menu-number {
-            color: var(--accent-light);
-        }
-
-        .menu-icon {
-            width: 45px;
-            height: 45px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
-        }
-
-        .menu-text {
-            flex: 1;
-        }
-
-        .menu-number {
-            font-size: 0.7rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .menu-title {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .menu-item.completed .menu-icon::after {
-            content: '✓';
-            position: absolute;
-            right: -5px;
-            top: -5px;
-            background: var(--success);
-            color: white;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-icon {
-            position: relative;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 54, 93, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--bg-card);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 700px;
-            max-height: 85vh;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(26, 54, 93, 0.25);
-            animation: modalIn 0.3s ease;
         }
 
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
+        /* 모바일 반응형 */
+        @media (max-width: 600px) {
+            .app-container {
+                max-width: 100%;
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
             }
         }
 
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        /* 헤더 */
+        .header {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            padding: 20px;
+            text-align: center;
             color: white;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .modal-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .modal-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
+        .header p {
+            font-size: 13px;
+            opacity: 0.9;
         }
 
-        .modal-close:hover {
-            background: rgba(255,255,255,0.3);
+        .n2b-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
         }
 
-        .modal-body {
-            padding: 2rem;
+        /* 채팅 영역 */
+        .chat-area {
+            flex: 1;
             overflow-y: auto;
-            max-height: calc(85vh - 140px);
+            padding: 20px;
+            background: #f8f9fa;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .chat-area .message:first-child {
+            margin-top: 20px;
         }
 
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .form-group textarea,
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            background: var(--bg);
-        }
-
-        .form-group textarea:focus,
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-hint {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 0.5rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(26, 54, 93, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--bg);
-            color: var(--text);
-            border: 2px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-        }
-
-        .btn-group {
+        .message {
             display: flex;
-            gap: 1rem;
+            margin-bottom: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
             justify-content: flex-end;
-            margin-top: 1.5rem;
         }
 
-        /* Result Section */
-        .result-section {
-            background: var(--bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            border-left: 4px solid var(--accent);
+        .message.assistant {
+            justify-content: flex-start;
         }
 
-        .result-section h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .message-bubble {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-size: 14px;
         }
 
-        .n2b-block {
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            color: white;
+            border-bottom-right-radius: 6px;
+        }
+
+        .message.assistant .message-bubble {
             background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
+            color: #333;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* N2B 분석 박스 */
+        .n2b-analysis {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            border-left: 4px solid #71b280;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .n2b-item {
+            margin-bottom: 12px;
+        }
+
+        .n2b-item:last-child {
+            margin-bottom: 0;
         }
 
         .n2b-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 4px;
         }
 
-        .n2b-n { background: #e53e3e; }
-        .n2b-b1 { background: #3182ce; }
-        .n2b-b2 { background: #38a169; }
+        .n2b-label.not { color: #e74c3c; }
+        .n2b-label.but { color: #3498db; }
+        .n2b-label.because { color: #27ae60; }
 
-        /* Loading */
-        .loading {
+        .n2b-content {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* 제안 박스 */
+        .suggestion-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+        }
+
+        .suggestion-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .suggestion-content {
+            font-size: 14px;
+            color: #665200;
+        }
+
+        .next-action {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            border-radius: 8px;
+            font-size: 14px;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* 더 깊이 분석하기 버튼 */
+        .deep-dive-btn {
+            width: 100%;
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 2rem;
-            color: var(--text-light);
+            gap: 8px;
         }
 
-        .loading-spinner {
-            width: 24px;
-            height: 24px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .deep-dive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(113, 178, 128, 0.4);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .deep-dive-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        /* API Key Modal */
-        .api-key-section {
-            background: #fffaf0;
-            border: 1px solid var(--accent-light);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .api-key-section h4 {
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary);
-            color: white;
-            padding: 1rem 1.5rem;
+        .depth-indicator {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(26, 54, 93, 0.3);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 300;
+            font-size: 11px;
+            margin-left: 8px;
         }
 
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
+        /* 본질 도달 박스 */
+        .core-reached {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 14px;
+            text-align: center;
+            color: white;
         }
 
-        /* Example Panel */
-        .modal-with-example {
+        .core-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .core-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .core-need {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .core-message {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .new-topic-btn {
+            width: 100%;
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            color: #134e5e;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .new-topic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 파일 첨부 */
+        .attach-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: #f0f0f0;
+            color: #666;
+            font-size: 28px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
-            max-width: 1100px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .modal-main {
+        .attach-btn:hover {
+            background: #71b280;
+            color: white;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .attached-file {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #2e7d32;
+        }
+
+        .attached-file .remove-file {
+            cursor: pointer;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .attached-file .remove-file:hover {
+            color: #e74c3c;
+        }
+
+        /* 로딩 */
+        .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 20px;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #71b280;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 빠른 선택 */
+        .quick-topics {
+            padding: 12px 20px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-topics-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .quick-topics-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quick-topic {
+            padding: 8px 14px;
+            background: #e8f5e9;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #134e5e;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .quick-topic:hover {
+            background: #71b280;
+            color: white;
+        }
+
+        /* 입력 영역 */
+        .input-area {
+            padding: 16px 20px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .input-field {
             flex: 1;
-            min-width: 0;
+            padding: 14px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 24px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
         }
 
-        .example-panel {
-            width: 320px;
-            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
-            border-left: 1px solid var(--accent-light);
+        .input-field:focus {
+            border-color: #71b280;
+        }
+
+        .send-btn {
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(113, 178, 128, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* API 키 설정 */
+        .api-setup {
+            padding: 20px;
+            background: #f8f9fa;
+            flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
-        .example-header {
-            padding: 1rem 1.25rem;
-            background: var(--accent);
-            color: white;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .api-setup h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #333;
         }
 
-        .example-body {
-            padding: 1.25rem;
-            overflow-y: auto;
-            flex: 1;
-            font-size: 0.85rem;
+        .api-setup p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        .example-section {
-            margin-bottom: 1.25rem;
-        }
-
-        .example-section h5 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .example-content {
-            background: white;
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 0.8rem;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            max-height: 150px;
-            overflow-y: auto;
-            border: 1px solid var(--border);
-        }
-
-        .example-content.result {
-            max-height: 250px;
-            background: #f0fdf4;
-            border-color: #86efac;
-        }
-
-        .btn-apply-example {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
+        .api-input {
             width: 100%;
-            margin-top: 0.5rem;
-            transition: all 0.2s ease;
+            padding: 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 12px;
         }
 
-        .btn-apply-example:hover {
-            background: var(--accent-light);
-            color: var(--primary);
+        .api-input:focus {
+            outline: none;
+            border-color: #71b280;
         }
 
-        .example-toggle {
-            display: none;
-            background: var(--accent);
-            color: white;
+        .api-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+            font-family: inherit;
         }
 
-        @media (max-width: 900px) {
-            .modal-with-example {
-                flex-direction: column;
-            }
-            
-            .example-panel {
-                width: 100%;
-                max-height: 300px;
-                border-left: none;
-                border-top: 1px solid var(--accent-light);
-            }
-
-            .example-toggle {
-                display: block;
-            }
-
-            .example-panel.collapsed {
-                display: none;
-            }
+        .api-btn:hover {
+            opacity: 0.9;
         }
 
-        /* Previous Context */
-        .context-preview {
-            background: #f0f5ff;
-            border: 1px solid #c3dafe;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .context-preview h5 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-        }
-
-        .context-item {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .context-label {
-            font-weight: 500;
-            color: var(--text-light);
+        .demo-mode-btn {
+            margin-top: 12px;
+            background: #6c757d;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">📚</div>
-                <div class="logo-text">
-                    <h1>슬기로운 연구생활</h1>
-                    <span>Wise Research Life with N2B</span>
-                </div>
-            </div>
-            <div class="header-actions">
-                <div class="api-status">
-                    <span class="status-dot"></span>
-                    <span id="apiStatus">API 연결됨</span>
-                </div>
-                <button class="btn btn-secondary" onclick="openSettings()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">⚙️ 설정</button>
+    <div class="app-container">
+        <div class="header">
+            <h1>🔬 슬기로운 연구생활</h1>
+            <p>연구원 생활의 고민을 풀어드려요</p>
+            <span class="n2b-badge">가설검정기반 논리구조 N2B</span>
+        </div>
+
+        <!-- API 설정 화면 제거, 바로 시작 -->
+        <div class="chat-area" id="chatArea"></div>
+
+        <div class="quick-topics" id="quickTopics">
+            <div class="quick-topics-label">💡 샘플질문들입니다. 클릭만으로 경험해보세요!</div>
+            <div class="quick-topics-list">
+                <button class="quick-topic" onclick="sendQuickTopic('논문이 안 써져요')">논문 작성</button>
+                <button class="quick-topic" onclick="sendQuickTopic('과제 수주가 안 돼요')">과제 수주</button>
+                <button class="quick-topic" onclick="sendQuickTopic('행정업무가 너무 많아요')">행정업무</button>
+                <button class="quick-topic" onclick="sendQuickTopic('주간보고서 작성을 도와주세요')">주간보고</button>
+                <button class="quick-topic" onclick="sendQuickTopic('연구 방향이 맞는지 모르겠습니다')">연구 방향</button>
+                <button class="quick-topic" onclick="sendQuickTopic('승진이나 급여 문제로 고민입니다')">승진급여</button>
+                <button class="quick-topic" onclick="sendQuickTopic('업무가 힘들어요')">업무고민</button>
+                <button class="quick-topic" onclick="sendQuickTopic('부서 전략이 어려워요')">부서전략</button>
+                <button class="quick-topic" onclick="sendQuickTopic('상사와 부딪쳐요')">상사관계</button>
             </div>
         </div>
-    </header>
 
-    <div class="container">
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <div class="section-title">내 연구 프로젝트</div>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be rendered here -->
+        <div class="input-area" id="inputArea">
+            <div id="attachedFileArea"></div>
+            <div class="input-wrapper">
+                <button class="attach-btn" onclick="document.getElementById('fileInput').click()">+</button>
+                <input type="file" id="fileInput" class="file-input" accept=".txt,.pdf,.doc,.docx,.hwp" onchange="handleFileSelect(event)">
+                <input type="text" class="input-field" id="userInput" placeholder="연구 고민을 편하게 말씀해주세요..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
             </div>
-        </section>
-
-        <!-- Menu Section -->
-        <section class="menu-section" id="menuSection" style="display: none;">
-            <div class="menu-header">
-                <h2>연구 단계</h2>
-                <span class="current-project-name" id="currentProjectName">프로젝트 선택</span>
-            </div>
-            <div class="menu-grid">
-                <!-- 동적으로 렌더링됨 -->
-            </div>
-        </section>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 id="modalTitle">📝 메뉴</h3>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Dynamic content -->
+            <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #888;">
+                오늘 <span id="usageCount">0</span>/100회 사용 · + 파일 첨부 가능
             </div>
         </div>
     </div>
-
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
 
     <script>
-        // State Management
-        let state = {
-            projects: JSON.parse(localStorage.getItem('projects') || '[]'),
-            currentProject: null,
-            remainingUsage: 100
-        };
-
+        // API 키 내장
         // 백엔드 API URL
-        const API_BASE_URL = 'https://wise-research-api.onrender.com';
-
-        // Menu Configurations
-        const menuConfig = {
-            1: {
-                title: '🎯 R&D 과제 찾기',
-                description: '연구 분야와 키워드를 입력하면 적합한 국가R&D 과제를 추천합니다.',
-                fields: [
-                    { name: 'field', label: '연구 분야', type: 'text', placeholder: '예: 인공지능, 바이오, 에너지' },
-                    { name: 'keywords', label: '핵심 키워드', type: 'text', placeholder: '예: 자연어처리, sLLM, 경량화' },
-                    { name: 'affiliation', label: '소속 기관', type: 'select', options: ['대학교', '정부출연연구원', '기업부설연구소', '민간연구소', '기타'] },
-                    { name: 'career', label: '연구 경력', type: 'select', options: ['5년 미만', '5-10년', '10-20년', '20년 이상'] }
-                ],
-                prompt: (data, context) => `연구자 프로필:
-- 연구 분야: ${data.field}
-- 키워드: ${data.keywords}
-- 소속: ${data.affiliation}
-- 경력: ${data.career}
-
-위 연구자에게 적합한 정부 R&D 과제를 3개 추천해주세요.
-각 추천에 대해 N2B 형식으로 설명해주세요:
-[N] 이 과제가 해결하려는 문제
-[B] 연구자가 기여할 수 있는 부분
-[B] 매칭 적합도와 근거`
-            },
-            2: {
-                title: '📝 과제 만들기',
-                description: '연구 아이디어를 입력하면 N2B 프레임워크로 과제를 정의합니다.',
-                fields: [
-                    { name: 'idea', label: '연구 아이디어', type: 'textarea', placeholder: '해결하고 싶은 문제나 연구하고 싶은 주제를 자유롭게 작성하세요.' }
-                ],
-                prompt: (data, context) => `연구 아이디어:
-${data.idea}
-
-위 아이디어를 N2B 프레임워크로 구조화하여 연구 과제로 정의해주세요:
-[N] 기존의 문제점/한계 (왜 이 연구가 필요한가?)
-[B] 연구 방향/접근법 (어떻게 해결할 것인가?)
-[B] 기대 효과/근거 (왜 이 방법이 효과적인가?)
-
-추가로 다음을 제안해주세요:
-- 추천 과제명
-- 연구 목표 (1-2문장)
-- 연구 범위`
-            },
-            3: {
-                title: '📚 참고문헌 관리',
-                description: '논문 정보를 입력하면 N2B로 요약하고 내 연구와의 연결점을 찾습니다.',
-                fields: [
-                    { name: 'paperInfo', label: '논문 정보', type: 'textarea', placeholder: '논문 제목, 저자, 초록 등을 붙여넣기 하세요.\n또는 DOI를 입력하세요.' },
-                    { name: 'citationStyle', label: '인용 형식', type: 'select', options: ['APA', 'IEEE', 'Chicago', 'Vancouver', 'Harvard'] }
-                ],
-                prompt: (data, context) => `논문 정보:
-${data.paperInfo}
-
-${context.task ? `현재 연구 과제: ${context.task}` : ''}
-
-위 논문을 분석해주세요:
-
-1. N2B 요약:
-[N] 이 논문이 다루는 문제
-[B] 제안하는 해결책
-[B] 주요 결과/근거
-
-2. ${data.citationStyle} 형식 인용
-
-3. 내 연구와의 연결점 (있다면)`
-            },
-            4: {
-                title: '📋 제안서 작성',
-                description: '연구 내용을 입력하면 N2B 기반 제안서 초안을 작성합니다.',
-                fields: [
-                    { name: 'content', label: '연구 내용 메모', type: 'textarea', placeholder: '연구하려는 내용을 자유롭게 작성하세요.\n목표, 방법, 기대효과 등' }
-                ],
-                prompt: (data, context) => `${context.task ? `[기존 과제 정의]\n${context.task}\n\n` : ''}연구 내용 메모:
-${data.content}
-
-위 내용을 바탕으로 연구 제안서 초안을 N2B 구조로 작성해주세요:
-
-## 1. 연구 필요성 [N]
-(기존 한계와 문제점)
-
-## 2. 연구 내용 [B]
-(연구 목표, 범위, 방법론)
-
-## 3. 기대 성과 [B]
-(예상 결과물과 파급효과)`
-            },
-            5: {
-                title: '🔬 실험/개발 계획',
-                description: '연구 유형에 맞는 실험 또는 개발 계획을 수립합니다.',
-                fields: [
-                    { name: 'type', label: '연구 유형', type: 'select', options: ['실험 연구', '개발 연구', '조사 연구', '이론 연구'] },
-                    { name: 'hypothesis', label: '가설/목표', type: 'textarea', placeholder: '검증할 가설이나 달성할 목표를 작성하세요.' },
-                    { name: 'variables', label: '변수/모듈/항목', type: 'textarea', placeholder: '실험 변수, 개발 모듈, 조사 항목 등을 나열하세요.' }
-                ],
-                prompt: (data, context) => `${context.proposal ? `[제안서 연구방법]\n${context.proposal}\n\n` : ''}연구 유형: ${data.type}
-가설/목표: ${data.hypothesis}
-변수/모듈/항목: ${data.variables}
-
-위 내용을 바탕으로 ${data.type} 계획서를 N2B 구조로 작성해주세요:
-
-[N] 검증할 가설 또는 달성 목표
-[B] 실험/개발 설계
-    - 독립변수/입력
-    - 종속변수/출력
-    - 통제변수/제약조건
-[B] 측정/평가 방법`
-            },
-            6: {
-                title: '📓 연구노트',
-                description: '오늘의 연구 활동을 기록하면 N2B로 정리합니다.',
-                fields: [
-                    { name: 'date', label: '날짜', type: 'date', default: new Date().toISOString().split('T')[0] },
-                    { name: 'todayPlan', label: '오늘의 연구 계획 (자동 생성)', type: 'textarea', placeholder: '이전 단계에서 자동으로 불러옵니다...', readonly: true },
-                    { name: 'content', label: '오늘의 연구 내용', type: 'textarea', placeholder: '오늘 한 일, 발견한 것, 문제점, 해결 시도 등을 자유롭게 작성하세요.' }
-                ],
-                autoFill: (context) => {
-                    let plan = '📋 오늘의 연구 계획\n\n';
-                    
-                    if (context.experiment) {
-                        plan += '【실험/개발 계획에서】\n';
-                        // 실험 계획에서 핵심 내용 추출
-                        const expLines = context.experiment.split('\n').slice(0, 10);
-                        plan += expLines.join('\n') + '\n\n';
-                    }
-                    
-                    if (context.proposal) {
-                        plan += '【제안서 연구내용에서】\n';
-                        const propLines = context.proposal.split('\n').slice(0, 5);
-                        plan += propLines.join('\n') + '\n\n';
-                    }
-                    
-                    if (context.task) {
-                        plan += '【과제 목표】\n';
-                        const taskLines = context.task.split('\n').slice(0, 3);
-                        plan += taskLines.join('\n');
-                    }
-                    
-                    if (plan === '📋 오늘의 연구 계획\n\n') {
-                        plan = '(아직 이전 단계가 작성되지 않았습니다. 과제 만들기, 제안서, 실험계획 등을 먼저 작성하면 여기에 자동으로 표시됩니다.)';
-                    }
-                    
-                    return { todayPlan: plan };
-                },
-                prompt: (data, context) => `${context.experiment ? `[실험 계획]\n${context.experiment}\n\n` : ''}${context.proposal ? `[제안서 연구내용]\n${context.proposal}\n\n` : ''}날짜: ${data.date}
-연구 내용:
-${data.content}
-
-위 내용을 연구노트 형식으로 N2B 구조화해주세요:
-
-📅 ${data.date} 연구노트
-
-[N] 오늘의 문제/과제
-[B] 시도한 방법/접근
-[B] 결과/배운 점
-
-📈 과정 분석:
-- 예상 vs 실제
-- 차이 원인
-- 다음 단계`
-            },
-            7: {
-                title: '📊 보고서 작성',
-                description: '수행 내용을 입력하면 N2B 기반 보고서 초안을 작성합니다.',
-                fields: [
-                    { name: 'reportType', label: '보고서 유형', type: 'select', options: ['중간보고서', '최종보고서', '연차보고서'] },
-                    { name: 'content', label: '수행 내용 요약', type: 'textarea', placeholder: '연구 수행 내용, 결과, 성과 등을 작성하세요.' }
-                ],
-                prompt: (data, context) => `${context.proposal ? `[제안서 목표]\n${context.proposal}\n\n` : ''}${context.notes ? `[연구노트 요약]\n${context.notes}\n\n` : ''}보고서 유형: ${data.reportType}
-수행 내용:
-${data.content}
-
-위 내용을 바탕으로 ${data.reportType} 초안을 N2B 구조로 작성해주세요:
-
-## 1. 연구 목표 [N]
-(당초 목표 및 해결하려던 문제)
-
-## 2. 수행 내용 [B]
-(연구 방법 및 수행 과정)
-
-## 3. 연구 결과 [B]
-(주요 성과 및 근거)
-
-## 4. 결론 및 향후 계획`
-            },
-            8: {
-                title: '📄 논문 작성',
-                description: '연구 결과를 입력하면 N2B 기반 논문 초안(IMRaD)을 작성합니다.',
-                fields: [
-                    { name: 'content', label: '연구 결과 요약', type: 'textarea', placeholder: '연구 배경, 방법, 결과, 의의 등을 작성하세요.' }
-                ],
-                prompt: (data, context) => `${context.task ? `[과제 정의]\n${context.task}\n\n` : ''}${context.references ? `[참고문헌]\n${context.references}\n\n` : ''}${context.report ? `[보고서]\n${context.report}\n\n` : ''}연구 결과 요약:
-${data.content}
-
-위 내용을 바탕으로 학술 논문 초안을 작성해주세요 (IMRaD + N2B):
-
-## Abstract
-(연구 전체 요약)
-
-## 1. Introduction [N]
-(연구 배경, 선행연구 한계, 연구 목적)
-
-## 2. Methods [B]
-(연구 방법, 실험 설계)
-
-## 3. Results [B]
-(연구 결과, 데이터 분석)
-
-## 4. Discussion
-(결과 해석, 의의, 한계점)
-
-## 5. Conclusion
-(결론 및 향후 연구)`
-            },
-            9: {
-                title: '🔄 추가연구 방향',
-                description: '현재 연구의 한계와 발견을 바탕으로 후속 연구 방향을 제안합니다.',
-                fields: [
-                    { name: 'limitations', label: '현재 연구의 한계', type: 'textarea', placeholder: '이번 연구에서 해결하지 못한 문제나 한계점' },
-                    { name: 'discoveries', label: '새로운 발견/의문', type: 'textarea', placeholder: '연구 과정에서 발견한 새로운 사실이나 의문점' }
-                ],
-                prompt: (data, context) => `${context.report ? `[연구 결과]\n${context.report}\n\n` : ''}현재 연구의 한계:
-${data.limitations}
-
-새로운 발견/의문:
-${data.discoveries}
-
-위 내용을 바탕으로 후속 연구 방향을 N2B 구조로 제안해주세요:
-
-## 후속 연구 1
-[N] 미해결 문제
-[B] 후속 연구 방향
-[B] 기대 효과
-
-## 후속 연구 2
-[N] 새로운 의문
-[B] 탐구 방향
-[B] 잠재적 가치
-
-## 다음 프로젝트 제안
-- 추천 과제명
-- 연구 목표
-- 현재 연구와의 연결`
-            }
-        };
-
-        // Sample Data for each menu
-        const sampleData = {
-            1: {
-                title: 'R&D 과제 찾기 예시',
-                input: {
-                    field: '인공지능',
-                    keywords: '자연어처리, sLLM, 경량화',
-                    affiliation: '정부출연연구원',
-                    career: '10-20년'
-                },
-                result: `[추천 1] AI 바우처 지원사업
-[N] 중소기업의 AI 도입 역량 및 전문인력 부족
-[B] AI 솔루션 기업과 수요기업 매칭, 기술 이전 지원
-[B] 귀하의 NLP/sLLM 전문성이 수요기업 맞춤 솔루션 개발에 적합 (매칭 85%)
-
-[추천 2] 중소기업 기술혁신 R&D
-[N] 중소기업 자체 R&D 역량 한계
-[B] 연구기관-기업 공동연구 통해 기술이전
-[B] 경량화 기술은 중소기업 서버 환경에 즉시 적용 가능 (매칭 78%)`
-            },
-            2: {
-                title: '과제 만들기 예시',
-                input: {
-                    idea: '대형 언어모델(LLM)의 메모리 사용량이 너무 커서 중소기업 환경에서 활용하기 어렵습니다. LoRA, QLoRA 등 경량화 기법을 적용하여 8GB GPU에서도 구동 가능한 sLLM을 개발하고 싶습니다.'
-                },
-                result: `[N] 기존의 문제점/한계
-대형 언어모델(LLM)은 수십~수백GB의 메모리를 요구하여 고가의 GPU 인프라가 필수. 이로 인해 중소기업, 스타트업, 연구기관의 AI 도입 장벽이 높음.
-
-[B] 연구 방향/접근법
-LoRA(Low-Rank Adaptation), QLoRA(Quantized LoRA) 등 파라미터 효율적 미세조정 기법을 적용하여 8GB VRAM 환경에서 구동 가능한 sLLM 개발.
-
-[B] 기대 효과/근거
-선행연구에서 LoRA 적용 시 메모리 사용량 40-60% 절감 확인. 양자화 병행 시 추가 30% 절감 가능.
-
-📌 추천 과제명: "중소기업 환경을 위한 경량 언어모델(sLLM) 개발"
-🎯 연구 목표: 8GB GPU에서 실시간 추론 가능한 한국어 sLLM 개발
-📐 연구 범위: 7B 파라미터 모델 대상, LoRA/QLoRA 적용, 한국어 벤치마크 평가`
-            },
-            3: {
-                title: '참고문헌 관리 예시',
-                input: {
-                    paperInfo: `Title: LoRA: Low-Rank Adaptation of Large Language Models
-Authors: Edward J. Hu, Yelong Shen, Phillip Wallis, et al.
-Abstract: We propose Low-Rank Adaptation (LoRA), which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.`,
-                    citationStyle: 'APA'
-                },
-                result: `## N2B 요약
-
-[N] 이 논문이 다루는 문제
-대형 언어모델의 전체 파라미터 미세조정은 계산 비용이 막대하고, 각 태스크마다 별도 모델 저장 필요
-
-[B] 제안하는 해결책
-사전학습 가중치는 동결하고, 각 레이어에 저랭크 분해 행렬만 학습하는 LoRA 기법 제안
-
-[B] 주요 결과/근거
-GPT-3 175B 기준 학습 파라미터 10,000배 감소, 추론 지연 없음, 전체 미세조정과 동등한 성능
-
-## APA 인용
-Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., ... & Chen, W. (2022). LoRA: Low-rank adaptation of large language models. In ICLR 2022.
-
-## 내 연구와의 연결점
-본 연구의 핵심 기법으로 직접 활용 예정. sLLM 경량화의 기반 기술.`
-            },
-            4: {
-                title: '제안서 작성 예시',
-                input: {
-                    content: '8GB GPU에서 구동 가능한 한국어 sLLM 개발. LoRA/QLoRA 적용, 한국어 벤치마크 평가, 중소기업 실증'
-                },
-                result: `## 1. 연구 필요성 [N]
-
-현재 GPT-4, Claude 등 대형 언어모델은 최소 40GB 이상의 GPU 메모리를 요구한다. 이로 인해 국내 중소기업의 97%는 자체 AI 모델 구축이 불가능한 상황이다. 클라우드 API 의존 시 데이터 보안 우려와 지속적 비용 부담이 발생한다.
-
-## 2. 연구 내용 [B]
-
-**연구 목표**: 8GB VRAM 환경에서 실시간 추론 가능한 한국어 특화 sLLM 개발
-
-**연구 방법**:
-- 1단계: 기반 모델 선정 (Llama-2-7B-Ko, Polyglot-Ko)
-- 2단계: LoRA/QLoRA 적용 및 최적 rank 탐색
-- 3단계: 한국어 벤치마크 평가 (KoBEST, KLUE)
-- 4단계: 중소기업 2개사 실증 테스트
-
-**연구 기간**: 12개월
-
-## 3. 기대 성과 [B]
-
-**정량적 성과**:
-- 메모리 사용량 60% 절감 (40GB → 8GB)
-- 추론 속도 유지 (100 tokens/sec 이상)
-- 한국어 벤치마크 기존 대비 95% 성능 유지
-
-**파급 효과**:
-- 중소기업 AI 도입 장벽 해소
-- 국산 sLLM 기술 확보
-- 후속 경량화 연구 기반 마련`
-            },
-            5: {
-                title: '실험/개발 계획 예시',
-                input: {
-                    type: '실험 연구',
-                    hypothesis: 'LoRA rank=8 적용 시 메모리 50% 절감하면서 성능 95% 유지 가능',
-                    variables: '독립변수: LoRA rank (4, 8, 16, 32)\n종속변수: 메모리 사용량, KoBEST 점수\n통제변수: 모델(Llama-2-7B), 배치사이즈(1)'
-                },
-                result: `## 실험 계획서
-
-[N] 검증할 가설
-LoRA rank=8 적용 시 GPU 메모리 50% 절감(40GB→20GB)하면서 KoBEST 벤치마크 성능 95% 유지 가능
-
-[B] 실험 설계
-- **독립변수**: LoRA rank (4, 8, 16, 32)
-- **종속변수**: 
-  - GPU 메모리 사용량 (GB)
-  - KoBEST 평균 점수 (%)
-  - 추론 속도 (tokens/sec)
-- **통제변수**: 
-  - 기반 모델: Llama-2-7B-Ko
-  - 배치 사이즈: 1
-  - 학습 에폭: 3
-  - 학습률: 2e-4
-
-[B] 측정/평가 방법
-- 메모리: nvidia-smi 로그 (peak memory)
-- 성능: KoBEST 5개 태스크 평균
-- 속도: 100회 추론 평균
-
-**실험 매트릭스**:
-| Rank | 예상 메모리 | 예상 성능 |
-|------|------------|----------|
-| 4    | 15GB       | 90%      |
-| 8    | 20GB       | 95%      |
-| 16   | 28GB       | 97%      |
-| 32   | 35GB       | 98%      |`
-            },
-            6: {
-                title: '연구노트 예시',
-                input: {
-                    date: '2024-12-19',
-                    todayPlan: `📋 오늘의 연구 계획
-
-【실험/개발 계획에서】
-[N] 검증할 가설: LoRA rank=8 적용 시 메모리 50% 절감
-[B] 실험 설계: rank 4/8/16/32 비교
-[B] 측정 방법: nvidia-smi 로그
-
-【제안서 연구내용에서】
-8GB VRAM 환경에서 실시간 추론 가능한 한국어 sLLM 개발`,
-                    content: 'LoRA rank=8로 Llama-2-7B 미세조정 시도. 처음에 배치사이즈 4로 했더니 OOM 발생. 배치사이즈 1로 줄이고 gradient accumulation 4로 설정하니 해결됨. 메모리 18GB 사용, 예상보다 좋음. 내일 KoBEST 평가 예정.'
-                },
-                result: `📅 2024-12-19 연구노트
-
-[N] 오늘의 문제/과제
-LoRA rank=8 적용 Llama-2-7B 미세조정 시 배치사이즈 4에서 GPU OOM(Out of Memory) 발생
-
-[B] 시도한 방법/접근
-- 배치사이즈 4 → 1로 축소
-- Gradient accumulation steps = 4로 설정 (실효 배치사이즈 4 유지)
-
-[B] 결과/배운 점
-- OOM 해결, 학습 정상 진행
-- GPU 메모리: 18GB (예상 20GB보다 양호)
-- Gradient accumulation으로 작은 배치에서도 안정적 학습 가능 확인
-
-📈 과정 분석:
-- **예상**: 20GB 메모리 사용
-- **실제**: 18GB 메모리 사용
-- **차이 원인**: Mixed precision(fp16) 효과가 예상보다 큼
-
-📋 다음 단계:
-- [ ] KoBEST 벤치마크 평가
-- [ ] rank=4, 16 비교 실험`
-            },
-            7: {
-                title: '보고서 작성 예시',
-                input: {
-                    reportType: '중간보고서',
-                    content: '6개월간 LoRA 적용 sLLM 개발 진행. rank=8에서 메모리 55% 절감, 성능 96% 유지 확인. 중소기업 1개사 실증 테스트 완료, 만족도 높음.'
-                },
-                result: `# 중간보고서: 중소기업용 경량 언어모델(sLLM) 개발
-
-## 1. 연구 목표 [N]
-
-**당초 목표**: 8GB GPU 환경에서 실시간 추론 가능한 한국어 sLLM 개발
-**해결 과제**: 대형 언어모델의 높은 메모리 요구량으로 인한 중소기업 AI 도입 장벽
-
-## 2. 수행 내용 [B]
-
-**1단계 (1-2개월)**: 기반 모델 선정
-- Llama-2-7B-Ko 선정 (한국어 성능 최우수)
-
-**2단계 (3-4개월)**: LoRA 적용 및 최적화
-- LoRA rank 4/8/16/32 비교 실험
-- rank=8 최적점 도출
-
-**3단계 (5-6개월)**: 실증 테스트
-- ㈜테스트기업 현장 적용 (고객상담 챗봇)
-
-## 3. 연구 결과 [B]
-
-**정량적 성과**:
-| 지표 | 목표 | 달성 | 달성률 |
-|------|------|------|--------|
-| 메모리 절감 | 50% | 55% | 110% |
-| 성능 유지 | 95% | 96% | 101% |
-| 추론 속도 | 100 tok/s | 112 tok/s | 112% |
-
-**정성적 성과**:
-- 실증기업 만족도: "기존 클라우드 API 대비 비용 80% 절감"
-
-## 4. 결론 및 향후 계획
-
-**성과**: 당초 목표 대비 초과 달성
-**향후 계획**: 
-- QLoRA 추가 적용으로 8GB 이하 달성
-- 실증기업 1개사 추가 확보`
-            },
-            8: {
-                title: '논문 작성 예시',
-                input: {
-                    content: 'LoRA 기반 한국어 sLLM 개발. 메모리 55% 절감, 성능 96% 유지. 중소기업 실증으로 실용성 검증.'
-                },
-                result: `# 중소기업 환경을 위한 LoRA 기반 경량 한국어 언어모델 개발
-
-## Abstract
-
-본 연구는 중소기업의 제한된 GPU 환경에서 활용 가능한 경량 한국어 언어모델(sLLM)을 개발하였다. LoRA(Low-Rank Adaptation) 기법을 Llama-2-7B-Ko에 적용하여 메모리 사용량 55% 절감과 동시에 KoBEST 벤치마크 96% 성능을 유지하였다. 실제 중소기업 현장 실증을 통해 실용성을 검증하였다.
-
-## 1. Introduction [N]
-
-대형 언어모델(LLM)의 발전에도 불구하고, 높은 계산 자원 요구량은 중소기업의 AI 도입을 저해하는 주요 요인이다. GPT-4급 모델은 40GB 이상의 GPU 메모리를 요구하며, 이는 대부분의 중소기업이 보유한 인프라를 초과한다.
-
-기존 경량화 연구는 영어 모델 중심으로 진행되어 한국어 특화 연구가 부족하다. 본 연구는 이러한 간극을 해소하고자 한다.
-
-## 2. Methods [B]
-
-**2.1 기반 모델**: Llama-2-7B-Ko (한국어 사전학습)
-**2.2 경량화 기법**: LoRA (rank=8, alpha=16)
-**2.3 학습 데이터**: KoAlpaca 52K
-**2.4 평가 지표**: KoBEST, GPU 메모리, 추론 속도
-
-## 3. Results [B]
-
-LoRA rank=8 적용 결과:
-- 메모리: 40GB → 18GB (55% 절감)
-- KoBEST: 78.2% → 75.1% (96% 유지)
-- 추론 속도: 98 → 112 tokens/sec (14% 향상)
-
-## 4. Discussion
-
-LoRA의 저랭크 근사가 한국어 태스크에서도 효과적임을 확인하였다. 특히 rank=8이 성능-효율 균형점으로 나타났다. 다만 복잡한 추론 태스크에서는 성능 저하가 관찰되어 후속 연구가 필요하다.
-
-## 5. Conclusion
-
-본 연구는 LoRA 기반 한국어 sLLM이 중소기업 환경에서 실용적으로 활용 가능함을 입증하였다. 향후 QLoRA 적용을 통한 추가 경량화를 계획한다.`
-            },
-            9: {
-                title: '추가연구 방향 예시',
-                input: {
-                    limitations: '현재 연구는 7B 모델에 한정. 더 작은 3B, 1B 모델에서의 효과 미검증. 또한 복잡한 추론 태스크(수학, 코딩)에서 성능 저하 관찰됨.',
-                    discoveries: 'LoRA rank와 태스크 복잡도 간 상관관계 발견. 단순 분류는 rank=4로 충분, 생성은 rank=16 이상 필요. 이 패턴을 활용한 동적 rank 조절 가능성.'
-                },
-                result: `## 후속 연구 1: 초경량 모델 탐구
-
-[N] 미해결 문제
-현재 7B 모델 기준 18GB까지 경량화했으나, 진정한 엣지 디바이스(8GB 이하) 적용에는 부족
-
-[B] 후속 연구 방향
-- 3B, 1B 소형 모델에 LoRA 적용
-- QLoRA(4bit 양자화) 병행 적용
-- 지식 증류(Knowledge Distillation) 결합
-
-[B] 기대 효과
-- 8GB GPU에서 실시간 구동
-- 모바일/엣지 디바이스 확장 가능성
-
----
-
-## 후속 연구 2: 동적 LoRA Rank 조절
-
-[N] 새로운 의문
-왜 태스크마다 최적 rank가 다른가? 이를 자동으로 조절할 수 있는가?
-
-[B] 탐구 방향
-- 태스크 복잡도 자동 감지 메커니즘 개발
-- 추론 시 동적 rank 선택 알고리즘
-- Mixture of LoRA Experts 구조 탐색
-
-[B] 잠재적 가치
-- 단일 모델로 다양한 태스크 최적 대응
-- 추론 효율성 추가 향상
-
----
-
-## 다음 프로젝트 제안
-
-**추천 과제명**: "동적 LoRA 기반 적응형 경량 언어모델 개발"
-
-**연구 목표**: 태스크 복잡도에 따라 자동으로 rank를 조절하는 적응형 sLLM 개발
-
-**현재 연구와의 연결**: 본 연구에서 발견한 rank-복잡도 상관관계를 이론적으로 규명하고 실용화
-
-💡 [이 내용으로 새 프로젝트 만들기]`
-            }
-        };
-
-        // Complete sample project
-        const sampleProject = {
-            id: 'sample_sllm',
-            name: '[샘플] sLLM 경량화 연구',
-            status: 'complete',
-            startDate: '2024.06',
-            description: '전체 연구 흐름 예시 - 클릭해서 각 단계 확인',
-            isSample: true,
-            data: {
-                '1_result': sampleData[1].result,
-                '2_idea': sampleData[2].input.idea,
-                '2_result': sampleData[2].result,
-                '3_paperInfo': sampleData[3].input.paperInfo,
-                '3_result': sampleData[3].result,
-                '4_content': sampleData[4].input.content,
-                '4_result': sampleData[4].result,
-                '5_type': sampleData[5].input.type,
-                '5_hypothesis': sampleData[5].input.hypothesis,
-                '5_variables': sampleData[5].input.variables,
-                '5_result': sampleData[5].result,
-                '6_date': sampleData[6].input.date,
-                '6_content': sampleData[6].input.content,
-                '6_result': sampleData[6].result,
-                '7_reportType': sampleData[7].input.reportType,
-                '7_content': sampleData[7].input.content,
-                '7_result': sampleData[7].result,
-                '8_content': sampleData[8].input.content,
-                '8_result': sampleData[8].result,
-                '9_limitations': sampleData[9].input.limitations,
-                '9_discoveries': sampleData[9].input.discoveries,
-                '9_result': sampleData[9].result
-            }
-        };
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
-            checkUsage();
-        });
-
-        async function checkUsage() {
-            const status = document.getElementById('apiStatus');
-            try {
-                const response = await fetch(`${API_BASE_URL}/usage`);
-                const data = await response.json();
-                state.remainingUsage = data.remaining;
-                status.textContent = `남은 횟수: ${data.remaining}/${data.daily_limit}`;
-            } catch (e) {
-                status.textContent = '서버 연결 확인 중...';
-            }
+        const API_URL = 'https://wise-research-life-api.onrender.com';
+        const DAILY_LIMIT = 100;
+        
+        let messages = [];
+        let isLoading = false;
+        let currentDepth = 0;
+        let lastN2BAnalysis = null;
+        let originalProblem = '';
+
+        const chatArea = document.getElementById('chatArea');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const usageCountEl = document.getElementById('usageCount');
+        const attachedFileArea = document.getElementById('attachedFileArea');
+
+        let attachedFile = null;
+        let attachedFileContent = null;
+
+        // 일일 사용량 관리
+        function getTodayKey() {
+            return 'wise-research-' + new Date().toISOString().split('T')[0];
         }
 
-        function renderProjects() {
-            const grid = document.getElementById('projectsGrid');
-            
-            // Add sample project if not exists
-            if (!state.projects.find(p => p.id === 'sample_sllm')) {
-                state.projects.unshift(sampleProject);
-                saveState();
-            }
-
-            grid.innerHTML = state.projects.map(p => `
-                <div class="project-card ${state.currentProject?.id === p.id ? 'active' : ''} ${p.isSample ? 'sample' : ''}" onclick="selectProject('${p.id}')">
-                    <span class="project-status status-${p.status}">${getStatusLabel(p.status)}</span>
-                    <h3>${p.name}</h3>
-                    <p>${p.description}</p>
-                    <div class="project-meta">
-                        <span>시작: ${p.startDate}</span>
-                        <span>${countCompletedSteps(p)}/9 단계</span>
-                    </div>
-                </div>
-            `).join('') + `
-                <div class="project-card new-project-card" onclick="createNewProject()">
-                    <div class="icon">+</div>
-                    <span>새 프로젝트</span>
-                </div>
-            `;
+        function getUsageCount() {
+            return parseInt(localStorage.getItem(getTodayKey()) || '0');
         }
 
-        function countCompletedSteps(project) {
-            if (!project.data) return 0;
-            let count = 0;
-            for (let i = 1; i <= 9; i++) {
-                if (project.data[`${i}_result`]) count++;
-            }
+        function incrementUsage() {
+            const count = getUsageCount() + 1;
+            localStorage.setItem(getTodayKey(), count.toString());
+            usageCountEl.textContent = count;
             return count;
         }
 
-        function getStatusLabel(status) {
-            const labels = {
-                progress: '진행 중',
-                complete: '완료',
-                idea: '아이디어'
-            };
-            return labels[status] || status;
+        function canUse() {
+            return getUsageCount() < DAILY_LIMIT;
         }
 
-        function selectProject(id) {
-            state.currentProject = state.projects.find(p => p.id === id);
-            document.getElementById('menuSection').style.display = 'block';
-            document.getElementById('currentProjectName').textContent = state.currentProject.name;
-            renderProjects();
-            renderMenu();
+        // 초기화
+        function init() {
+            usageCountEl.textContent = getUsageCount();
+            addAssistantMessage("안녕하세요! 😊\n\n연구고민, 업무고민 N2B로 정리해드려요.\n생각이 명확해져요.\n\n💬 논문이 안 써집니다 → 원인 분석\n🔍 OO 분야 과제를 찾고 있습니다 → 공고문 검색\n📚 OO 관련 참고문헌이 필요합니다 → 논문 검색\n📝 주간보고서 작성을 도와주세요 → 보고서 작성\n📓 연구노트를 정리해주세요 → 노트 정리\n📄 논문 초록을 작성해주세요 → 초록 작성\n📋 연구제안서를 검토해주세요 → 제안서 피드백\n🔬 연구심의를 도와주세요 → 심의 방법제안\n🤝 공동연구자와 갈등이 있습니다 → 관계 분석\n📊 연구 방향이 맞는지 모르겠습니다 → 방향 점검\n😔 연구가 의미있는지 모르겠습니다 → 동기 탐색\n\n모든 고민을 말씀해보세요!\n능동지원형 앱이라 메뉴가 따로 없습니다.\n+ 버튼으로 파일 첨부도 가능합니다.");
+        }
+
+        init();
+
+        // 파일 처리
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            attachedFile = file;
             
-            // Scroll to menu
-            document.getElementById('menuSection').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function renderMenu() {
-            const menuItems = [
-                { id: 1, icon: '🎯', title: 'R&D 과제 찾기' },
-                { id: 2, icon: '📝', title: '과제 만들기' },
-                { id: 3, icon: '📚', title: '참고문헌 관리' },
-                { id: 4, icon: '📋', title: '제안서 작성' },
-                { id: 5, icon: '🔬', title: '실험/개발 계획' },
-                { id: 6, icon: '📓', title: '연구노트' },
-                { id: 7, icon: '📊', title: '보고서 작성' },
-                { id: 8, icon: '📄', title: '논문 작성' },
-                { id: 9, icon: '🔄', title: '추가연구 방향' }
-            ];
-
-            const menuGrid = document.querySelector('.menu-grid');
-            menuGrid.innerHTML = menuItems.map(item => {
-                const isCompleted = state.currentProject?.data?.[`${item.id}_result`];
-                return `
-                    <div class="menu-item ${isCompleted ? 'completed' : ''}" onclick="openMenu(${item.id})">
-                        <div class="menu-icon">${item.icon}</div>
-                        <div class="menu-text">
-                            <div class="menu-number">STEP 0${item.id}</div>
-                            <div class="menu-title">${item.title}</div>
-                        </div>
-                        ${isCompleted ? '<span style="color: var(--success); font-size: 0.8rem;">✓</span>' : ''}
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function createNewProject() {
-            const name = prompt('새 프로젝트 이름을 입력하세요:');
-            if (!name) return;
-
-            const project = {
-                id: 'proj_' + Date.now(),
-                name: name,
-                status: 'idea',
-                startDate: new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit' }).replace('. ', '.').replace('.', ''),
-                description: '새로운 연구 프로젝트',
-                data: {}
+            // 파일 읽기
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                if (file.type === 'application/pdf') {
+                    // PDF는 base64로 저장
+                    attachedFileContent = {
+                        type: 'pdf',
+                        data: e.target.result.split(',')[1]
+                    };
+                } else {
+                    // 텍스트 파일
+                    attachedFileContent = {
+                        type: 'text',
+                        data: e.target.result
+                    };
+                }
+                showAttachedFile(file.name);
             };
 
-            state.projects.unshift(project);
-            saveState();
-            renderProjects();
-            selectProject(project.id);
-            showToast('새 프로젝트가 생성되었습니다!');
+            if (file.type === 'application/pdf') {
+                reader.readAsDataURL(file);
+            } else {
+                reader.readAsText(file);
+            }
         }
 
-        function openMenu(menuId) {
-            if (!state.currentProject) {
-                showToast('먼저 프로젝트를 선택해주세요.');
+        function showAttachedFile(fileName) {
+            attachedFileArea.innerHTML = `
+                <div class="attached-file">
+                    <span>📄 ${fileName}</span>
+                    <span class="remove-file" onclick="removeFile()">✕</span>
+                </div>
+            `;
+        }
+
+        function removeFile() {
+            attachedFile = null;
+            attachedFileContent = null;
+            attachedFileArea.innerHTML = '';
+            document.getElementById('fileInput').value = '';
+        }
+
+        // 데모 응답 (폴백용)
+        const demoResponses = {
+            default: {
+                n2b: {
+                    not: "단순히 상황이 힘든 것이",
+                    but: "문제의 본질이 무엇인지 명확히 파악하지 못한 것이",
+                    because: "연구자는 문제 해결에는 익숙하지만, 정작 자신의 문제는 객관적으로 보기 어렵기 때문입니다"
+                },
+                suggestion: "문제 해결을 위해서는 본질을 먼저 파악해야 합니다. 조금 더 구체적으로 말씀해주시면, N2B 분석으로 문제의 본질을 함께 찾아볼게요.",
+                nextAction: "어떤 부분이 가장 힘드신가요?"
+            },
+            "논문": {
+                n2b: {
+                    not: "시간이 없는 것이",
+                    but: "가설(N2B)이 없이 실험부터 한 것이",
+                    because: "코페르니쿠스도 먼저 '지구가 중심이 아니라 태양이 중심이다'라는 가설을 세우고 관측으로 증명했습니다. 실험 결과를 모아놓고 결론을 찾으면 논문이 안 써집니다"
+                },
+                suggestion: "논문을 쓰기 위해서는 가설(N2B)을 먼저 세워야 합니다. 'A가 아니라 B일 것이다'라는 가설을 한 문장으로 써보세요.",
+                nextAction: "관련 선행연구를 찾아드릴까요?"
+            },
+            "과제": {
+                n2b: {
+                    not: "경쟁이 심한 것이",
+                    but: "차별점이 불명확한 것이",
+                    because: "평가자는 수십 개를 봅니다. '왜 이 팀이어야 하는지' 10초 안에 안 보이면 탈락입니다"
+                },
+                suggestion: "과제 선정을 위해서는 차별점을 명확히 해야 합니다. 제안서 첫 페이지에 '우리만 할 수 있는 이유' 3가지를 쓰세요.",
+                nextAction: "관련 공고문을 찾아드릴까요?"
+            },
+            "공동연구": {
+                n2b: {
+                    not: "상대가 비협조적인 것이",
+                    but: "역할 분담이 불명확한 것이",
+                    because: "공동연구 갈등의 90%는 '누가 뭘 하기로 했는지' 문서화하지 않아서 생깁니다"
+                },
+                suggestion: "협업을 위해서는 역할 분담을 문서화해야 합니다. 지금 바로 '역할/기여/저자순서'를 이메일로 정리해서 공유하세요.",
+                nextAction: "공동연구 협약서 양식을 드릴까요?"
+            },
+            "행정": {
+                n2b: {
+                    not: "일이 많은 것이",
+                    but: "연구시간 보호가 안 되는 것이",
+                    because: "행정은 끝이 없습니다. '연구 시간'을 먼저 블록해두지 않으면, 남는 시간에 연구하게 되고, 남는 시간은 없습니다"
+                },
+                suggestion: "연구 집중을 위해서는 시간을 먼저 확보해야 합니다. 캘린더에 '연구 전용 시간'을 먼저 잡으세요. 회의 요청이 와도 그 시간은 '선약 있음'입니다.",
+                nextAction: "시간관리 템플릿을 드릴까요?"
+            },
+            "승진": {
+                n2b: {
+                    not: "실적이 부족한 것이",
+                    but: "보이는 실적이 없는 것이",
+                    because: "묵묵히 일하면 알아줄 거라 생각하지만, 바쁜 심사위원은 보이는 것만 봅니다"
+                },
+                suggestion: "승진을 위해서는 실적을 보이게 해야 합니다. 매월 '이번 달 성과 3줄'을 기록하세요. 승진 자료는 평소에 쌓는 겁니다.",
+                nextAction: "실적 정리 양식을 드릴까요?"
+            },
+            "후배": {
+                n2b: {
+                    not: "후배가 못하는 것이",
+                    but: "기대치 공유가 없는 것이",
+                    because: "'알아서 하겠지'는 가장 위험한 생각입니다. 구체적으로 말해주지 않으면 후배는 모릅니다"
+                },
+                suggestion: "후배 성장을 위해서는 기대치를 명확히 공유해야 합니다. 다음 미팅에서 '내가 기대하는 수준'을 예시와 함께 보여주세요.",
+                nextAction: "피드백 가이드를 드릴까요?"
+            },
+            "전략": {
+                n2b: {
+                    not: "전략 수립 능력이 부족한 것이",
+                    but: "목표(N2B)가 명확하지 않은 것이",
+                    because: "전략은 '현재 A에서 목표 B로 가는 방법'입니다. B가 명확하지 않으면 전략도 나올 수 없습니다"
+                },
+                suggestion: "전략 수립을 위해서는 목표를 N2B로 먼저 정의해야 합니다. '우리 부서가 A가 아니라 B가 되어야 한다'를 한 문장으로 써보세요.",
+                nextAction: "전략 수립 프레임워크를 드릴까요?"
+            },
+            "상사": {
+                n2b: {
+                    not: "상사 성격이 나쁜 것이",
+                    but: "기대치가 공유되지 않은 것이",
+                    because: "갈등의 90%는 '서로 다른 기준'에서 옵니다. 상사가 원하는 게 뭔지 명확히 확인하지 않으면 계속 부딪힙니다"
+                },
+                suggestion: "관계 개선을 위해서는 상사의 기대치를 먼저 파악해야 합니다. '제가 이해한 게 맞는지' 확인하는 습관을 들이세요.",
+                nextAction: "상사 소통 가이드를 드릴까요?"
+            },
+            "힘들": {
+                n2b: {
+                    not: "업무량이 많은 것이",
+                    but: "우선순위가 불명확한 것이",
+                    because: "다 중요해 보이면 다 힘듭니다. 진짜 중요한 20%를 구분하지 못하면 100%에 치입니다"
+                },
+                suggestion: "업무 효율을 위해서는 우선순위를 명확히 해야 합니다. 오늘 '안 하면 정말 안 되는 일' 3개만 골라보세요.",
+                nextAction: "우선순위 정리를 도와드릴까요?"
+            }
+        };
+
+        // 깊이별 데모 응답
+        const deepDiveResponses = {
+            "논문": [
+                {
+                    n2b: {
+                        not: "가설 없이 실험해서 문제인 것이",
+                        but: "기존 연구(NOT)를 제대로 파악하지 않은 것이",
+                        because: "가설은 '기존 연구가 틀렸다'에서 시작합니다. 기존 연구가 뭐라고 했는지 모르면 반박할 수도 없습니다"
+                    },
+                    suggestion: "선행연구 3편의 결론을 각각 한 줄로 정리해보세요. 그게 당신이 부정할 NOT입니다."
+                },
+                {
+                    n2b: {
+                        not: "선행연구 분석이 부족한 것이",
+                        but: "내 가설(BUT)에 확신이 없는 것이",
+                        because: "'기존과 다르다'고 주장하려면 용기가 필요합니다. 코페르니쿠스도 기존 상식에 반하는 가설을 세웠습니다"
+                    },
+                    suggestion: "틀려도 괜찮아요. 먼저 'A가 아니라 B다'를 선언하세요. 실험은 그 다음입니다."
+                },
+                {
+                    n2b: {
+                        not: "가설에 확신이 없는 것이",
+                        but: "인정받고 싶은 마음이 큰 것이",
+                        because: "가설이 틀리면 내가 틀린 것 같아서 두렵습니다. 하지만 과학은 가설의 수정으로 발전합니다"
+                    },
+                    suggestion: "코페르니쿠스의 가설도 후대에 수정되었습니다. 완벽한 가설은 없어요. 일단 세우세요.",
+                    isCore: true,
+                    coreNeed: "인정받고 싶은 욕구"
+                }
+            ],
+            "default": [
+                {
+                    n2b: {
+                        not: "상황 자체가 문제인 것이",
+                        but: "그 상황에 대한 나의 해석이 문제인 것이",
+                        because: "같은 상황도 어떻게 해석하느냐에 따라 스트레스가 되기도, 성장이 되기도 합니다"
+                    },
+                    suggestion: "이 상황에서 '배울 수 있는 한 가지'가 있다면 뭘까요?"
+                },
+                {
+                    n2b: {
+                        not: "해석의 문제인 것이",
+                        but: "내가 원하는 연구자의 모습이 뭔지 모르는 것이",
+                        because: "불만은 있는데 대안이 없으면, 계속 같은 자리를 맴돕니다"
+                    },
+                    suggestion: "5년 후 어떤 연구자가 되고 싶은지 구체적으로 적어보세요."
+                },
+                {
+                    n2b: {
+                        not: "목표를 몰라서인 것이",
+                        but: "의미있는 일을 하고 싶은 것이",
+                        because: "연구자가 된 이유가 있습니다. 그 초심이 흔들릴 때 모든 게 힘들어집니다"
+                    },
+                    suggestion: "처음 연구자가 되겠다고 결심했을 때를 떠올려보세요. 그때 뭐가 좋았나요?",
+                    isCore: true,
+                    coreNeed: "의미있는 일을 하고 싶은 욕구"
+                }
+            ]
+        };
+
+        function getDeepDiveResponse(depth, keyword) {
+            let responses = deepDiveResponses[keyword] || deepDiveResponses["default"];
+            let index = Math.min(depth - 1, responses.length - 1);
+            return responses[index];
+        }
+
+        function startWithApiKey() {
+            const key = document.getElementById('apiKeyInput').value.trim();
+            if (!key) {
+                alert('API 키를 입력해주세요');
+                return;
+            }
+            apiKey = key;
+            isDemo = false;
+            showChat();
+        }
+
+        function startDemoMode() {
+            isDemo = true;
+            showChat();
+        }
+
+        function showChat() {
+            apiSetup.style.display = 'none';
+            chatArea.style.display = 'block';
+            quickTopics.style.display = 'block';
+            inputArea.style.display = 'block';
+
+            // 웰컴 메시지
+            addAssistantMessage("안녕하세요! 😊\n\n연구생활 고민이 있으시면 편하게 말씀해주세요.\n\nN2B 분석으로 문제의 진짜 원인을 찾고, 실질적인 해결책을 함께 찾아볼게요.");
+        }
+
+        function sendQuickTopic(topic) {
+            userInput.value = topic;
+            sendMessage();
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter' && !isLoading) {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text || isLoading) return;
+
+            if (!canUse()) {
+                addAssistantMessage("오늘 사용량(100회)을 모두 소진했습니다.\n내일 다시 이용해주세요! 😊");
                 return;
             }
 
-            const config = menuConfig[menuId];
-            const context = getProjectContext();
-            const example = sampleData[menuId];
-
-            // AutoFill 처리
-            let autoFillData = {};
-            if (config.autoFill) {
-                autoFillData = config.autoFill(context);
-            }
-
-            let contextHtml = '';
-            if (Object.keys(context).some(k => context[k])) {
-                contextHtml = `
-                    <div class="context-preview">
-                        <h5>📎 이전 단계 연계 정보</h5>
-                        ${context.task ? `<div class="context-item"><span class="context-label">과제:</span> ${truncate(context.task, 100)}</div>` : ''}
-                        ${context.proposal ? `<div class="context-item"><span class="context-label">제안서:</span> ${truncate(context.proposal, 100)}</div>` : ''}
-                        ${context.experiment ? `<div class="context-item"><span class="context-label">실험계획:</span> ${truncate(context.experiment, 100)}</div>` : ''}
-                    </div>
-                `;
-            }
-
-            let fieldsHtml = config.fields.map(field => {
-                // autoFill 데이터가 있으면 사용
-                const autoValue = autoFillData[field.name] || '';
-                const savedValue = state.currentProject.data[`${menuId}_${field.name}`] || '';
-                const defaultValue = field.default || '';
-                const value = savedValue || autoValue || defaultValue;
-                
-                if (field.type === 'textarea') {
-                    const isReadonly = field.readonly ? 'readonly style="background: #f0f5ff; cursor: default;"' : '';
-                    return `
-                        <div class="form-group">
-                            <label>${field.label}</label>
-                            <textarea id="field_${field.name}" placeholder="${field.placeholder || ''}" ${isReadonly}>${value}</textarea>
-                        </div>
-                    `;
-                } else if (field.type === 'select') {
-                    return `
-                        <div class="form-group">
-                            <label>${field.label}</label>
-                            <select id="field_${field.name}">
-                                ${field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('')}
-                            </select>
-                        </div>
-                    `;
-                } else {
-                    return `
-                        <div class="form-group">
-                            <label>${field.label}</label>
-                            <input type="${field.type}" id="field_${field.name}" 
-                                   placeholder="${field.placeholder || ''}"
-                                   value="${value}">
-                        </div>
-                    `;
-                }
-            }).join('');
-
-            const previousResult = state.currentProject.data[`${menuId}_result`];
-            let resultHtml = '';
-            if (previousResult) {
-                resultHtml = `
-                    <div class="result-section">
-                        <h4>📌 이전 분석 결과</h4>
-                        <div style="white-space: pre-wrap; font-size: 0.9rem;">${formatResult(previousResult)}</div>
-                    </div>
-                `;
-            }
-
-            // Build example input display
-            let exampleInputHtml = '';
-            for (const [key, value] of Object.entries(example.input)) {
-                const fieldConfig = config.fields.find(f => f.name === key);
-                const label = fieldConfig ? fieldConfig.label : key;
-                exampleInputHtml += `
-                    <div class="example-section">
-                        <h5>📝 ${label}</h5>
-                        <div class="example-content">${value}</div>
-                    </div>
-                `;
-            }
-
-            document.getElementById('modalTitle').innerHTML = config.title;
-            document.getElementById('modalBody').innerHTML = `
-                <div class="modal-with-example">
-                    <div class="modal-main">
-                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">${config.description}</p>
-                        
-                        <div class="usage-info" style="background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
-                            <span>🎯 오늘 남은 분석 횟수</span>
-                            <strong style="color: var(--success);">${state.remainingUsage}/100</strong>
-                        </div>
-                        
-                        <button class="example-toggle" onclick="toggleExample()">💡 예시 보기/숨기기</button>
-                        
-                        ${contextHtml}
-                        ${fieldsHtml}
-                        
-                        <div class="btn-group">
-                            <button class="btn btn-secondary" onclick="closeModal()">취소</button>
-                            <button class="btn btn-primary" onclick="analyzeWithN2B(${menuId})">N2B 분석 ✨</button>
-                        </div>
-                        
-                        <div id="resultArea">${resultHtml}</div>
-                    </div>
-                    
-                    <div class="example-panel" id="examplePanel">
-                        <div class="example-header">💡 ${example.title}</div>
-                        <div class="example-body">
-                            ${exampleInputHtml}
-                            
-                            <button class="btn-apply-example" onclick="applyExample(${menuId})">
-                                ↓ 예시 입력값 적용하기
-                            </button>
-                            
-                            <div class="example-section" style="margin-top: 1.25rem;">
-                                <h5>✨ N2B 분석 결과 예시</h5>
-                                <div class="example-content result">${example.result}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('modalOverlay').classList.add('active');
-        }
-
-        function toggleExample() {
-            const panel = document.getElementById('examplePanel');
-            panel.classList.toggle('collapsed');
-        }
-
-        function applyExample(menuId) {
-            const example = sampleData[menuId];
-            const config = menuConfig[menuId];
+            userInput.value = '';
             
-            for (const [key, value] of Object.entries(example.input)) {
-                const el = document.getElementById(`field_${key}`);
-                if (el) {
-                    el.value = value;
+            // 파일 첨부 표시
+            let displayText = text;
+            if (attachedFile) {
+                displayText = `📄 ${attachedFile.name}\n\n${text}`;
+            }
+            addUserMessage(displayText);
+
+            // API 메시지 구성
+            let messageContent = text;
+            if (attachedFileContent) {
+                if (attachedFileContent.type === 'text') {
+                    messageContent = `[첨부 파일 내용]\n${attachedFileContent.data}\n\n[질문]\n${text}`;
                 }
+                // PDF는 별도 처리 필요 (현재는 텍스트만 지원)
             }
             
-            showToast('예시가 적용되었습니다!');
-        }
+            messages.push({ role: 'user', content: messageContent });
 
-        function getProjectContext() {
-            if (!state.currentProject) return {};
-            const data = state.currentProject.data;
-            return {
-                task: data['2_result'],
-                references: data['3_result'],
-                proposal: data['4_result'],
-                experiment: data['5_result'],
-                notes: data['6_result'],
-                report: data['7_result']
-            };
-        }
+            // 파일 초기화
+            removeFile();
 
-        function truncate(str, len) {
-            if (!str) return '';
-            return str.length > len ? str.substring(0, len) + '...' : str;
-        }
+            // 새 문제 시작시 깊이 초기화
+            currentDepth = 1;
+            originalProblem = text;
 
-        async function analyzeWithN2B(menuId) {
-            const config = menuConfig[menuId];
-            const context = getProjectContext();
-
-            // Collect field values
-            const data = {};
-            config.fields.forEach(field => {
-                const el = document.getElementById(`field_${field.name}`);
-                data[field.name] = el ? el.value : '';
-                
-                // Save to project
-                state.currentProject.data[`${menuId}_${field.name}`] = data[field.name];
-            });
-
-            // Show loading
-            const resultArea = document.getElementById('resultArea');
-            resultArea.innerHTML = `
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <span>N2B 분석 중... (남은 횟수: ${state.remainingUsage})</span>
-                </div>
-            `;
+            isLoading = true;
+            sendBtn.disabled = true;
+            showTyping();
 
             try {
-                // 백엔드 API 호출
-                const response = await fetch(`${API_BASE_URL}/analyze-research`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        menuId: menuId,
-                        data: data,
-                        context: context
-                    })
-                });
-
-                const result = await response.json();
-                
-                if (!result.success) {
-                    throw new Error(result.error || '분석 실패');
-                }
-
-                const analysisResult = result.result;
-                state.remainingUsage = result.remaining;
-                
-                // Update usage display
-                checkUsage();
-                
-                // Save result
-                state.currentProject.data[`${menuId}_result`] = analysisResult;
-                
-                // Update project status
-                if (state.currentProject.status === 'idea') {
-                    state.currentProject.status = 'progress';
-                }
-                
-                saveState();
-
-                // Display result
-                resultArea.innerHTML = `
-                    <div class="result-section">
-                        <h4>✨ N2B 분석 결과</h4>
-                        <div style="white-space: pre-wrap; font-size: 0.9rem; line-height: 1.8;">${formatResult(analysisResult)}</div>
-                        <div class="btn-group" style="margin-top: 1rem;">
-                            <button class="btn btn-secondary" onclick="copyResult()">📋 복사</button>
-                        </div>
-                    </div>
-                `;
-
-                showToast('분석이 완료되었습니다!');
-                renderProjects();
-
+                const response = await callClaudeAPI(messageContent);
+                incrementUsage();
+                lastN2BAnalysis = response;
+                hideTyping();
+                addN2BResponse(response, currentDepth);
             } catch (error) {
-                resultArea.innerHTML = `
-                    <div class="result-section" style="border-left-color: #e53e3e;">
-                        <h4 style="color: #e53e3e;">❌ 오류 발생</h4>
-                        <p>${error.message}</p>
+                hideTyping();
+                // 폴백: 데모 응답 사용
+                const fallback = getDemoResponse(text);
+                lastN2BAnalysis = fallback;
+                addN2BResponse(fallback, currentDepth);
+            }
+
+            isLoading = false;
+            sendBtn.disabled = false;
+            userInput.focus();
+        }
+
+        async function deepDive() {
+            if (!lastN2BAnalysis || isLoading) return;
+
+            if (!canUse()) {
+                addAssistantMessage("오늘 사용량(100회)을 모두 소진했습니다.\n내일 다시 이용해주세요! 😊");
+                return;
+            }
+
+            currentDepth++;
+            
+            isLoading = true;
+            disableDeepDiveButtons();
+            showTyping();
+
+            try {
+                const response = await callDeepDiveAPI();
+                incrementUsage();
+                lastN2BAnalysis = response;
+                hideTyping();
+                addN2BResponse(response, currentDepth);
+            } catch (error) {
+                hideTyping();
+                // 폴백
+                let keyword = "default";
+                for (const k of Object.keys(deepDiveResponses)) {
+                    if (k !== "default" && originalProblem.includes(k)) {
+                        keyword = k;
+                        break;
+                    }
+                }
+                const fallback = getDeepDiveResponse(currentDepth, keyword);
+                lastN2BAnalysis = fallback;
+                addN2BResponse(fallback, currentDepth);
+            }
+
+            isLoading = false;
+        }
+
+        async function callDeepDiveAPI() {
+            const deepDivePrompt = `이전 N2B 분석 결과:
+- NOT: ${lastN2BAnalysis.n2b.not}
+- BUT: ${lastN2BAnalysis.n2b.but}  
+- BECAUSE: ${lastN2BAnalysis.n2b.because}
+
+이제 위 분석의 BUT(진짜 원인)을 다시 N2B로 더 깊이 분석해주세요.
+즉, "${lastN2BAnalysis.n2b.but}" 이것이 왜 생겼는지, 더 근본적인 원인을 찾아주세요.
+
+만약 인간의 근본 욕구(인정, 안전, 연결, 의미)에 도달했다면 isCore: true로 표시하세요.
+
+응답은 반드시 JSON으로:
+{
+  "n2b": {
+    "not": "~이 아니라",
+    "but": "~이다 (더 깊은 원인)", 
+    "because": "~때문이다"
+  },
+  "suggestion": "구체적이고 실행 가능한 제안",
+  "isCore": false 또는 true,
+  "coreNeed": "본질에 도달했다면 욕구명 (예: 인정받고 싶은 욕구)"
+}`;
+
+            messages.push({ role: 'user', content: deepDivePrompt });
+
+            const response = await fetch(API_URL + '/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    system: '',
+                    messages: messages
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('API 호출 실패: ' + response.status);
+            }
+
+            const data = await response.json();
+            const content = data.content;
+            messages.push({ role: 'assistant', content: content });
+
+            try {
+                const jsonMatch = content.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    return JSON.parse(jsonMatch[0]);
+                }
+            } catch (e) {}
+
+            return {
+                n2b: {
+                    not: "분석 중",
+                    but: "더 깊은 원인을 찾는 중입니다",
+                    because: "조금 더 대화가 필요합니다"
+                },
+                suggestion: content,
+                isCore: false
+            };
+        }
+
+        function startWithApiKey() {}
+        function startDemoMode() {}
+        function showChat() {}
+
+        function disableDeepDiveButtons() {
+            document.querySelectorAll('.deep-dive-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+        }
+
+        function getDemoResponse(text) {
+            // 키워드 매칭
+            for (const [keyword, response] of Object.entries(demoResponses)) {
+                if (keyword !== 'default' && text.includes(keyword)) {
+                    return response;
+                }
+            }
+            return demoResponses.default;
+        }
+
+        async function callClaudeAPI(text) {
+            const systemPrompt = `당신은 '슬기로운 연구생활' 앱의 N2B 코치입니다.
+
+연구자의 고민을 듣고 N2B(NOT-BUT-BECAUSE) 프레임워크로 분석해주세요.
+
+## N2B 프레임워크
+- NOT (N): 문제가 ~이 아니라 (표면적/잘못된 원인 부정)
+- BUT (B): ~이다 (진짜 원인 제시)
+- BECAUSE (C): 왜냐하면 ~때문이다 (근거/논리적 설명)
+
+## 핵심 원리
+1. N2B는 비교판단입니다. 모든 판단은 비교판단이고, 논문의 결론도 비교판단입니다.
+
+2. 가설이 먼저입니다. 
+   - 먼저 N2B(가설)를 세우고 → 실험으로 증명
+   - 실험해서 결론을 찾는 게 아니라, 가설을 세우고 실험으로 설명/증명하는 것
+   - 코페르니쿠스: "지구가 중심이 아니라(N), 태양이 중심이다(B)" → 관측으로 증명
+
+3. 논문 결론 = 비교판단 = N2B
+   - "기존 연구는 A라고 했지만(NOT), 본 연구에서는 B임을 밝혔다(BUT), 왜냐하면 C이기 때문이다(BECAUSE)"
+
+## 능동지원 원칙
+분석만 하지 말고, 구체적인 행동을 제안하세요.
+제안 형식: "[목표]를 위해서는 [행동]을 해야 합니다"
+
+예시:
+- 논문을 쓰기 위해서는 가설(N2B)을 먼저 세워야 합니다
+- 과제 선정을 위해서는 차별점을 명확히 해야 합니다
+- 협업을 위해서는 역할 분담을 문서화해야 합니다
+
+그리고 다음 행동을 제안하세요:
+- "관련 과제 찾아드릴까요?"
+- "참고문헌 검색해드릴까요?"
+- "초안 작성해드릴까요?"
+
+## 연구 라이프사이클 (순환)
+연구는 순환합니다:
+과제 수주 → 연구 수행 → 논문 작성 → 과제 수주 → ...
+
+한 단계가 끝나면 다음 단계를 제안하세요:
+- 논문 완성 → "이 성과로 다음 과제 찾아드릴까요?"
+- 과제 종료 → "후속 논문 작성 도와드릴까요?"
+- 가설 수립 → "선행연구 찾아드릴까요?"
+
+N2B도 순환합니다:
+- 이번 연구의 결론(BUT)이 → 다음 연구의 가설(NOT)이 됩니다
+- 끝이 아니라 새로운 시작입니다
+
+이것이 능동지원의 핵심입니다. 항상 다음 단계를 제안하세요.
+
+## 응답 형식 (반드시 JSON으로)
+{
+  "n2b": {
+    "not": "~이 아니라",
+    "but": "~이다", 
+    "because": "~때문이다"
+  },
+  "suggestion": "[목표]를 위해서는 [행동]을 해야 합니다. 구체적 제안...",
+  "nextAction": "~해드릴까요?"
+}
+
+## 원칙
+1. 공감하되, 본질을 파고들어라
+2. 연구자가 바로 실행할 수 있는 제안을 하라
+3. 따뜻하지만 명확하게 말하라
+4. 연구 맥락(논문, 과제, 공동연구, 행정, 승진 등)을 이해하라
+5. 논문 관련 질문에는 "가설(N2B)이 먼저, 실험은 증명"임을 알려줘라`;
+
+            const response = await fetch(API_URL + '/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    system: systemPrompt,
+                    messages: messages
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('API 호출 실패: ' + response.status);
+            }
+
+            const data = await response.json();
+            const content = data.content;
+
+            // JSON 파싱 시도
+            try {
+                const jsonMatch = content.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    return JSON.parse(jsonMatch[0]);
+                }
+            } catch (e) {
+                // JSON 파싱 실패시 기본 응답
+            }
+
+            return {
+                n2b: {
+                    not: "분석 중",
+                    but: "문제의 본질을 파악하는 중입니다",
+                    because: "조금 더 구체적인 상황을 알려주시면 정확한 분석이 가능합니다"
+                },
+                suggestion: content
+            };
+        }
+
+        function addUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message user';
+            div.innerHTML = `<div class="message-bubble">${escapeHtml(text)}</div>`;
+            chatArea.appendChild(div);
+            scrollToBottom();
+        }
+
+        function addAssistantMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message assistant';
+            div.innerHTML = `<div class="message-bubble">${escapeHtml(text).replace(/\n/g, '<br>')}</div>`;
+            chatArea.appendChild(div);
+            scrollToBottom();
+        }
+
+        function addN2BResponse(response, depth) {
+            const depthLabels = ['', '1차 분석', '2차 분석', '3차 분석', '4차 분석', '5차 분석'];
+            const depthLabel = depthLabels[Math.min(depth, 5)] || `${depth}차 분석`;
+            
+            const isCore = response.isCore || false;
+            const coreNeed = response.coreNeed || '';
+            
+            let bottomSection = '';
+            if (isCore) {
+                bottomSection = `
+                    <div class="core-reached">
+                        <div class="core-icon">🎯</div>
+                        <div class="core-title">본질에 도달했습니다</div>
+                        <div class="core-need">"${coreNeed}"</div>
+                        <div class="core-message">
+                            모든 고민의 뿌리에는 근본적인 욕구가 있습니다.<br>
+                            이제 이 욕구를 건강하게 채우는 방법을 찾아보세요.
+                        </div>
                     </div>
+                    <button class="new-topic-btn" onclick="startNewTopic()">
+                        💬 새로운 고민 이야기하기
+                    </button>
+                `;
+            } else {
+                bottomSection = `
+                    <button class="deep-dive-btn" onclick="deepDive()">
+                        🌊 더 깊이 분석하기 <span class="depth-indicator">${depth + 1}차로</span>
+                    </button>
                 `;
             }
-        }
-
-        function formatResult(text) {
-            // Highlight N2B blocks
-            return text
-                .replace(/\[N\]/g, '<span class="n2b-label n2b-n">N</span>')
-                .replace(/\[B\]/g, '<span class="n2b-label n2b-b1">B</span>')
-                .replace(/##\s(.+)/g, '<h4 style="margin-top: 1.5rem; color: var(--primary);">$1</h4>');
-        }
-
-        function copyResult() {
-            const resultText = document.querySelector('.result-section div[style*="pre-wrap"]')?.innerText;
-            if (resultText) {
-                navigator.clipboard.writeText(resultText);
-                showToast('클립보드에 복사되었습니다!');
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-        }
-
-        function openSettings() {
-            document.getElementById('modalTitle').innerHTML = '⚙️ 설정';
-            document.getElementById('modalBody').innerHTML = `
-                <div class="form-group">
-                    <label>📊 사용량 정보</label>
-                    <div style="background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>오늘 남은 횟수</span>
-                            <strong style="color: var(--success);">${state.remainingUsage}/100</strong>
+            
+            const div = document.createElement('div');
+            div.className = 'message assistant';
+            div.innerHTML = `
+                <div class="message-bubble">
+                    <div class="n2b-analysis">
+                        <div style="text-align: center; margin-bottom: 12px;">
+                            <span class="depth-indicator">🔍 ${isCore ? '최종 분석' : depthLabel}</span>
                         </div>
-                        <p style="font-size: 0.8rem; color: var(--text-light); margin: 0;">매일 자정(UTC)에 초기화됩니다.</p>
+                        <div class="n2b-item">
+                            <div class="n2b-label not">❌ NOT (아니다)</div>
+                            <div class="n2b-content">${escapeHtml(response.n2b.not)}</div>
+                        </div>
+                        <div class="n2b-item">
+                            <div class="n2b-label but">✓ BUT (진짜는)</div>
+                            <div class="n2b-content">${escapeHtml(response.n2b.but)}</div>
+                        </div>
+                        <div class="n2b-item">
+                            <div class="n2b-label because">💡 BECAUSE (왜냐하면)</div>
+                            <div class="n2b-content">${escapeHtml(response.n2b.because)}</div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>💾 데이터 관리</label>
-                    <div class="btn-group" style="justify-content: flex-start;">
-                        <button class="btn btn-secondary" onclick="exportData()">📤 내보내기</button>
-                        <button class="btn btn-secondary" onclick="importData()">📥 가져오기</button>
-                        <button class="btn btn-secondary" style="color: #e53e3e;" onclick="clearData()">🗑️ 초기화</button>
+                    <div class="suggestion-box">
+                        <div class="suggestion-title">🎯 이렇게 해보세요</div>
+                        <div class="suggestion-content">${escapeHtml(response.suggestion)}</div>
+                        ${response.nextAction ? `<div class="next-action">👉 ${escapeHtml(response.nextAction)}</div>` : ''}
                     </div>
-                </div>
-                
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="closeModal()">닫기</button>
+                    ${bottomSection}
                 </div>
             `;
-            document.getElementById('modalOverlay').classList.add('active');
+            chatArea.appendChild(div);
+            scrollToBottom();
         }
 
-        function saveSettings() {
-            closeModal();
-            showToast('설정이 저장되었습니다!');
+        function startNewTopic() {
+            currentDepth = 0;
+            lastN2BAnalysis = null;
+            originalProblem = '';
+            addAssistantMessage("새로운 고민이 있으시면 말씀해주세요! 😊\n\nN2B로 함께 풀어볼게요.");
+            userInput.focus();
         }
 
-        function exportData() {
-            const data = JSON.stringify(state.projects, null, 2);
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `wise-research-backup-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            showToast('데이터를 내보냈습니다!');
+        function showTyping() {
+            const div = document.createElement('div');
+            div.className = 'message assistant';
+            div.id = 'typingIndicator';
+            div.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatArea.appendChild(div);
+            scrollToBottom();
         }
 
-        function importData() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    try {
-                        state.projects = JSON.parse(e.target.result);
-                        saveState();
-                        renderProjects();
-                        closeModal();
-                        showToast('데이터를 가져왔습니다!');
-                    } catch {
-                        showToast('파일 형식이 올바르지 않습니다.');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
         }
 
-        function clearData() {
-            if (confirm('모든 프로젝트 데이터가 삭제됩니다. 계속하시겠습니까?')) {
-                state.projects = [];
-                state.currentProject = null;
-                saveState();
-                renderProjects();
-                document.getElementById('menuSection').style.display = 'none';
-                closeModal();
-                showToast('데이터가 초기화되었습니다.');
-            }
+        function scrollToBottom() {
+            chatArea.scrollTop = chatArea.scrollHeight;
         }
 
-        function saveState() {
-            localStorage.setItem('projects', JSON.stringify(state.projects));
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // Close modal on overlay click
-        document.getElementById('modalOverlay').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) closeModal();
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
     </script>
 </body>
 </html>
