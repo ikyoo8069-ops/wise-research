@@ -385,10 +385,23 @@ body {
     <!-- ===== STEP 0: 분야 선택 (깔때기) ===== -->
     <div class="step-view active" id="step0">
         <div class="card">
-            <div class="card-title">🌐 어떤 분야에 관심 있으세요?</div>
-            <div class="card-desc">대분야부터 골라가면서 좁혀갑니다. 직접 입력도 가능해요.</div>
+            <div class="card-title">🔬 어떤 분야를 연구하고 싶으세요?</div>
 
-            <!-- 대분야 -->
+            <!-- 직접 입력 (위) -->
+            <div class="card-desc">연구 분야가 있으면 바로 입력하세요.</div>
+            <div class="topic-input-wrap" style="border:none; padding:0; margin:0;">
+                <input type="text" class="topic-input" id="customField" placeholder="예) 배수성 아스팔트, 한국어 sLLM, 가야금 연주법, AI 교육..." onkeydown="if(event.key==='Enter')confirmField()">
+                <button class="btn btn-sm" onclick="confirmField()">→ BP 탐색</button>
+            </div>
+
+            <!-- 구분선 -->
+            <div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0 1.25rem;color:var(--muted);font-size:.8rem;">
+                <div style="flex:1;height:1px;background:var(--border);"></div>
+                <span>아직 막연하면 분야를 좁혀보세요</span>
+                <div style="flex:1;height:1px;background:var(--border);"></div>
+            </div>
+
+            <!-- 대분야 (아래) -->
             <div id="majorFields" class="field-grid">
                 <div class="field-btn" onclick="selectMajor('공학')"><span class="field-icon">⚙️</span><span class="field-name">공학</span></div>
                 <div class="field-btn" onclick="selectMajor('자연과학')"><span class="field-icon">🔬</span><span class="field-name">자연과학</span></div>
@@ -409,12 +422,6 @@ body {
             <div id="subFieldWrap" style="display:none; margin-top:1.25rem;">
                 <div class="card-title" id="subTitle" style="font-size:1rem;">세부 분야 선택</div>
                 <div id="subFields" class="chip-wrap"></div>
-            </div>
-
-            <!-- 직접 입력 -->
-            <div class="topic-input-wrap">
-                <input type="text" class="topic-input" id="customField" placeholder="또는 직접 입력: 예) 배수성 아스팔트, 한국어 sLLM, 가야금 연주법..." onkeydown="if(event.key==='Enter')confirmField()">
-                <button class="btn btn-sm" onclick="confirmField()">확인</button>
             </div>
         </div>
 
