@@ -3,496 +3,1066 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>슬기로운 연구생활 — 연구 주제 잡기</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=Noto+Serif+KR:wght@600;900&display=swap" rel="stylesheet">
+<title>🔬 연구 주제 잡기</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-    --bg:#0a0a0f;
-    --surface:#12121a;
-    --card:#1a1a24;
-    --border:rgba(99,102,241,.2);
-    --primary:#6366f1;
-    --gold:#f0b429;
-    --red:#ef4444;
-    --green:#22c55e;
-    --cyan:#06b6d4;
-    --purple:#a855f7;
-    --text:#e8e8ed;
-    --muted:#6b7280;
-    --font:'Noto Sans KR',sans-serif;
-    --serif:'Noto Serif KR',serif;
+:root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --card: #1a2236;
+    --border: #2a3654;
+    --text: #e8ecf4;
+    --muted: #8892a8;
+    --light: #b0bdd0;
+    --accent: #3b82f6;
+    --accent2: #60a5fa;
+    --green: #34d399;
+    --green-bg: rgba(52,211,153,.08);
+    --orange: #fb923c;
+    --orange-bg: rgba(251,146,60,.08);
+    --purple: #a78bfa;
+    --purple-bg: rgba(167,139,250,.08);
+    --red: #f87171;
+    --red-bg: rgba(248,113,113,.08);
+    --yellow: #fbbf24;
 }
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-/* 헤더 */
-.header{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--surface);}
-.header .logo{font-size:24px;}
-.header h1{font-size:16px;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.header p{font-size:10px;color:var(--muted);}
-.header .status{margin-left:auto;padding:4px 10px;border-radius:12px;font-size:9px;font-weight:700;}
-.st-on{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:var(--green);}
-.st-off{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:var(--red);}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
 
-/* 메인 레이아웃 */
-.main{display:flex;height:calc(100vh - 60px);}
+/* Header */
+.app-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.header-title {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 1.3rem; font-weight: 700;
+}
+.header-sub { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
 
-/* 왼쪽: 진행 단계 */
-.sidebar{width:280px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:16px;overflow-y:auto;}
-.sidebar::-webkit-scrollbar{width:3px;}.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
-.sb-title{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
-.stage{padding:12px;margin-bottom:8px;border-radius:10px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.02);cursor:pointer;transition:all .3s;}
-.stage:hover{border-color:var(--primary);background:rgba(99,102,241,.05);}
-.stage.active{border-color:var(--primary);background:rgba(99,102,241,.1);box-shadow:0 0 20px rgba(99,102,241,.15);}
-.stage.done{border-color:var(--green);background:rgba(34,197,94,.05);}
-.stage .num{display:inline-flex;width:20px;height:20px;border-radius:50%;align-items:center;justify-content:center;font-size:10px;font-weight:900;margin-right:8px;background:rgba(255,255,255,.1);color:var(--muted);}
-.stage.active .num{background:var(--primary);color:#fff;}
-.stage.done .num{background:var(--green);color:#fff;}
-.stage .stitle{font-size:12px;font-weight:700;}
-.stage .sdesc{font-size:9px;color:var(--muted);margin-top:3px;margin-left:28px;}
+/* Progress bar */
+.progress-bar {
+    max-width: 1000px; margin: 0 auto;
+    padding: 1.25rem 1.5rem .5rem;
+}
+.progress-steps {
+    display: flex; align-items: center; gap: 0;
+    position: relative;
+}
+.p-step {
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1; position: relative; cursor: pointer;
+    opacity: .35; transition: all .3s;
+}
+.p-step.active { opacity: 1; }
+.p-step.done { opacity: .7; }
+.p-step .p-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--card); border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; z-index: 2; transition: all .3s;
+}
+.p-step.active .p-dot {
+    background: var(--accent); border-color: var(--accent2);
+    box-shadow: 0 0 16px rgba(59,130,246,.4);
+}
+.p-step.done .p-dot { background: var(--green); border-color: var(--green); }
+.p-step .p-label { font-size: .65rem; color: var(--muted); margin-top: .35rem; white-space: nowrap; }
+.p-step.active .p-label { color: var(--accent2); font-weight: 500; }
+.p-step.done .p-label { color: var(--green); }
+.p-line {
+    position: absolute; top: 16px; left: 0; right: 0;
+    height: 2px; background: var(--border); z-index: 1;
+}
 
-/* 빅매치 카드 */
-.bigmatch-card{margin-top:16px;padding:14px;border-radius:12px;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(168,85,247,.1));border:1px solid rgba(99,102,241,.25);display:none;}
-.bigmatch-card.show{display:block;animation:fadeIn .5s;}
-.bigmatch-card h3{font-size:11px;font-weight:900;color:var(--primary);margin-bottom:10px;text-align:center;}
-.match-vs{display:flex;align-items:center;gap:8px;}
-.match-box{flex:1;padding:10px;border-radius:8px;text-align:center;}
-.match-bp{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);}
-.match-new{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);}
-.match-box .mlabel{font-size:8px;color:var(--muted);margin-bottom:3px;}
-.match-box .mname{font-size:10px;font-weight:900;line-height:1.4;}
-.match-bp .mname{color:var(--red);}
-.match-new .mname{color:var(--green);}
-.match-vs-icon{font-size:16px;font-weight:900;color:var(--gold);}
+/* Main content area */
+.main-wrap {
+    max-width: 1000px; margin: 0 auto;
+    padding: 1rem 1.5rem 6rem;
+}
 
-/* 오른쪽: 대화 */
-.chat-area{flex:1;display:flex;flex-direction:column;background:var(--bg);}
-.messages{flex:1;overflow-y:auto;padding:20px;}
-.messages::-webkit-scrollbar{width:3px;}.messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+/* Step container */
+.step-view { display: none; animation: fadeUp .4s ease; }
+.step-view.active { display: block; }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-.msg{margin-bottom:16px;max-width:85%;animation:fadeIn .4s;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.msg-ai{margin-right:auto;}
-.msg-user{margin-left:auto;}
-.msg .sender{font-size:9px;color:var(--muted);margin-bottom:4px;font-weight:700;display:flex;align-items:center;gap:4px;}
-.msg-ai .sender::before{content:'🤖';}
-.msg-user .sender{justify-content:flex-end;}
-.msg-user .sender::after{content:'👤';}
-.msg .bubble{padding:14px 18px;border-radius:16px;font-size:13px;line-height:1.8;}
-.msg-ai .bubble{background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px;}
-.msg-user .bubble{background:linear-gradient(135deg,var(--primary),var(--purple));border-bottom-right-radius:4px;color:#fff;}
+/* Cards */
+.card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem;
+}
+.card-title {
+    font-size: 1.1rem; font-weight: 700; margin-bottom: .75rem;
+    display: flex; align-items: center; gap: .5rem;
+}
+.card-desc { color: var(--light); font-size: .9rem; margin-bottom: 1.25rem; }
 
-/* 특수 카드 */
-.bp-card{margin:12px 0;padding:14px;border-radius:12px;background:var(--card);border-left:3px solid var(--gold);}
-.bp-card h4{font-size:11px;font-weight:900;color:var(--gold);margin-bottom:8px;}
-.bp-card ul{list-style:none;font-size:11px;line-height:1.8;}
-.bp-card li{padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);}
-.bp-card li:last-child{border:none;}
-.bp-card .rank{display:inline-block;width:18px;height:18px;border-radius:50%;background:rgba(240,180,41,.15);color:var(--gold);font-size:9px;font-weight:900;text-align:center;line-height:18px;margin-right:6px;}
+/* Field selection grid */
+.field-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: .75rem;
+}
+.field-grid.single-row {
+    grid-template-columns: repeat(6, 1fr);
+}
+.field-btn {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 1rem .75rem;
+    text-align: center; cursor: pointer;
+    transition: all .25s; color: var(--text);
+    font-size: .9rem; font-weight: 500;
+}
+.field-btn:hover { border-color: var(--accent); background: rgba(59,130,246,.06); transform: translateY(-2px); }
+.field-btn.selected { border-color: var(--accent); background: rgba(59,130,246,.12); box-shadow: 0 0 12px rgba(59,130,246,.15); }
+.field-btn .field-icon { font-size: 1.5rem; display: block; margin-bottom: .4rem; }
+.field-btn .field-name { font-size: .85rem; }
 
-.history-card{margin:12px 0;padding:14px;border-radius:12px;background:var(--card);border-left:3px solid var(--cyan);}
-.history-card h4{font-size:11px;font-weight:900;color:var(--cyan);margin-bottom:8px;}
-.timeline{position:relative;padding-left:20px;}
-.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:rgba(6,182,212,.3);}
-.timeline-item{position:relative;margin-bottom:10px;font-size:10px;line-height:1.6;}
-.timeline-item::before{content:'';position:absolute;left:-17px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--cyan);}
-.timeline-item .era{color:var(--cyan);font-weight:700;}
+/* Sub-field chips */
+.chip-wrap { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: .5rem 1rem;
+    font-size: .85rem; cursor: pointer; transition: all .2s;
+    color: var(--light);
+}
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip.selected { border-color: var(--accent); background: rgba(59,130,246,.12); color: var(--accent2); }
 
-.contradiction-card{margin:12px 0;padding:14px;border-radius:12px;background:var(--card);border-left:3px solid var(--red);}
-.contradiction-card h4{font-size:11px;font-weight:900;color:var(--red);margin-bottom:8px;}
-.contra-box{display:flex;align-items:center;gap:8px;padding:8px;background:rgba(239,68,68,.05);border-radius:8px;}
-.contra-side{flex:1;font-size:10px;text-align:center;padding:6px;background:rgba(255,255,255,.03);border-radius:6px;}
-.contra-vs{font-size:12px;color:var(--red);}
+/* Breadcrumb path */
+.breadcrumb {
+    display: flex; align-items: center; gap: .35rem;
+    font-size: .8rem; color: var(--muted); margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.breadcrumb span { cursor: pointer; transition: color .2s; }
+.breadcrumb span:hover { color: var(--accent2); }
+.breadcrumb .bc-arrow { color: var(--border); cursor: default; }
+.breadcrumb .bc-current { color: var(--accent2); font-weight: 500; }
 
-.triz-card{margin:12px 0;padding:14px;border-radius:12px;background:var(--card);border-left:3px solid var(--purple);}
-.triz-card h4{font-size:11px;font-weight:900;color:var(--purple);margin-bottom:8px;}
-.triz-item{padding:8px;margin-bottom:6px;background:rgba(168,85,247,.08);border-radius:8px;font-size:10px;line-height:1.6;}
-.triz-item .tnum{display:inline-block;padding:2px 6px;background:var(--purple);color:#fff;border-radius:4px;font-size:8px;font-weight:900;margin-right:6px;}
+/* Custom topic input */
+.topic-input-wrap {
+    display: flex; gap: .5rem; margin-top: 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--border);
+}
+.topic-input {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: .75rem 1rem; color: var(--text);
+    font-size: .9rem; font-family: inherit; outline: none;
+}
+.topic-input:focus { border-color: var(--accent); }
+.topic-input::placeholder { color: var(--muted); }
 
-.naming-card{margin:12px 0;padding:14px;border-radius:12px;background:linear-gradient(135deg,rgba(240,180,41,.1),rgba(239,68,68,.1));border:1px solid rgba(240,180,41,.3);}
-.naming-card h4{font-size:11px;font-weight:900;color:var(--gold);margin-bottom:10px;text-align:center;}
-.name-pair{display:flex;gap:8px;margin-bottom:8px;}
-.name-option{flex:1;padding:10px;border-radius:8px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;}
-.name-option:hover{transform:scale(1.02);}
-.name-option.selected{border-color:var(--gold);box-shadow:0 0 15px rgba(240,180,41,.2);}
-.name-bp{background:rgba(239,68,68,.1);}
-.name-new{background:rgba(34,197,94,.1);}
-.name-option .ntitle{font-size:8px;color:var(--muted);margin-bottom:3px;}
-.name-option .nname{font-size:11px;font-weight:900;}
-.name-bp .nname{color:var(--red);}
-.name-new .nname{color:var(--green);}
+/* Buttons */
+.btn {
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 10px; padding: .75rem 1.5rem;
+    font-size: .9rem; font-weight: 600; cursor: pointer;
+    transition: all .2s; font-family: inherit;
+}
+.btn:hover { background: #2563eb; transform: translateY(-1px); }
+.btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.btn-outline {
+    background: transparent; border: 1.5px solid var(--border);
+    color: var(--light);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent2); background: rgba(59,130,246,.06); }
+.btn-sm { padding: .5rem 1rem; font-size: .8rem; }
+.btn-green { background: var(--green); }
+.btn-green:hover { background: #22c55e; }
 
-/* 타이핑 */
-.typing{margin-bottom:16px;max-width:85%;}
-.typing .bubble{background:var(--card);border:1px solid var(--border);border-bottom-left-radius:4px;padding:14px 18px;display:flex;gap:4px;}
-.typing .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);animation:typeDot 1.4s infinite;}
-.typing .dot:nth-child(2){animation-delay:.2s;}
-.typing .dot:nth-child(3){animation-delay:.4s;}
-@keyframes typeDot{0%,60%,100%{opacity:.3;transform:scale(.8);}30%{opacity:1;transform:scale(1.2);}}
+/* BP / Gap cards */
+.bp-card {
+    background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(59,130,246,.02));
+    border: 1px solid rgba(59,130,246,.25);
+    border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem;
+}
+.bp-label { font-size: .75rem; color: var(--accent2); font-weight: 600; margin-bottom: .35rem; letter-spacing: .5px; }
+.bp-name { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+.bp-desc { font-size: .85rem; color: var(--light); line-height: 1.7; }
 
-/* 퀵 선택 */
-.quick-area{padding:10px 20px;border-top:1px solid rgba(255,255,255,.05);display:flex;flex-wrap:wrap;gap:6px;}
-.qbtn{padding:8px 14px;border-radius:20px;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(99,102,241,.3);background:rgba(99,102,241,.08);color:var(--primary);}
-.qbtn:hover{background:rgba(99,102,241,.2);border-color:var(--primary);transform:translateY(-1px);}
+.gap-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: .75rem;
+    cursor: pointer; transition: all .25s;
+}
+.gap-card:hover { border-color: var(--orange); background: var(--orange-bg); }
+.gap-card.selected { border-color: var(--orange); background: var(--orange-bg); }
+.gap-label { font-size: .7rem; color: var(--orange); font-weight: 600; margin-bottom: .25rem; }
+.gap-name { font-size: .95rem; font-weight: 600; }
+.gap-why { font-size: .8rem; color: var(--muted); margin-top: .25rem; }
 
-/* 입력 */
-.input-area{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--surface);}
-.input-area textarea{flex:1;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:14px;color:var(--text);font-family:var(--font);font-size:13px;resize:none;height:48px;max-height:120px;outline:none;transition:border-color .2s;}
-.input-area textarea:focus{border-color:var(--primary);}
-.input-area textarea::placeholder{color:var(--muted);}
-.send-btn{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--purple));border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:900;transition:all .2s;flex-shrink:0;}
-.send-btn:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(99,102,241,.4);}
-.send-btn:disabled{opacity:.4;cursor:default;transform:none;}
+/* TRIZ card */
+.triz-card {
+    background: linear-gradient(135deg, rgba(167,139,250,.08), rgba(167,139,250,.02));
+    border: 1px solid rgba(167,139,250,.25);
+    border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem;
+}
+.triz-label { font-size: .75rem; color: var(--purple); font-weight: 600; margin-bottom: .35rem; }
+.triz-name { font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+.triz-desc { font-size: .85rem; color: var(--light); }
 
-@media(max-width:768px){.sidebar{width:220px;}}
-@media(max-width:600px){.sidebar{display:none;}.main{flex-direction:column;}}
+/* BigMatch card */
+.bigmatch-card {
+    background: linear-gradient(135deg, rgba(251,191,36,.1), rgba(251,146,60,.05));
+    border: 2px solid rgba(251,191,36,.4);
+    border-radius: 18px; padding: 2rem; text-align: center;
+    margin-bottom: 1rem;
+}
+.bigmatch-vs {
+    display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+.bigmatch-corner {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1rem 1.5rem; min-width: 150px;
+}
+.bigmatch-corner-label { font-size: .7rem; color: var(--muted); margin-bottom: .25rem; }
+.bigmatch-corner-name { font-size: 1.1rem; font-weight: 700; }
+.bigmatch-divider { font-size: 1.8rem; font-weight: 900; color: var(--yellow); }
+
+/* History timeline */
+.timeline { margin: 1rem 0; }
+.timeline-item {
+    display: flex; gap: 1rem; padding: .75rem 0;
+    border-left: 2px solid var(--border); margin-left: .5rem; padding-left: 1rem;
+    position: relative;
+}
+.timeline-item::before {
+    content: ''; position: absolute; left: -5px; top: 1rem;
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+}
+.timeline-year { font-size: .75rem; color: var(--accent2); font-weight: 600; min-width: 45px; }
+.timeline-text { font-size: .85rem; color: var(--light); }
+
+/* Chat area */
+.chat-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden; margin-top: 1rem;
+}
+.chat-messages {
+    max-height: 300px; overflow-y: auto; padding: 1rem;
+    display: flex; flex-direction: column; gap: .75rem;
+}
+.chat-msg {
+    max-width: 85%; padding: .75rem 1rem; border-radius: 12px;
+    font-size: .85rem; line-height: 1.6;
+}
+.chat-msg.bot {
+    background: var(--card); border: 1px solid var(--border);
+    align-self: flex-start;
+}
+.chat-msg.user { background: rgba(59,130,246,.15); align-self: flex-end; }
+.chat-input-row {
+    display: flex; gap: .5rem; padding: .75rem; border-top: 1px solid var(--border);
+}
+.chat-input {
+    flex: 1; background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: .65rem .85rem; color: var(--text);
+    font-size: .85rem; font-family: inherit; outline: none; resize: none;
+    min-height: 40px; max-height: 100px;
+}
+.chat-input:focus { border-color: var(--accent); }
+.chat-send {
+    background: var(--accent); border: none; border-radius: 10px;
+    padding: 0 1rem; color: #fff; font-size: 1rem; cursor: pointer;
+}
+
+/* Summary board */
+.summary-board {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem; margin-top: 1rem;
+}
+.summary-row {
+    display: flex; gap: .75rem; margin-bottom: .75rem; align-items: flex-start;
+}
+.summary-label {
+    font-size: .7rem; font-weight: 700; padding: .2rem .5rem;
+    border-radius: 4px; min-width: 50px; text-align: center;
+    flex-shrink: 0; margin-top: .15rem;
+}
+.summary-label.l-field { background: rgba(59,130,246,.2); color: var(--accent2); }
+.summary-label.l-bp { background: rgba(52,211,153,.2); color: var(--green); }
+.summary-label.l-gap { background: rgba(251,146,60,.2); color: var(--orange); }
+.summary-label.l-triz { background: rgba(167,139,250,.2); color: var(--purple); }
+.summary-label.l-topic { background: rgba(251,191,36,.2); color: var(--yellow); }
+.summary-text { font-size: .85rem; color: var(--light); }
+
+/* Loading */
+.loading {
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem; color: var(--muted); font-size: .9rem;
+}
+.spinner {
+    width: 20px; height: 20px; border: 2px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin .8s linear infinite; margin-right: .75rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Action row */
+.action-row {
+    display: flex; gap: .75rem; margin-top: 1.25rem; flex-wrap: wrap;
+}
+
+/* Bottom nav */
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, var(--bg) 60%, transparent);
+    padding: 1rem 1.5rem 1.25rem;
+}
+.bottom-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; gap: .75rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .field-grid { grid-template-columns: repeat(2, 1fr); }
+    .field-grid.single-row { grid-template-columns: repeat(3, 1fr); }
+    .bigmatch-vs { flex-direction: column; gap: .75rem; }
+    .p-step .p-label { font-size: .55rem; }
+    .header-title { font-size: 1.1rem; }
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="logo">🔬</div>
-    <div>
-        <h1>슬기로운 연구생활</h1>
-        <p>N2B 기반 연구 주제 잡기</p>
+<!-- Header -->
+<header class="app-header">
+    <div class="header-inner">
+        <div>
+            <div class="header-title">🔬 연구 주제 잡기</div>
+            <div class="header-sub">분야 선택 → BP → 빈틈 → 주제 완성</div>
+        </div>
+        <button class="btn btn-sm btn-outline" onclick="resetAll()">처음부터</button>
     </div>
-    <div class="status st-off" id="statusBadge">확인중...</div>
+</header>
+
+<!-- Progress -->
+<div class="progress-bar">
+    <div class="progress-steps">
+        <div class="p-line"></div>
+        <div class="p-step active" data-step="0" onclick="goStep(0)">
+            <div class="p-dot">🌐</div><div class="p-label">분야 선택</div>
+        </div>
+        <div class="p-step" data-step="1" onclick="goStep(1)">
+            <div class="p-dot">🔍</div><div class="p-label">BP 탐색</div>
+        </div>
+        <div class="p-step" data-step="2" onclick="goStep(2)">
+            <div class="p-dot">📜</div><div class="p-label">BP 역사</div>
+        </div>
+        <div class="p-step" data-step="3" onclick="goStep(3)">
+            <div class="p-dot">🕳️</div><div class="p-label">빈틈 발견</div>
+        </div>
+        <div class="p-step" data-step="4" onclick="goStep(4)">
+            <div class="p-dot">⚡</div><div class="p-label">모순+트리즈</div>
+        </div>
+        <div class="p-step" data-step="5" onclick="goStep(5)">
+            <div class="p-dot">🏆</div><div class="p-label">빅매치</div>
+        </div>
+    </div>
 </div>
 
-<div class="main">
-    <!-- 왼쪽: 진행 단계 -->
-    <div class="sidebar">
-        <div class="sb-title">📍 연구 주제 잡기 단계</div>
-        
-        <div class="stage active" id="stg1" data-stage="1">
-            <span class="num">1</span>
-            <span class="stitle">연구 분야 선택</span>
-            <div class="sdesc">어떤 분야를 연구하고 싶은지</div>
-        </div>
-        <div class="stage" id="stg2" data-stage="2">
-            <span class="num">2</span>
-            <span class="stitle">BP 탐색</span>
-            <div class="sdesc">이 분야 최고(Best Practice)는?</div>
-        </div>
-        <div class="stage" id="stg3" data-stage="3">
-            <span class="num">3</span>
-            <span class="stitle">BP 역사 추적</span>
-            <div class="sdesc">어떤 모순을 해결해서 BP가 됐나</div>
-        </div>
-        <div class="stage" id="stg4" data-stage="4">
-            <span class="num">4</span>
-            <span class="stitle">새 빈틈 발견</span>
-            <div class="sdesc">BP도 못 푸는 문제는?</div>
-        </div>
-        <div class="stage" id="stg5" data-stage="5">
-            <span class="num">5</span>
-            <span class="stitle">모순 정의 + 트리즈</span>
-            <div class="sdesc">모순을 정의하고 해결 원리 탐색</div>
-        </div>
-        <div class="stage" id="stg6" data-stage="6">
-            <span class="num">6</span>
-            <span class="stitle">빅매치 이름 짓기</span>
-            <div class="sdesc">대립쌍 이름으로 싸움 구도 완성</div>
+<!-- Main Content -->
+<div class="main-wrap">
+
+    <!-- ===== STEP 0: 분야 선택 (깔때기) ===== -->
+    <div class="step-view active" id="step0">
+        <div class="card">
+            <div class="card-title">🌐 어떤 분야에 관심 있으세요?</div>
+            <div class="card-desc">대분야부터 골라가면서 좁혀갑니다. 직접 입력도 가능해요.</div>
+
+            <!-- 대분야 -->
+            <div id="majorFields" class="field-grid">
+                <div class="field-btn" onclick="selectMajor('공학')"><span class="field-icon">⚙️</span><span class="field-name">공학</span></div>
+                <div class="field-btn" onclick="selectMajor('자연과학')"><span class="field-icon">🔬</span><span class="field-name">자연과학</span></div>
+                <div class="field-btn" onclick="selectMajor('의학/보건')"><span class="field-icon">🏥</span><span class="field-name">의학/보건</span></div>
+                <div class="field-btn" onclick="selectMajor('사회과학')"><span class="field-icon">📊</span><span class="field-name">사회과학</span></div>
+                <div class="field-btn" onclick="selectMajor('인문학')"><span class="field-icon">📖</span><span class="field-name">인문학</span></div>
+                <div class="field-btn" onclick="selectMajor('IT/융합')"><span class="field-icon">💻</span><span class="field-name">IT/융합</span></div>
+            </div>
+
+            <!-- 중분야 (동적) -->
+            <div id="midFieldWrap" style="display:none; margin-top:1.25rem;">
+                <div class="breadcrumb" id="breadcrumb"></div>
+                <div class="card-title" id="midTitle" style="font-size:1rem;">중분야 선택</div>
+                <div id="midFields" class="chip-wrap"></div>
+            </div>
+
+            <!-- 소분야 (동적) -->
+            <div id="subFieldWrap" style="display:none; margin-top:1.25rem;">
+                <div class="card-title" id="subTitle" style="font-size:1rem;">세부 분야 선택</div>
+                <div id="subFields" class="chip-wrap"></div>
+            </div>
+
+            <!-- 직접 입력 -->
+            <div class="topic-input-wrap">
+                <input type="text" class="topic-input" id="customField" placeholder="또는 직접 입력: 예) 배수성 아스팔트, 한국어 sLLM, 가야금 연주법..." onkeydown="if(event.key==='Enter')confirmField()">
+                <button class="btn btn-sm" onclick="confirmField()">확인</button>
+            </div>
         </div>
 
-        <div class="bigmatch-card" id="bigmatchCard">
-            <h3>🥊 빅매치 구도</h3>
-            <div class="match-vs">
-                <div class="match-box match-bp">
-                    <div class="mlabel">🏆 현재 챔피언</div>
-                    <div class="mname" id="bpName">-</div>
-                </div>
-                <div class="match-vs-icon">VS</div>
-                <div class="match-box match-new">
-                    <div class="mlabel">⚡ 도전자</div>
-                    <div class="mname" id="newName">-</div>
+        <!-- 선택된 분야 표시 -->
+        <div id="selectedFieldCard" style="display:none;">
+            <div class="card" style="border-color:var(--green); background:var(--green-bg);">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div>
+                        <div style="font-size:.75rem;color:var(--green);font-weight:600;">✅ 선택된 분야</div>
+                        <div style="font-size:1.15rem;font-weight:700;margin-top:.25rem;" id="selectedFieldText"></div>
+                    </div>
+                    <button class="btn btn-green btn-sm" onclick="startBPSearch()">BP 탐색 시작 →</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 오른쪽: 대화 -->
-    <div class="chat-area">
-        <div class="messages" id="msgs"></div>
-        <div class="quick-area" id="quickArea"></div>
-        <div class="input-area">
-            <textarea id="userInput" placeholder="답변을 입력하세요..." rows="1"></textarea>
-            <button class="send-btn" id="sendBtn">→</button>
+    <!-- ===== STEP 1: BP 탐색 ===== -->
+    <div class="step-view" id="step1">
+        <div class="breadcrumb" id="step1Breadcrumb"></div>
+        <div class="card">
+            <div class="card-title">🔍 이 분야의 Best Practice</div>
+            <div class="card-desc">AI가 현재 가장 잘 되고 있는 방법(BP)을 찾아봅니다.</div>
+            <div id="bpSearchResult">
+                <div class="loading"><div class="spinner"></div>BP 검색 중...</div>
+            </div>
         </div>
+    </div>
+
+    <!-- ===== STEP 2: BP 역사 ===== -->
+    <div class="step-view" id="step2">
+        <div class="card">
+            <div class="card-title">📜 BP의 역사 — 모순 해결의 계보</div>
+            <div class="card-desc">이 BP가 어떻게 발전해왔는지 추적합니다. 과거의 빈틈이 오늘의 BP를 만들었어요.</div>
+            <div id="historyResult">
+                <div class="loading"><div class="spinner"></div>역사 추적 중...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 3: 빈틈 발견 ===== -->
+    <div class="step-view" id="step3">
+        <div class="card">
+            <div class="card-title">🕳️ BP의 빈틈 — 아직 해결 안 된 문제</div>
+            <div class="card-desc">AI가 찾은 빈틈 + 연구자 경험을 합칩니다. 빈틈 하나를 골라주세요.</div>
+            <div id="gapResult">
+                <div class="loading"><div class="spinner"></div>빈틈 분석 중...</div>
+            </div>
+        </div>
+
+        <!-- 연구자 경험 추가 -->
+        <div class="card" id="researcherExpCard" style="display:none;">
+            <div class="card-title">💬 혹시 현장에서 느낀 빈틈이 있나요?</div>
+            <div class="chat-box">
+                <div class="chat-messages" id="gapChat">
+                    <div class="chat-msg bot">AI가 찾은 빈틈 외에, 직접 경험하신 한계나 아쉬운 점이 있으면 알려주세요.</div>
+                </div>
+                <div class="chat-input-row">
+                    <textarea class="chat-input" id="gapChatInput" placeholder="예: 비 올 때 사고가 여전해요..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendGapChat();}"></textarea>
+                    <button class="chat-send" onclick="sendGapChat()">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 4: 모순 + 트리즈 ===== -->
+    <div class="step-view" id="step4">
+        <div class="card">
+            <div class="card-title">⚡ 모순 정의 + 트리즈 매칭</div>
+            <div class="card-desc">빈틈 속 모순을 정의하고, TRIZ 40원리에서 해결 힌트를 찾습니다.</div>
+            <div id="trizResult">
+                <div class="loading"><div class="spinner"></div>모순 분석 + 트리즈 매칭 중...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 5: 빅매치 ===== -->
+    <div class="step-view" id="step5">
+        <div class="card">
+            <div class="card-title">🏆 빅매치 — 연구 주제 완성!</div>
+            <div class="card-desc">대립하는 이름이 붙으면 싸움 구도 = 연구 주제가 됩니다.</div>
+            <div id="bigmatchResult">
+                <div class="loading"><div class="spinner"></div>빅매치 구성 중...</div>
+            </div>
+        </div>
+
+        <!-- 전체 요약 보드 -->
+        <div id="finalSummary" style="display:none;">
+            <div class="card" style="border-color:var(--yellow);">
+                <div class="card-title" style="color:var(--yellow);">📋 전체 요약</div>
+                <div class="summary-board" id="summaryBoard"></div>
+                <div class="action-row">
+                    <button class="btn btn-sm" onclick="copySummary()">📋 복사하기</button>
+                    <button class="btn btn-sm btn-outline" onclick="resetAll()">🔄 새 주제 잡기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav" id="bottomNav" style="display:none;">
+    <div class="bottom-inner">
+        <button class="btn btn-outline" id="prevBtn" onclick="goPrev()">← 이전</button>
+        <button class="btn" id="nextBtn" onclick="goNext()">다음 →</button>
     </div>
 </div>
 
 <script>
-// ★ API 서버
-var API_BASE = location.hostname.includes('github.io')
-    ? 'https://wise-research-api.onrender.com'
-    : (location.hostname === 'localhost' ? '' : 'https://wise-research-api.onrender.com');
-
-var stage = 1;
-var research = {
+// ========== STATE ==========
+const state = {
+    step: 0,
+    major: '',
+    mid: '',
+    sub: '',
     field: '',
-    bpList: [],
-    selectedBP: '',
-    bpHistory: [],
-    gap: '',
-    contradiction: { improve: '', worsen: '' },
-    trizPrinciples: [],
-    bpNameFinal: '',
-    newNameFinal: ''
+    bp: null,
+    history: [],
+    gaps: [],
+    selectedGap: null,
+    triz: null,
+    bigmatch: null
 };
-var chatHistory = [];
-var sending = false;
 
-// 상태 확인
-fetch(API_BASE + '/api/status')
-.then(r => r.json())
-.then(d => {
-    var b = document.getElementById('statusBadge');
-    if (d.claude_ai === 'connected') { b.className = 'status st-on'; b.textContent = 'AI 연결됨'; }
-    else { b.className = 'status st-off'; b.textContent = 'AI 미연결'; }
-})
-.catch(() => {
-    document.getElementById('statusBadge').className = 'status st-off';
-    document.getElementById('statusBadge').textContent = '오프라인';
-});
-
-// 시작 메시지
-setTimeout(() => {
-    addAI(`안녕하세요! 🔬 연구 주제 잡기를 도와드리겠습니다.
-
-<b>6단계로 진행됩니다:</b>
-① 연구 분야 선택 → ② BP 탐색 → ③ BP 역사 추적
-④ 새 빈틈 발견 → ⑤ 모순 정의 + 트리즈 → ⑥ 빅매치 이름 짓기
-
-대화하다 보면 자연스럽게 연구 주제가 잡힙니다.
-
-<b>어떤 분야를 연구하고 싶으신가요?</b>
-자유롭게 말씀해주세요.`);
-    setQuick(['도로 포장 유지보수', '교통 안전', '스마트시티', '기후변화 대응', '직접 입력']);
-}, 500);
-
-// 메시지 추가
-function addAI(html) {
-    var msgs = document.getElementById('msgs');
-    var d = document.createElement('div');
-    d.className = 'msg msg-ai';
-    d.innerHTML = '<div class="sender">연구 퍼실리테이터</div><div class="bubble">' + html + '</div>';
-    msgs.appendChild(d);
-    msgs.scrollTop = msgs.scrollHeight;
-}
-function addUser(text) {
-    var msgs = document.getElementById('msgs');
-    var d = document.createElement('div');
-    d.className = 'msg msg-user';
-    d.innerHTML = '<div class="sender">나</div><div class="bubble">' + text.replace(/\n/g, '<br>') + '</div>';
-    msgs.appendChild(d);
-    msgs.scrollTop = msgs.scrollHeight;
-}
-function showTyping() {
-    var msgs = document.getElementById('msgs');
-    var d = document.createElement('div');
-    d.className = 'typing'; d.id = 'typingInd';
-    d.innerHTML = '<div class="bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-    msgs.appendChild(d);
-    msgs.scrollTop = msgs.scrollHeight;
-}
-function hideTyping() { var t = document.getElementById('typingInd'); if (t) t.remove(); }
-
-function setQuick(arr) {
-    var box = document.getElementById('quickArea');
-    box.innerHTML = '';
-    arr.forEach(t => {
-        var b = document.createElement('div');
-        b.className = 'qbtn'; b.textContent = t;
-        b.onclick = () => { if (t !== '직접 입력') { document.getElementById('userInput').value = t; send(); } };
-        box.appendChild(b);
-    });
-}
-
-function updateStage(n) {
-    stage = n;
-    for (var i = 1; i <= 6; i++) {
-        var el = document.getElementById('stg' + i);
-        el.classList.remove('active', 'done');
-        if (i < n) el.classList.add('done');
-        if (i === n) el.classList.add('active');
+// ========== FIELD TAXONOMY ==========
+const taxonomy = {
+    "공학": {
+        "토목": ["도로", "구조", "수자원", "지반", "교통", "환경"],
+        "기계": ["열역학", "유체", "재료", "로봇", "자동차", "항공"],
+        "전기전자": ["반도체", "통신", "전력", "제어", "IoT", "디스플레이"],
+        "컴퓨터": ["AI/ML", "보안", "네트워크", "소프트웨어", "데이터", "클라우드"],
+        "화학공학": ["촉매", "고분자", "에너지", "바이오", "나노", "환경"],
+        "건축": ["설계", "구조", "환경설비", "도시계획", "역사", "BIM"]
+    },
+    "자연과학": {
+        "물리": ["입자", "응집", "광학", "천문", "양자", "플라즈마"],
+        "화학": ["유기", "무기", "분석", "물리화학", "생화학", "재료"],
+        "생물": ["분자", "세포", "생태", "유전", "미생물", "신경"],
+        "수학": ["대수", "해석", "기하", "통계", "응용수학", "이산"],
+        "지구과학": ["기상", "해양", "지질", "환경", "기후", "우주"]
+    },
+    "의학/보건": {
+        "기초의학": ["해부", "생리", "약리", "병리", "미생물", "면역"],
+        "임상의학": ["내과", "외과", "소아", "정신", "재활", "영상"],
+        "보건학": ["역학", "보건정책", "영양", "산업보건", "글로벌헬스"],
+        "간호학": ["성인", "아동", "정신", "지역사회", "노인"],
+        "약학": ["약물", "제제", "임상약학", "천연물", "독성학"]
+    },
+    "사회과학": {
+        "경영": ["전략", "마케팅", "재무", "인사", "경영정보", "창업"],
+        "경제": ["거시", "미시", "국제", "노동", "금융", "산업"],
+        "법학": ["헌법", "민법", "형법", "행정법", "국제법", "지재권"],
+        "행정": ["정책", "조직", "재정", "지방행정", "복지", "규제"],
+        "교육": ["교육공학", "교육심리", "교육과정", "평생교육", "특수교육"],
+        "심리": ["임상", "상담", "인지", "발달", "사회", "산업"]
+    },
+    "인문학": {
+        "언어": ["한국어", "영어", "일본어", "중국어", "독어", "불어"],
+        "문학": ["한국문학", "영미문학", "비교문학", "고전", "현대", "창작"],
+        "역사": ["한국사", "동양사", "서양사", "고고학", "문화사"],
+        "철학": ["동양", "서양", "윤리", "미학", "종교", "논리"],
+        "예술": ["미술", "음악", "무용", "연극", "영화", "디자인"]
+    },
+    "IT/융합": {
+        "인공지능": ["딥러닝", "NLP", "컴퓨터비전", "로보틱스", "생성AI", "강화학습"],
+        "데이터": ["빅데이터", "분석", "시각화", "엔지니어링", "MLOps"],
+        "보안": ["사이버보안", "암호학", "포렌식", "개인정보", "블록체인"],
+        "바이오융합": ["바이오인포", "디지털헬스", "의료AI", "유전체"],
+        "에너지": ["태양광", "수소", "배터리", "스마트그리드", "탄소중립"]
     }
-}
+};
 
-// 전송
-document.getElementById('sendBtn').onclick = send;
-document.getElementById('userInput').onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } };
+const majorIcons = { "공학":"⚙️", "자연과학":"🔬", "의학/보건":"🏥", "사회과학":"📊", "인문학":"📖", "IT/융합":"💻" };
 
-function send() {
-    if (sending) return;
-    var input = document.getElementById('userInput');
-    var text = input.value.trim();
-    if (!text) return;
-    input.value = '';
-    addUser(text);
-    document.getElementById('quickArea').innerHTML = '';
-    sending = true;
-    document.getElementById('sendBtn').disabled = true;
-    chatHistory.push({ role: 'user', content: text });
-    showTyping();
+// ========== API ==========
+const API_URL = 'https://wise-research-api.onrender.com';
 
-    var sysPrompt = buildSystemPrompt();
-    var messages = [{ role: 'user', content: sysPrompt + '\n\n---\n아래는 대화 기록입니다. 마지막 메시지에 응답하세요.\n---' }];
-    chatHistory.slice(-20).forEach(m => messages.push(m));
-
-    fetch(API_BASE + '/api/analyze', {
+async function callAI(system, userMsg) {
+    const res = await fetch(API_URL + '/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1500, messages: messages })
-    })
-    .then(r => r.json())
-    .then(d => {
-        hideTyping();
-        if (d.error) throw new Error(d.error);
-        var text = '';
-        if (d.content) d.content.forEach(b => { if (b.text) text += b.text; });
-        processResponse(text);
-        sending = false;
-        document.getElementById('sendBtn').disabled = false;
-    })
-    .catch(err => {
-        hideTyping();
-        addAI('⚠️ 연결 오류: ' + err.message + '<br><br>Render 서버가 슬립 중일 수 있습니다. 잠시 후 다시 시도해주세요.');
-        sending = false;
-        document.getElementById('sendBtn').disabled = false;
+        body: JSON.stringify({
+            system: system,
+            messages: [{ role: 'user', content: userMsg }]
+        })
+    });
+    if (!res.ok) throw new Error('API error: ' + res.status);
+    const data = await res.json();
+    return data.content;
+}
+
+// ========== STEP NAVIGATION ==========
+function goStep(n) {
+    if (n < 0 || n > 5) return;
+    document.querySelectorAll('.step-view').forEach(v => v.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+    document.querySelectorAll('.p-step').forEach(s => {
+        const si = parseInt(s.dataset.step);
+        s.classList.remove('active', 'done');
+        if (si === n) s.classList.add('active');
+        else if (si < n) s.classList.add('done');
+    });
+    state.step = n;
+    updateNav();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goNext() { goStep(state.step + 1); }
+function goPrev() { goStep(state.step - 1); }
+
+function updateNav() {
+    const nav = document.getElementById('bottomNav');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    if (state.step === 0) { nav.style.display = 'none'; return; }
+    nav.style.display = 'block';
+    prev.style.display = state.step > 0 ? '' : 'none';
+    next.style.display = state.step < 5 ? '' : 'none';
+}
+
+// ========== STEP 0: FIELD SELECTION ==========
+function selectMajor(name) {
+    state.major = name;
+    state.mid = ''; state.sub = '';
+
+    // Highlight
+    document.querySelectorAll('#majorFields .field-btn').forEach(b => b.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+
+    // Show mid fields
+    const midWrap = document.getElementById('midFieldWrap');
+    const subWrap = document.getElementById('subFieldWrap');
+    subWrap.style.display = 'none';
+
+    const mids = Object.keys(taxonomy[name] || {});
+    document.getElementById('breadcrumb').innerHTML = `<span onclick="selectMajor('${name}')" class="bc-current">${majorIcons[name]||''} ${name}</span>`;
+    document.getElementById('midTitle').textContent = name + ' — 어느 쪽이요?';
+    document.getElementById('midFields').innerHTML = mids.map(m =>
+        `<div class="chip" onclick="selectMid('${name}','${m}')">${m}</div>`
+    ).join('');
+    midWrap.style.display = 'block';
+    hideSelectedField();
+}
+
+function selectMid(major, mid) {
+    state.mid = mid; state.sub = '';
+    document.querySelectorAll('#midFields .chip').forEach(c => c.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+
+    const subs = taxonomy[major]?.[mid] || [];
+    document.getElementById('breadcrumb').innerHTML =
+        `<span onclick="selectMajor('${major}')">${majorIcons[major]||''} ${major}</span>` +
+        `<span class="bc-arrow">›</span>` +
+        `<span class="bc-current">${mid}</span>`;
+
+    document.getElementById('subTitle').textContent = mid + ' — 세부 분야는?';
+    document.getElementById('subFields').innerHTML = subs.map(s =>
+        `<div class="chip" onclick="selectSub('${major}','${mid}','${s}')">${s}</div>`
+    ).join('');
+    document.getElementById('subFieldWrap').style.display = 'block';
+    hideSelectedField();
+}
+
+function selectSub(major, mid, sub) {
+    state.sub = sub;
+    document.querySelectorAll('#subFields .chip').forEach(c => c.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+
+    const fieldPath = major + ' > ' + mid + ' > ' + sub;
+    state.field = fieldPath;
+    showSelectedField(fieldPath);
+}
+
+function confirmField() {
+    const v = document.getElementById('customField').value.trim();
+    if (!v) return;
+    state.field = v; state.major = ''; state.mid = ''; state.sub = '';
+    showSelectedField(v);
+}
+
+function showSelectedField(text) {
+    document.getElementById('selectedFieldText').textContent = text;
+    document.getElementById('selectedFieldCard').style.display = 'block';
+    document.getElementById('selectedFieldCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideSelectedField() {
+    document.getElementById('selectedFieldCard').style.display = 'none';
+}
+
+// ========== STEP 1: BP SEARCH ==========
+async function startBPSearch() {
+    goStep(1);
+    document.getElementById('step1Breadcrumb').innerHTML =
+        `<span style="color:var(--green);">📍 ${state.field}</span>`;
+
+    const area = document.getElementById('bpSearchResult');
+    area.innerHTML = '<div class="loading"><div class="spinner"></div>이 분야의 BP를 검색하고 있습니다...</div>';
+
+    try {
+        const text = await callAI(
+            '당신은 연구 분야의 Best Practice(현재 최선의 방법) 전문가입니다. 주어진 분야에서 현재 가장 인정받고 있는 방법/기술/접근법을 찾아 정리합니다. 반드시 아래 형식으로만 답변하세요. 한국어. 간결하게.',
+            `분야: ${state.field}\n\n아래 형식으로 답변:\n[BP]\n이름: (핵심 방법/기술 이름, 한 줄)\n설명: (무엇이 좋은지, 왜 현재 최선인지 2-3문장)\n핵심성과: (구체적 수치나 성과 1-2개)\n\n[한계요약]\n한줄: (이 BP에도 불구하고 아직 해결 안 된 것, 한 줄)`
+        );
+
+        const bp = parseBP(text);
+        state.bp = bp;
+
+        area.innerHTML = `
+            <div class="bp-card">
+                <div class="bp-label">📦 현재 BEST PRACTICE</div>
+                <div class="bp-name">${bp.name}</div>
+                <div class="bp-desc">${bp.desc}</div>
+                ${bp.perf ? `<div style="margin-top:.5rem;font-size:.8rem;color:var(--green);">📈 ${bp.perf}</div>` : ''}
+            </div>
+            ${bp.limit ? `<div style="color:var(--orange);font-size:.85rem;padding:.5rem 0;">⚠️ ${bp.limit}</div>` : ''}
+            <div class="action-row">
+                <button class="btn btn-sm" onclick="startHistory()">📜 이 BP의 역사 보기 →</button>
+                <button class="btn btn-sm btn-outline" onclick="skipToGaps()">빈틈 바로 찾기 →</button>
+            </div>
+        `;
+    } catch (e) {
+        area.innerHTML = `<div style="color:var(--red);padding:1rem;">⚠️ API 연결 실패: ${e.message}<br><br>
+            <button class="btn btn-sm" onclick="startBPSearch()">재시도</button></div>`;
+    }
+}
+
+function parseBP(text) {
+    const name = (text.match(/이름[:\s]*(.+)/)||[])[1]?.trim() || 'Best Practice';
+    const desc = (text.match(/설명[:\s]*([\s\S]*?)(?=핵심성과|한계요약|\[|$)/)||[])[1]?.trim() || '';
+    const perf = (text.match(/핵심성과[:\s]*(.+)/)||[])[1]?.trim() || '';
+    const limit = (text.match(/한줄[:\s]*(.+)/)||[])[1]?.trim() || '';
+    return { name, desc, perf, limit };
+}
+
+// ========== STEP 2: HISTORY ==========
+async function startHistory() {
+    goStep(2);
+    const area = document.getElementById('historyResult');
+    area.innerHTML = '<div class="loading"><div class="spinner"></div>BP의 발전 역사를 추적 중...</div>';
+
+    try {
+        const text = await callAI(
+            '연구 분야에서 현재 Best Practice가 만들어지기까지의 역사를 추적하는 전문가. 각 단계마다 어떤 모순(빈틈)이 있었고, 그것을 어떻게 해결했는지 계보를 정리. 반드시 아래 형식으로. 한국어. 3~5단계.',
+            `분야: ${state.field}\nBP: ${state.bp?.name}\n\n형식:\n[시대1]\n년도: (대략적 시기)\n방법: (당시의 방법)\n빈틈: (한계점)\n해결: (다음 세대가 어떻게 해결)\n\n[시대2]\n...\n\n[현재]\n년도: 현재\n방법: ${state.bp?.name}\n빈틈: (아직 남은 한계)`
+        );
+
+        const eras = parseHistory(text);
+        state.history = eras;
+
+        let html = '<div class="timeline">';
+        eras.forEach(e => {
+            html += `<div class="timeline-item">
+                <div class="timeline-year">${e.year}</div>
+                <div>
+                    <div style="font-weight:600;font-size:.9rem;">${e.method}</div>
+                    ${e.gap ? `<div style="color:var(--orange);font-size:.8rem;margin-top:.25rem;">🕳️ ${e.gap}</div>` : ''}
+                    ${e.solved ? `<div style="color:var(--green);font-size:.8rem;">✅ ${e.solved}</div>` : ''}
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+        html += `<div class="action-row"><button class="btn btn-sm" onclick="startGaps()">🕳️ 현재 BP의 빈틈 찾기 →</button></div>`;
+        area.innerHTML = html;
+    } catch (e) {
+        area.innerHTML = `<div style="color:var(--red);padding:1rem;">⚠️ ${e.message}<br><button class="btn btn-sm" onclick="startHistory()">재시도</button></div>`;
+    }
+}
+
+function parseHistory(text) {
+    const blocks = text.split(/\[시대\d+\]|\[현재\]/).filter(b => b.trim());
+    return blocks.map(b => ({
+        year: (b.match(/년도[:\s]*(.+)/)||[])[1]?.trim() || '',
+        method: (b.match(/방법[:\s]*(.+)/)||[])[1]?.trim() || '',
+        gap: (b.match(/빈틈[:\s]*(.+)/)||[])[1]?.trim() || '',
+        solved: (b.match(/해결[:\s]*(.+)/)||[])[1]?.trim() || ''
+    }));
+}
+
+// ========== STEP 3: GAPS ==========
+function skipToGaps() { startGaps(); }
+
+async function startGaps() {
+    goStep(3);
+    const area = document.getElementById('gapResult');
+    area.innerHTML = '<div class="loading"><div class="spinner"></div>BP의 빈틈을 분석 중...</div>';
+
+    try {
+        const text = await callAI(
+            '연구 분야에서 현재 Best Practice의 빈틈(약점, 한계, 미해결 문제)을 찾는 전문가. 빈틈 3개를 구체적으로 제시. 각 빈틈이 왜 문제인지도 설명. 반드시 아래 형식. 한국어.',
+            `분야: ${state.field}\nBP: ${state.bp?.name}\n설명: ${state.bp?.desc}\n\n형식:\n[GAP1]\n빈틈: (한 줄 — BP의 구체적 약점)\n이유: (왜 이게 문제인지 한 줄)\n\n[GAP2]\n빈틈: (한 줄)\n이유: (한 줄)\n\n[GAP3]\n빈틈: (한 줄)\n이유: (한 줄)`
+        );
+
+        const gaps = parseGaps(text);
+        state.gaps = gaps;
+
+        let html = '';
+        gaps.forEach((g, i) => {
+            html += `<div class="gap-card" onclick="selectGap(${i})" id="gap${i}">
+                <div class="gap-label">빈틈 ${i + 1}</div>
+                <div class="gap-name">${g.name}</div>
+                <div class="gap-why">${g.why}</div>
+            </div>`;
+        });
+        html += `<div style="font-size:.8rem;color:var(--muted);margin-top:.5rem;">👆 하나를 골라주세요 — 이게 연구의 시작점이 됩니다.</div>`;
+        area.innerHTML = html;
+
+        document.getElementById('researcherExpCard').style.display = 'block';
+    } catch (e) {
+        area.innerHTML = `<div style="color:var(--red);padding:1rem;">⚠️ ${e.message}<br><button class="btn btn-sm" onclick="startGaps()">재시도</button></div>`;
+    }
+}
+
+function parseGaps(text) {
+    const blocks = text.split(/\[GAP\d+\]/).filter(b => b.trim());
+    return blocks.map(b => ({
+        name: (b.match(/빈틈[:\s]*(.+)/)||[])[1]?.trim() || '',
+        why: (b.match(/이유[:\s]*(.+)/)||[])[1]?.trim() || ''
+    }));
+}
+
+function selectGap(i) {
+    state.selectedGap = state.gaps[i];
+    document.querySelectorAll('.gap-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('gap' + i).classList.add('selected');
+
+    // Show next button
+    const area = document.getElementById('gapResult');
+    let existBtn = area.querySelector('.gap-next-btn');
+    if (!existBtn) {
+        const btn = document.createElement('div');
+        btn.className = 'action-row gap-next-btn';
+        btn.innerHTML = `<button class="btn" onclick="startTriz()">⚡ 모순 + 트리즈 분석 →</button>`;
+        area.appendChild(btn);
+    }
+}
+
+// Gap chat
+async function sendGapChat() {
+    const input = document.getElementById('gapChatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const chatEl = document.getElementById('gapChat');
+    chatEl.innerHTML += `<div class="chat-msg user">${msg}</div>`;
+    input.value = '';
+
+    chatEl.innerHTML += `<div class="chat-msg bot"><div class="spinner" style="width:14px;height:14px;border-width:1.5px;"></div></div>`;
+    chatEl.scrollTop = chatEl.scrollHeight;
+
+    try {
+        const reply = await callAI(
+            `당신은 연구 퍼실리테이터입니다. 분야: ${state.field}, BP: ${state.bp?.name}. 연구자가 경험한 빈틈을 듣고, 그것이 BP의 어떤 한계와 연결되는지 정리해주세요. 새로운 빈틈이면 기존 목록에 추가 제안하세요. 짧고 친절하게. 한국어.`,
+            msg
+        );
+        // Remove spinner
+        const msgs = chatEl.querySelectorAll('.chat-msg');
+        const last = msgs[msgs.length - 1];
+        if (last.querySelector('.spinner')) last.innerHTML = reply;
+        else chatEl.innerHTML += `<div class="chat-msg bot">${reply}</div>`;
+    } catch (e) {
+        const msgs = chatEl.querySelectorAll('.chat-msg');
+        const last = msgs[msgs.length - 1];
+        last.innerHTML = '⚠️ 연결 실패. 다시 시도해주세요.';
+    }
+    chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+// ========== STEP 4: TRIZ ==========
+async function startTriz() {
+    goStep(4);
+    const area = document.getElementById('trizResult');
+    area.innerHTML = '<div class="loading"><div class="spinner"></div>모순 분석 + TRIZ 원리 매칭 중...</div>';
+
+    try {
+        const text = await callAI(
+            'TRIZ(발명적 문제해결 이론) 전문가. 연구 분야의 빈틈에서 기술적 모순을 정의하고, TRIZ 40원리 중 적합한 원리 2~3개를 매칭. 각 원리가 이 문제에 어떻게 적용되는지 구체 설명. 반드시 아래 형식. 한국어.',
+            `분야: ${state.field}\nBP: ${state.bp?.name}\n선택된 빈틈: ${state.selectedGap?.name}\n빈틈 이유: ${state.selectedGap?.why}\n\n형식:\n[모순]\n개선하면: (무엇이 좋아지나)\n악화되는: (대신 무엇이 나빠지나)\n\n[원리1]\n번호: (TRIZ 원리 번호)\n이름: (원리 이름)\n적용: (이 문제에 어떻게 적용하나 1-2문장)\n\n[원리2]\n번호:\n이름:\n적용:\n\n[원리3]\n번호:\n이름:\n적용:`
+        );
+
+        const triz = parseTriz(text);
+        state.triz = triz;
+
+        let html = `<div class="bp-card" style="border-color:rgba(248,113,113,.3);background:linear-gradient(135deg,rgba(248,113,113,.08),transparent);">
+            <div class="bp-label" style="color:var(--red);">⚡ 기술적 모순</div>
+            <div style="display:flex;gap:1rem;margin:.75rem 0;flex-wrap:wrap;">
+                <div style="flex:1;min-width:120px;">
+                    <div style="font-size:.7rem;color:var(--green);">개선하면 ↑</div>
+                    <div style="font-weight:600;font-size:.9rem;">${triz.improve}</div>
+                </div>
+                <div style="flex:1;min-width:120px;">
+                    <div style="font-size:.7rem;color:var(--red);">악화되는 ↓</div>
+                    <div style="font-weight:600;font-size:.9rem;">${triz.worsen}</div>
+                </div>
+            </div>
+        </div>`;
+
+        triz.principles.forEach(p => {
+            html += `<div class="triz-card">
+                <div class="triz-label">TRIZ 원리 #${p.num}</div>
+                <div class="triz-name">${p.name}</div>
+                <div class="triz-desc">${p.apply}</div>
+            </div>`;
+        });
+
+        html += `<div class="action-row"><button class="btn" onclick="startBigmatch()">🏆 빅매치 이름 짓기 →</button></div>`;
+        area.innerHTML = html;
+    } catch (e) {
+        area.innerHTML = `<div style="color:var(--red);padding:1rem;">⚠️ ${e.message}<br><button class="btn btn-sm" onclick="startTriz()">재시도</button></div>`;
+    }
+}
+
+function parseTriz(text) {
+    const improve = (text.match(/개선하면[:\s]*(.+)/)||[])[1]?.trim() || '';
+    const worsen = (text.match(/악화되는[:\s]*(.+)/)||[])[1]?.trim() || '';
+    const principles = [];
+    const blocks = text.split(/\[원리\d+\]/).filter(b => b.trim() && b.includes('번호'));
+    blocks.forEach(b => {
+        principles.push({
+            num: (b.match(/번호[:\s]*(.+)/)||[])[1]?.trim() || '',
+            name: (b.match(/이름[:\s]*(.+)/)||[])[1]?.trim() || '',
+            apply: (b.match(/적용[:\s]*([\s\S]*?)$/)||[])[1]?.trim() || ''
+        });
+    });
+    return { improve, worsen, principles };
+}
+
+// ========== STEP 5: BIGMATCH ==========
+async function startBigmatch() {
+    goStep(5);
+    const area = document.getElementById('bigmatchResult');
+    area.innerHTML = '<div class="loading"><div class="spinner"></div>빅매치 구성 중...</div>';
+
+    try {
+        const trizNames = (state.triz?.principles||[]).map(p => p.name + ': ' + p.apply).join('\n');
+        const text = await callAI(
+            '연구 주제 이름 짓기 전문가. BP의 빈틈에서 발견한 모순을 "A vs B" 대립쌍으로 명명하여 연구 주제를 완성합니다. 대립하는 이름이 붙어야 "싸움 구도" = 연구 주제가 됩니다. 반드시 아래 형식. 한국어.',
+            `분야: ${state.field}\nBP: ${state.bp?.name}\n빈틈: ${state.selectedGap?.name}\n모순 - 개선: ${state.triz?.improve} / 악화: ${state.triz?.worsen}\nTRIZ 원리:\n${trizNames}\n\n형식:\n[빅매치]\n제목: (연구 주제 한 줄)\nA코너: (새것, 대안, 도전자 이름 — 짧게)\nB코너: (기존것, BP, 현 챔피언 이름 — 짧게)\n한줄설명: (이 대결이 왜 중요한지 한 줄)\n\n[연구질문]\nRQ: (이 빅매치에서 나온 연구 질문 한 줄)`
+        );
+
+        const bm = parseBigmatch(text);
+        state.bigmatch = bm;
+
+        area.innerHTML = `
+            <div class="bigmatch-card">
+                <div style="font-size:.8rem;color:var(--yellow);font-weight:700;letter-spacing:1px;">🏆 BIGMATCH</div>
+                <div style="font-size:1.3rem;font-weight:900;margin-top:.5rem;font-family:'Nanum Myeongjo',serif;">${bm.title}</div>
+                <div class="bigmatch-vs">
+                    <div class="bigmatch-corner">
+                        <div class="bigmatch-corner-label">🆕 A코너 (도전자)</div>
+                        <div class="bigmatch-corner-name" style="color:var(--accent2);">${bm.a}</div>
+                    </div>
+                    <div class="bigmatch-divider">VS</div>
+                    <div class="bigmatch-corner">
+                        <div class="bigmatch-corner-label">📦 B코너 (챔피언)</div>
+                        <div class="bigmatch-corner-name" style="color:var(--orange);">${bm.b}</div>
+                    </div>
+                </div>
+                <div style="color:var(--light);font-size:.9rem;">${bm.desc}</div>
+                ${bm.rq ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(251,191,36,.2);font-size:.9rem;"><strong style="color:var(--yellow);">RQ:</strong> ${bm.rq}</div>` : ''}
+            </div>
+        `;
+
+        showFinalSummary();
+    } catch (e) {
+        area.innerHTML = `<div style="color:var(--red);padding:1rem;">⚠️ ${e.message}<br><button class="btn btn-sm" onclick="startBigmatch()">재시도</button></div>`;
+    }
+}
+
+function parseBigmatch(text) {
+    return {
+        title: (text.match(/제목[:\s]*(.+)/)||[])[1]?.trim() || '',
+        a: (text.match(/A코너[:\s]*(.+)/)||[])[1]?.trim() || '',
+        b: (text.match(/B코너[:\s]*(.+)/)||[])[1]?.trim() || '',
+        desc: (text.match(/한줄설명[:\s]*(.+)/)||[])[1]?.trim() || '',
+        rq: (text.match(/RQ[:\s]*(.+)/)||[])[1]?.trim() || ''
+    };
+}
+
+// ========== FINAL SUMMARY ==========
+function showFinalSummary() {
+    document.getElementById('finalSummary').style.display = 'block';
+    const board = document.getElementById('summaryBoard');
+    board.innerHTML = `
+        <div class="summary-row">
+            <span class="summary-label l-field">분야</span>
+            <span class="summary-text">${state.field}</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label l-bp">BP</span>
+            <span class="summary-text">${state.bp?.name || '-'}</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label l-gap">빈틈</span>
+            <span class="summary-text">${state.selectedGap?.name || '-'}</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label l-triz">모순</span>
+            <span class="summary-text">${state.triz?.improve || ''} ↔ ${state.triz?.worsen || ''}</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label l-topic">주제</span>
+            <span class="summary-text" style="font-weight:700;color:var(--yellow);">${state.bigmatch?.title || '-'}</span>
+        </div>
+        <div class="summary-row">
+            <span class="summary-label l-topic">매치</span>
+            <span class="summary-text">${state.bigmatch?.a || ''} vs ${state.bigmatch?.b || ''}</span>
+        </div>
+        ${state.bigmatch?.rq ? `<div class="summary-row">
+            <span class="summary-label l-field">RQ</span>
+            <span class="summary-text">${state.bigmatch.rq}</span>
+        </div>` : ''}
+    `;
+}
+
+function copySummary() {
+    const text = `[연구 주제 잡기 결과]
+분야: ${state.field}
+BP: ${state.bp?.name || '-'}
+빈틈: ${state.selectedGap?.name || '-'}
+모순: ${state.triz?.improve || ''} ↔ ${state.triz?.worsen || ''}
+주제: ${state.bigmatch?.title || '-'}
+매치: ${state.bigmatch?.a || ''} vs ${state.bigmatch?.b || ''}
+RQ: ${state.bigmatch?.rq || '-'}`;
+
+    navigator.clipboard.writeText(text).then(() => {
+        alert('클립보드에 복사되었습니다!');
+    }).catch(() => {
+        prompt('복사하세요:', text);
     });
 }
 
-function buildSystemPrompt() {
-    return `당신은 연구 주제 잡기를 돕는 AI 퍼실리테이터입니다.
-
-## 핵심 원칙
-1. 주도적으로 질문을 던지며 대화를 이끕니다
-2. 한 번에 질문 하나만 합니다
-3. 연구자의 경험과 직관을 존중합니다
-4. 웹 검색이 필요하면 [SEARCH:검색어]로 표시합니다
-
-## 현재 단계: ${stage}/6
-
-## 단계별 역할
-
-### 1단계: 연구 분야 선택
-- 연구자가 관심 분야를 말하면 구체화 질문
-- 분야가 정해지면 [FIELD:분야명] 태그로 저장
-- 다음 단계로: "이 분야의 Best Practice를 찾아볼까요?"
-
-### 2단계: BP 탐색
-- [SEARCH:분야 best practice 최신 기술 동향]으로 검색
-- BP 후보 3~5개를 카드로 정리: [BP_LIST]항목1|항목2|항목3[/BP_LIST]
-- 연구자에게 "이 중 가장 익숙하거나 공감되는 게 뭔가요?" 질문
-- 선택되면 [SELECTED_BP:선택된BP] 저장
-
-### 3단계: BP 역사 추적
-- [SEARCH:선택된BP 발전 역사 혁신]으로 검색
-- BP가 해결한 과거 모순들을 타임라인으로: [HISTORY]연대:내용|연대:내용[/HISTORY]
-- "이 BP가 어떤 문제를 해결해서 최고가 됐는지 보이시죠?"
-
-### 4단계: 새 빈틈 발견
-- "현장에서 이 BP로도 해결 안 되는 문제가 있나요?" 질문
-- 연구자 경험 기반으로 빈틈 끌어내기
-- 빈틈 확정: [GAP:빈틈 내용]
-
-### 5단계: 모순 정의 + 트리즈
-- 빈틈을 모순으로 정의: [CONTRADICTION]개선하려는것|악화되는것[/CONTRADICTION]
-- 트리즈 40원리 중 적용 가능한 것 제안: [TRIZ]번호:원리명:적용방법|번호:원리명:적용방법[/TRIZ]
-- "이 원리들로 새로운 해결책이 보이시나요?"
-
-### 6단계: 빅매치 이름 짓기
-- 기존 BP에 대립적 이름 제안: "OO형", "OO 패러다임", "OO 중심"
-- 새 연구에 대립적 이름 제안: 반대 개념으로
-- 이름 쌍 3개 제안: [NAMES]BP이름1:새이름1|BP이름2:새이름2|BP이름3:새이름3[/NAMES]
-- 연구자 선택 후: [FINAL_MATCH]BP최종이름|새연구최종이름[/FINAL_MATCH]
-- 빅매치 카드 완성!
-
-## 현재 수집된 정보
-- 연구 분야: ${research.field || '(미정)'}
-- 선택된 BP: ${research.selectedBP || '(미선택)'}
-- 발견된 빈틈: ${research.gap || '(미발견)'}
-- 모순: ${research.contradiction.improve ? research.contradiction.improve + ' vs ' + research.contradiction.worsen : '(미정의)'}
-- BP 이름: ${research.bpNameFinal || '(미정)'}
-- 새 연구 이름: ${research.newNameFinal || '(미정)'}
-
-## 응답 규칙
-1. 한국어로 친근하게 대화
-2. 태그는 정보 저장용, 대화에서 태그 자체를 언급하지 마세요
-3. 카드 형식은 HTML로 예쁘게 (bp-card, history-card, contradiction-card, triz-card, naming-card 클래스 사용)
-4. 단계 전환 시 [STAGE:번호] 태그
-5. 빠른 선택지: [QUICK:선택1|선택2|선택3]`;
+// ========== RESET ==========
+function resetAll() {
+    Object.assign(state, { step:0, major:'', mid:'', sub:'', field:'', bp:null, history:[], gaps:[], selectedGap:null, triz:null, bigmatch:null });
+    document.getElementById('midFieldWrap').style.display = 'none';
+    document.getElementById('subFieldWrap').style.display = 'none';
+    document.getElementById('selectedFieldCard').style.display = 'none';
+    document.getElementById('finalSummary').style.display = 'none';
+    document.getElementById('researcherExpCard').style.display = 'none';
+    document.getElementById('customField').value = '';
+    document.querySelectorAll('.field-btn').forEach(b => b.classList.remove('selected'));
+    goStep(0);
 }
 
-function processResponse(text) {
-    // 태그 파싱
-    var fieldMatch = text.match(/\[FIELD:(.*?)\]/);
-    if (fieldMatch) { research.field = fieldMatch[1]; updateStage(2); }
-
-    var bpListMatch = text.match(/\[BP_LIST\](.*?)\[\/BP_LIST\]/);
-    if (bpListMatch) { research.bpList = bpListMatch[1].split('|'); }
-
-    var selectedBPMatch = text.match(/\[SELECTED_BP:(.*?)\]/);
-    if (selectedBPMatch) { research.selectedBP = selectedBPMatch[1]; updateStage(3); }
-
-    var historyMatch = text.match(/\[HISTORY\](.*?)\[\/HISTORY\]/);
-    if (historyMatch) { research.bpHistory = historyMatch[1].split('|').map(h => { var p = h.split(':'); return { era: p[0], content: p[1] }; }); }
-
-    var gapMatch = text.match(/\[GAP:(.*?)\]/);
-    if (gapMatch) { research.gap = gapMatch[1]; updateStage(5); }
-
-    var contraMatch = text.match(/\[CONTRADICTION\](.*?)\[\/CONTRADICTION\]/);
-    if (contraMatch) { var p = contraMatch[1].split('|'); research.contradiction = { improve: p[0], worsen: p[1] }; }
-
-    var trizMatch = text.match(/\[TRIZ\](.*?)\[\/TRIZ\]/);
-    if (trizMatch) { research.trizPrinciples = trizMatch[1].split('|').map(t => { var p = t.split(':'); return { num: p[0], name: p[1], apply: p[2] }; }); }
-
-    var namesMatch = text.match(/\[NAMES\](.*?)\[\/NAMES\]/);
-    // 이름 제안은 UI에서 처리
-
-    var finalMatch = text.match(/\[FINAL_MATCH\](.*?)\[\/FINAL_MATCH\]/);
-    if (finalMatch) {
-        var p = finalMatch[1].split('|');
-        research.bpNameFinal = p[0];
-        research.newNameFinal = p[1];
-        document.getElementById('bpName').textContent = p[0];
-        document.getElementById('newName').textContent = p[1];
-        document.getElementById('bigmatchCard').classList.add('show');
-        updateStage(6);
-    }
-
-    var stageMatch = text.match(/\[STAGE:(\d+)\]/);
-    if (stageMatch) { updateStage(parseInt(stageMatch[1])); }
-
-    var quickMatch = text.match(/\[QUICK:(.*?)\]/);
-    if (quickMatch) { setQuick(quickMatch[1].split('|')); }
-
-    // 태그 제거 후 출력
-    var clean = text
-        .replace(/\[FIELD:.*?\]/g, '')
-        .replace(/\[BP_LIST\].*?\[\/BP_LIST\]/g, '')
-        .replace(/\[SELECTED_BP:.*?\]/g, '')
-        .replace(/\[HISTORY\].*?\[\/HISTORY\]/g, '')
-        .replace(/\[GAP:.*?\]/g, '')
-        .replace(/\[CONTRADICTION\].*?\[\/CONTRADICTION\]/g, '')
-        .replace(/\[TRIZ\].*?\[\/TRIZ\]/g, '')
-        .replace(/\[NAMES\].*?\[\/NAMES\]/g, '')
-        .replace(/\[FINAL_MATCH\].*?\[\/FINAL_MATCH\]/g, '')
-        .replace(/\[STAGE:\d+\]/g, '')
-        .replace(/\[QUICK:.*?\]/g, '')
-        .replace(/\[SEARCH:.*?\]/g, '')
-        .trim();
-
-    chatHistory.push({ role: 'assistant', content: text });
-    if (clean) addAI(clean);
-}
-
-// textarea 자동 높이
-document.getElementById('userInput').addEventListener('input', function() {
-    this.style.height = '48px';
-    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-});
+// Init
+updateNav();
 </script>
 </body>
 </html>
